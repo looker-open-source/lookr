@@ -35,9 +35,9 @@ public class LDAPConfigTestResult   {
 
   
   /**
-   * Short human readable test about the result
+   * Short human readable Looker about the result
    **/
-  @ApiModelProperty(value = "Short human readable test about the result")
+  @ApiModelProperty(value = "Short human readable Looker about the result")
   @JsonProperty("message")
   public String getMessage() {
     return message;

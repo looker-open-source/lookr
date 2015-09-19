@@ -17,6 +17,34 @@
 
   <build>
     <plugins>
+
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-shade-plugin</artifactId>
+      <version>2.3</version>
+      <executions>
+        <execution>
+          <phase>package</phase>
+          <goals>
+            <goal>shade</goal>
+          </goals>
+          <configuration>
+            <minimizeJar>true</minimizeJar>
+            <createDependencyReducedPom>true</createDependencyReducedPom>
+            <dependencyReducedPomLocation>
+              ${java.io.tmpdir}/dependency-reduced-pom.xml
+            </dependencyReducedPomLocation>
+            <relocations>
+              <relocation>
+                <pattern>com.acme.coyote</pattern>
+                <shadedPattern>hidden.coyote</shadedPattern>
+              </relocation>
+            </relocations>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -48,7 +76,7 @@
         </executions>
       </plugin>
 
-      <!-- attach test jar -->
+      <!-- attach Looker jar -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -152,7 +180,7 @@
       <version>${jodatime-version}</version>
     </dependency>
 
-    <!-- test dependencies -->
+    <!-- Looker dependencies -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

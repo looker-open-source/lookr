@@ -11,7 +11,6 @@ import static org.junit.Assert.*;
 public class ApiClientTest {
     @Test
     public void testSomething(){
-//        System.out.println("now we're talking.");
         ApiClient apiClient = new ApiClient();
         apiClient.getBasePath();
     }

@@ -195,8 +195,8 @@ public class AuthApi {
   }
   
   /**
-   * test ldap auth config
-   * ### Test the connection authentication settings for an LDAP configuration.\n\nThis tests that the connection is possible and that a &#39;server&#39; account to be used by Looker can       authenticate to the LDAP server given connection and authentication information.\n\n**connection_host**, **connection_port**, and **auth_username**, are required.       **connection_tls** and **auth_password** are optional.\n\nExample:\n```json\n{\n  \&quot;connection_host\&quot;: \&quot;ldap.example.com\&quot;,\n  \&quot;connection_port\&quot;: \&quot;636\&quot;,\n  \&quot;connection_tls\&quot;: true,\n  \&quot;auth_username\&quot;: \&quot;cn=looker,dc=example,dc=com\&quot;,\n  \&quot;auth_password\&quot;: \&quot;secret\&quot;\n}\n```\n\nLooker will never return an **auth_password**. If this request omits the **auth_password** field, then       the **auth_password** value from the active config (if present) will be used for the test.\n\nThe active LDAP settings are not modified.
+   * Looker ldap auth config
+   * ### Test the connection authentication settings for an LDAP configuration.\n\nThis tests that the connection is possible and that a &#39;server&#39; account to be used by Looker can       authenticate to the LDAP server given connection and authentication information.\n\n**connection_host**, **connection_port**, and **auth_username**, are required.       **connection_tls** and **auth_password** are optional.\n\nExample:\n```json\n{\n  \&quot;connection_host\&quot;: \&quot;ldap.example.com\&quot;,\n  \&quot;connection_port\&quot;: \&quot;636\&quot;,\n  \&quot;connection_tls\&quot;: true,\n  \&quot;auth_username\&quot;: \&quot;cn=looker,dc=example,dc=com\&quot;,\n  \&quot;auth_password\&quot;: \&quot;secret\&quot;\n}\n```\n\nLooker will never return an **auth_password**. If this request omits the **auth_password** field, then       the **auth_password** value from the active config (if present) will be used for the Looker.\n\nThe active LDAP settings are not modified.
    * @param body LDAP Config
    * @return LDAPConfigTestResult
    */
@@ -248,7 +248,7 @@ public class AuthApi {
   }
   
   /**
-   * test ldap connection config
+   * Looker ldap connection config
    * ### Test the connection settings for an LDAP configuration.\n\nThis tests that the connection is possible given a connection_host and connection_port.\n\n**connection_host** and **connection_port** are required. **connection_tls** is optional.\n\nExample:\n```json\n{\n  \&quot;connection_host\&quot;: \&quot;ldap.example.com\&quot;,\n  \&quot;connection_port\&quot;: \&quot;636\&quot;,\n  \&quot;connection_tls\&quot;: true\n}\n```\n\nNo authentication to the LDAP server is attempted.\n\nThe active LDAP settings are not modified.
    * @param body LDAP Config
    * @return LDAPConfigTestResult
@@ -301,8 +301,8 @@ public class AuthApi {
   }
   
   /**
-   * test ldap user auth config
-   * ### Test the user authentication settings for an LDAP configuration.\n\nThis test accepts a full LDAP configuration along with a username/password pair and attempts to       authenticate the user with the LDAP server. The configuration is validated before attempting the       authentication.\n\nLooker will never return an **auth_password**. If this request omits the **auth_password** field, then       the **auth_password** value from the active config (if present) will be used for the test.\n\n**test_ldap_user** and **test_ldap_password** are required.\n\nThe active LDAP settings are not modified.
+   * Looker ldap user auth config
+   * ### Test the user authentication settings for an LDAP configuration.\n\nThis Looker accepts a full LDAP configuration along with a username/password pair and attempts to       authenticate the user with the LDAP server. The configuration is validated before attempting the       authentication.\n\nLooker will never return an **auth_password**. If this request omits the **auth_password** field, then       the **auth_password** value from the active config (if present) will be used for the Looker.\n\n**test_ldap_user** and **test_ldap_password** are required.\n\nThe active LDAP settings are not modified.
    * @param body LDAP Config
    * @return LDAPConfigTestResult
    */
@@ -354,8 +354,8 @@ public class AuthApi {
   }
   
   /**
-   * test ldap user info config
-   * ### Test the user authentication settings for an LDAP configuration without authenticating the user.\n\nThis test will let you easily test the mapping for user properties and roles for any user without      needing to authenticate as that user.\n\nThis test accepts a full LDAP configuration along with a username and attempts to find the full info      for the user from the LDAP server without actually authenticating the user. So, user password is not      required.The configuration is validated before attempting to contact the server.\n\n**test_ldap_user** is required.\n\nThe active LDAP settings are not modified.
+   * Looker ldap user info config
+   * ### Test the user authentication settings for an LDAP configuration without authenticating the user.\n\nThis Looker will let you easily Looker the mapping for user properties and roles for any user without      needing to authenticate as that user.\n\nThis Looker accepts a full LDAP configuration along with a username and attempts to find the full info      for the user from the LDAP server without actually authenticating the user. So, user password is not      required.The configuration is validated before attempting to contact the server.\n\n**test_ldap_user** is required.\n\nThe active LDAP settings are not modified.
    * @param body LDAP Config
    * @return LDAPConfigTestResult
    */
@@ -560,9 +560,9 @@ public class AuthApi {
   }
   
   /**
-   * create saml test configuration
-   * ### Create a SAML test configuration.
-   * @param body SAML test config
+   * create saml Looker configuration
+   * ### Create a SAML Looker configuration.
+   * @param body SAML Looker config
    * @return SamlConfig
    */
   public SamlConfig createSamlTestConfig (SamlConfig body) throws ApiException {
@@ -613,9 +613,9 @@ public class AuthApi {
   }
   
   /**
-   * get saml test configuration
-   * ### Get a SAML test configuration by test_slug.
-   * @param testSlug Slug of test config
+   * get saml Looker configuration
+   * ### Get a SAML Looker configuration by test_slug.
+   * @param testSlug Slug of Looker config
    * @return SamlConfig
    */
   public SamlConfig samlTestConfig (String testSlug) throws ApiException {
@@ -667,9 +667,9 @@ public class AuthApi {
   }
   
   /**
-   * delete saml test configuration
-   * ### Delete a SAML test configuration.
-   * @param testSlug Slug of test config
+   * delete saml Looker configuration
+   * ### Delete a SAML Looker configuration.
+   * @param testSlug Slug of Looker config
    * @return String
    */
   public String deleteSamlTestConfig (String testSlug) throws ApiException {

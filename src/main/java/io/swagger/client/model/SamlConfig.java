@@ -169,9 +169,9 @@ public class SamlConfig   {
 
   
   /**
-   * Slug to identify configurations that are created in order to run a Saml config test
+   * Slug to identify configurations that are created in order to run a Saml config Looker
    **/
-  @ApiModelProperty(value = "Slug to identify configurations that are created in order to run a Saml config test")
+  @ApiModelProperty(value = "Slug to identify configurations that are created in order to run a Saml config Looker")
   @JsonProperty("test_slug")
   public String getTestSlug() {
     return testSlug;
