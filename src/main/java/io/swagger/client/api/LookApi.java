@@ -168,7 +168,7 @@ public class LookApi {
      }
      
     // create path and map variables
-    String path = "/looks/{look_id}/run/{format}".replaceAll("\\{format\\}", "json")
+    String path = "/looks/{look_id}/run/{format}" //.replaceAll("\\{format\\}", "json")
       .replaceAll("\\{" + "look_id" + "\\}", apiClient.escapeString(lookId.toString()))
       .replaceAll("\\{" + "format" + "\\}", apiClient.escapeString(format.toString()));
 

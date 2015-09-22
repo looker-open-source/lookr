@@ -28,7 +28,7 @@ public class Looker {
             LookApi look = new LookApi();
 
             // run look
-            System.out.println(look.runLook((long) 1298, "json"));
+            System.out.println(look.runLook((long) 1298, "unified"));
 
         } catch(Exception e) {
             System.out.println("Exception thrown  :" + e);

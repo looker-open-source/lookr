@@ -44,7 +44,7 @@ public class ApiClient {
   private Map<String, Client> hostMap = new HashMap<String, Client>();
   private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   private boolean debugging = false;
-  private String basePath = "https://metanew.looker.com:19999/api/3.0";
+  private String basePath = "";
   private JSON json = new JSON();
 
   private Map<String, Authentication> authentications;

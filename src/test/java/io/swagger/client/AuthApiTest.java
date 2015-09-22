@@ -12,13 +12,16 @@ public class AuthApiTest {
     @Test
     public void testSomething(){
 
-        String client_id = "YQrRfCHQwQfz9fcChS28";
-        String client_secret = "RgRXKd8QrzYvm8H7ckh8ZfvG";
-        String basePath = "https://meta.looker.com:19999/api/3.0";
+        String client_id = "";
+        String client_secret = "";
+        String basePath = "https://metanew.looker.com:19999/api/3.0";
 
         try {
             // instantiate ApiClient
             ApiClient apiClient = new ApiClient();
+
+            // set api path
+            apiClient.setBasePath(basePath);
 
             // instantiate AuthApi
             ApiAuthApi apiAuthApi = new ApiAuthApi(apiClient);
@@ -38,7 +41,7 @@ public class AuthApiTest {
             LookApi look = new LookApi();
 
             // run look
-//            System.out.println(look.runLook(1298, "json"));
+            System.out.println(look.runLook(((long) 2039), "json"));
 
         } catch(Exception e) {
             System.out.println("Exception thrown  :" + e);
