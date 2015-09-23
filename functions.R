@@ -33,17 +33,20 @@ find_java_objects <- function(name = NULL){
 # does our token exist, and is our session still authenticated
 token_authenticated <- function(){
 	out <<- tryCatch({
-						(!is.null(token) && (!is.null(expires_at) || expires_at > Sys.time()))
+						result <- (exists("token") && exists("expires_at")) && expires_at > Sys.time()
 			}, error = function(cond) {message("You have not authenticated your session. See the looker_setup function.")
 			}, finally = {}
 			
 	)
+	return(result)
 }
 
 # if we have are no longer authenticated, restart session; otherwise, do nothing
 ensure_logged_in <- function(){
 	if(!isTRUE(token_authenticated())){
-		looker_setup(id = clientId, secret = clientSecret)
+		message("Re-authenticating your Looker API session. \n", appendLF = FALSE)
+		flush.console()
+		looker_setup(id = clientId, secret = clientSecret, api_path = basePath)
 	}
 }
 
