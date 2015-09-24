@@ -27,6 +27,7 @@ Thumbs.db
 .CVS
 intermediate
 publish
+classes
 target
 out
 .idea
