@@ -1,3 +1,9 @@
+package com.looker.lookr;
+
+import io.swagger.client.ApiClient;
+import io.swagger.client.Configuration;
+import io.swagger.client.api.ApiAuthApi;
+import io.swagger.client.api.LookApi;
 import io.swagger.client.model.AccessToken;
 
 public class Looker {
