@@ -106,6 +106,7 @@
             <configuration>
               <sources>
                 <source>src/main/java</source>
+                <source>src/main/gen</source>
               </sources>
             </configuration>
           </execution>
