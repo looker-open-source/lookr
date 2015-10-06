@@ -14,8 +14,8 @@ public class TestRunInlineQuery {
     @Test
     public void RunInlineQuery(){
 
-        String client_id = "YQrRfCHQwQfz9fcChS28";
-        String client_secret = "RgRXKd8QrzYvm8H7ckh8ZfvG";
+        String client_id = "";
+        String client_secret = "";
         String basePath = "https://metanew.looker.com:19999/api/3.0";
 
         try {
