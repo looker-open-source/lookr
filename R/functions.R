@@ -1,7 +1,6 @@
 # preliminaries #
-library("rJava")
-library("rjson")
-.jinit("/Users/scott/Documents/java_client/client/out/artifacts/swagger_java_client_jar/swagger-java-client.jar")
+require("rJava")
+require("rjson")
 
 looker_setup <- function(id = NULL, secret = NULL, api_path = NULL){
 	clientId <<- id
