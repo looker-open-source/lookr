@@ -1,21 +1,23 @@
-package com.looker.lookr;
-
-import io.swagger.client.ApiClient;
-import io.swagger.client.Configuration;
+package io.swagger.client;
 import io.swagger.client.api.ApiAuthApi;
-import io.swagger.client.api.LookApi;
 import io.swagger.client.api.QueryApi;
 import io.swagger.client.model.AccessToken;
 import io.swagger.client.model.Query;
+import java.util.*;
+import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+/**
+ * Created by scott on 10/2/15.
+ */
 
-public class Looker {
+public class TestRunInlineQuery {
+    @Test
+    public void RunInlineQuery(){
 
-    // method for starting up the api client
-    public void LookerSetup(String clientId, String clientSecret, String basePath) {
+        String client_id = "YQrRfCHQwQfz9fcChS28";
+        String client_secret = "RgRXKd8QrzYvm8H7ckh8ZfvG";
+        String basePath = "https://metanew.looker.com:19999/api/3.0";
+
         try {
             // instantiate ApiClient
             ApiClient apiClient = new ApiClient();
@@ -27,27 +29,19 @@ public class Looker {
             ApiAuthApi apiAuthApi = new ApiAuthApi(apiClient);
 
             // prepare token and secret for login
-            AccessToken token = apiAuthApi.login(clientId, clientSecret);
+            AccessToken token = apiAuthApi.login(client_id, client_secret);
+
+            Configuration config = new Configuration();
 
             // configure ApiClient
-            Configuration.setDefaultApiClient(apiClient);
+            config.setDefaultApiClient(apiClient);
 
             // add auth credentials to ApiClient
-            Configuration.getDefaultApiClient().addDefaultHeader("Authorization", "token " + token.getAccessToken());
+            config.getDefaultApiClient().addDefaultHeader("Authorization", "token " + token.getAccessToken());
 
-        }
-        catch(Exception e) {
-            System.out.println("Exception thrown  :" + e);
-        }
-    }
-    public static void main(String[] args){
-
-    }
-
-    // method for running inline queries
-    public void LookerRunInlineQuery() {
-        try {
+            // prepare QueryApi
             QueryApi lookerQuery = new QueryApi();
+
             // create an empty query object
             Query query = new Query();
 
@@ -59,7 +53,7 @@ public class Looker {
 
             // non-essential parameters
             List<String> pivots = new ArrayList<String>();
-            pivots.add("lead.grouping");
+                pivots.add("lead.grouping");
 //            Map<String, String> filters = new HashMap<String, String>();
 //            List<String> sorts = new ArrayList<String>();
             Long id = null;
@@ -81,19 +75,16 @@ public class Looker {
 
 
             // add required fields to query
-            if (model != null || view != null || fields != null) {
-                query.setModel(model);
-                query.setView(view);
-                query.setFields(fields);
-                query.setFilters(null);
-                query.setPivots(pivots);
-            }
+            query.setModel(model);
+            query.setView(view);
+            query.setFields(fields);
+            query.setFilters(null);
+            query.setPivots(pivots);
 
             // run look
             System.out.println(lookerQuery.runInlineQuery("json", query));
 
-        }
-        catch (Exception e) {
+        } catch(Exception e) {
             System.out.println("Exception thrown  :" + e);
         }
     }
