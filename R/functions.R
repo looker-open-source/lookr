@@ -103,6 +103,11 @@ run_inline_query <- function(model, view, fields, filters = NULL, pivots = NULL,
 	fields_array_list <- J("java/util/Arrays", method = "asList", .jcastToArray(fields))
 	J(query, "setFields", fields_array_list)
 	
+	# handle filters
+	filter_hash <- .jnew("java/util/HashMap")	
+	lapply(filters, function(x){J(filter_hash, method = "put", x[1], x[2])})
+	J(query, "setFilters", filter_hash)
+	
 	# run query	
 	response <- J(queryApi, "runInlineQuery", "json", query)
 
