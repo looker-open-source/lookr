@@ -1,17 +1,37 @@
 # LookR
 ### Overview
-LookR is an R library that provides the user an interface from the R Console or command line to the Looker API (3.0). The API methods are determined dynamically by a Swagger JSON file available on a given Looker instance. All client methods are written in Java and called from R using the rJava library.
+LookR is an open-source R library that provides the user an interface from the R Console or command line to the Looker API (3.0). The API methods are determined dynamically by a Swagger JSON file available on a given Looker instance. All client methods are written in Java and called from R using the rJava library.
 
 
-### Project setup
-- TODO note command `mvn` commands supported by this project
+### Installation
+The LookR library is not distributed on CRAN; instead, one must build directly from source. Run the following commands in the R console or command-line client.
+```R
+library("devtools")
+install_github("looker/lookr")
+library("LookR")
+```
 
-- Download Intellij IDEA (Community Edition is fine)
-- In Intellij, click File->Open, and choose `lookr/pom.xml`
-- Once the project has loaded, right-click `lookr/src/gen` and choose `Mark Directory As -> Generated Sources Root`
+### Usage
+```R
+# setting up the client and authenticating (id and secret are available on your Looker instance)
+looker_setup(id = "myapi3id",
+	secret = "myapi3secret",
+	api_path = "https://mylookerendpoint.com:19999/api/3.0"
+)
+
+# running a Look by its look_id
+my_look <- run_look(2039)
+
+# running an inline query by providing query components (note: model, view, and fields are required parameters)
+my_inline_query <- run_inline_query(model = "thelook", view = "orders", fields = c("orders.count", "orders.created_month"))
+```
+### Contributing
+- Clone this repo `git clone git@github.com:looker/lookr.git`;
+- Download Intellij IDEA (Community Edition is fine), or your preferred JAVA IDE;
+- In your Java IDE, generate a new project from external source—namely, `lookr/pom.xml`;
+- Make sure to bundle an uber jar containing all of the dependencies.
 
 ### TODO
-1. write tests so our methods do what we expect when we ship this thang;
-2. write main class for R interface;
-3. use rJava to construct R functions;
-4. and, bundle dependencies into a "fat jar file," and ship in R library.
+1. tests;
+2. push as many R functions as possible into Java.
+

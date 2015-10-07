@@ -1,2 +1,2 @@
 import("rJava", "rjson")
-export("looker_setup", "run_look")
+export("looker_setup", "run_look", "run_inline_query")
