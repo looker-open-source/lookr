@@ -54,7 +54,9 @@ public class TestRunInlineQuery {
             // non-essential parameters
             List<String> pivots = new ArrayList<String>();
                 pivots.add("lead.grouping");
-//            Map<String, String> filters = new HashMap<String, String>();
+            Map<String, String> filters = new HashMap<String, String>();
+            filters.put("lead.created_date","90 days");
+            java.util
 //            List<String> sorts = new ArrayList<String>();
             Long id = null;
             String limit = null;
@@ -78,7 +80,7 @@ public class TestRunInlineQuery {
             query.setModel(model);
             query.setView(view);
             query.setFields(fields);
-            query.setFilters(null);
+            query.setFilters(filters);
             query.setPivots(pivots);
 
             // run look
