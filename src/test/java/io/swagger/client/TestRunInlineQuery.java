@@ -16,7 +16,7 @@ public class TestRunInlineQuery {
 
         String client_id = "";
         String client_secret = "";
-        String basePath = "https://metanew.looker.com:19999/api/3.0";
+        String basePath = "";
 
         try {
             // instantiate ApiClient
@@ -46,16 +46,16 @@ public class TestRunInlineQuery {
             Query query = new Query();
 
             // required parameters
-            String model = "meta";
-            String view = "lead";
-            String fields_array[] = new String[]{"lead.grouping", "lead.created_month", "lead.count"};
+            String model = "";
+            String view = "";
+            String fields_array[] = new String[]{"", "", ""};
             List fields = Arrays.asList(fields_array);
 
             // non-essential parameters
             List<String> pivots = new ArrayList<String>();
-                pivots.add("lead.grouping");
+                pivots.add("");
             Map<String, String> filters = new HashMap<String, String>();
-            filters.put("lead.created_date","90 days");
+            filters.put("","");
             java.util
 //            List<String> sorts = new ArrayList<String>();
             Long id = null;
@@ -71,9 +71,6 @@ public class TestRunInlineQuery {
             String expandedShareUrl = null;
             String queryTimezone = null;
 
-//            private Map<String, String> visConfig = new HashMap<String, String>();
-//            private Map<String, String> filterConfig = new HashMap<String, String>();
-//            private List<String> dynamicFields = new ArrayList<String>();
 
 
             // add required fields to query
