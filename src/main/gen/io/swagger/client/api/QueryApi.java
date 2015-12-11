@@ -6,19 +6,14 @@ import io.swagger.client.Configuration;
 import io.swagger.client.Pair;
 import io.swagger.client.TypeRef;
 
-import io.swagger.client.model.*;
+import io.swagger.client.model.Query;
+import io.swagger.client.model.Error;
+import io.swagger.client.model.AsyncQuery;
+import io.swagger.client.model.RunningQueries;
 
 import java.util.*;
 
-import io.swagger.client.model.Query;
-import io.swagger.client.model.Error;
-import io.swagger.client.model.RunningQueries;
-
-import java.io.File;
-import java.util.Map;
-import java.util.HashMap;
-
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-09-08T14:44:15.944-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-20T15:30:04.098-08:00")
 public class QueryApi {
   private ApiClient apiClient;
 
@@ -64,12 +59,12 @@ public class QueryApi {
     
 
     final String[] accepts = {
-      
+      "application/json"
     };
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
@@ -137,7 +132,7 @@ public class QueryApi {
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
@@ -177,7 +172,7 @@ public class QueryApi {
      }
      
     // create path and map variables
-    String path = "/queries/run/{format}".replaceAll("\\{format\\}","json")
+    String path = "/queries/run/{format}"//.replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "format" + "\\}", apiClient.escapeString(format.toString()));
 
     // query params
@@ -197,7 +192,7 @@ public class QueryApi {
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
@@ -220,9 +215,9 @@ public class QueryApi {
    * Given a set of properties for a Query, fetches or creates the Query and starts running it asynchronously.\nThe Query Task results endpoint can be used to fetch the query.
    * @param body Query data
    * @param format Format of the response. Default is json.
-   * @return RunningQueries
+   * @return AsyncQuery
    */
-  public RunningQueries createQueryAndRunAsync (Query body, String format) throws ApiException {
+  public AsyncQuery createQueryAndRunAsync (Query body, String format) throws ApiException {
     Object postBody = body;
     byte[] postBinaryBody = null;
     
@@ -248,12 +243,12 @@ public class QueryApi {
     
 
     final String[] accepts = {
-      
+      "application/json"
     };
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
@@ -263,7 +258,7 @@ public class QueryApi {
 
     
     
-    TypeRef returnType = new TypeRef<RunningQueries>() {};
+    TypeRef returnType = new TypeRef<AsyncQuery>() {};
     return apiClient.invokeAPI(path, "POST", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
     
@@ -305,12 +300,12 @@ public class QueryApi {
     
 
     final String[] accepts = {
-      
+      "application/json"
     };
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
@@ -362,12 +357,12 @@ public class QueryApi {
     
 
     final String[] accepts = {
-      
+      "application/json"
     };
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
@@ -428,7 +423,7 @@ public class QueryApi {
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
@@ -451,9 +446,9 @@ public class QueryApi {
    * ### Run a saved query asynchronously.\n\nRuns a previously created query asynchronously. Returns a Query Task ID\nwhich can be used to fetch the results from the Query Tasks results endpoint.
    * @param queryId ID of query
    * @param body async query run
-   * @return RunningQueries
+   * @return AsyncQuery
    */
-  public RunningQueries runAsync (Long queryId, RunningQueries body) throws ApiException {
+  public AsyncQuery runAsync (Long queryId, AsyncQuery body) throws ApiException {
     Object postBody = body;
     byte[] postBinaryBody = null;
     
@@ -478,12 +473,12 @@ public class QueryApi {
     
 
     final String[] accepts = {
-      
+      "application/json"
     };
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
@@ -493,8 +488,63 @@ public class QueryApi {
 
     
     
-    TypeRef returnType = new TypeRef<RunningQueries>() {};
+    TypeRef returnType = new TypeRef<AsyncQuery>() {};
     return apiClient.invokeAPI(path, "POST", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
+    
+    
+
+
+  }
+  
+  /**
+   * Get a multiple query task results in one request.
+   * Fetch a multiple Query Task results at once.
+   * @param queryTaskIds List of Query Task IDs
+   * @return String
+   */
+  public String queryTaskMultiResults (List<String> queryTaskIds) throws ApiException {
+    Object postBody = null;
+    byte[] postBinaryBody = null;
+    
+     // verify the required parameter 'queryTaskIds' is set
+     if (queryTaskIds == null) {
+        throw new ApiException(400, "Missing the required parameter 'queryTaskIds' when calling queryTaskMultiResults");
+     }
+     
+    // create path and map variables
+    String path = "/query_tasks/multi_results".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, Object> formParams = new HashMap<String, Object>();
+
+    
+    queryParams.addAll(apiClient.parameterToPairs("csv", "query_task_ids[]", queryTaskIds));
+    
+
+    
+
+    
+
+    final String[] accepts = {
+      "application/json"
+    };
+    final String accept = apiClient.selectHeaderAccept(accepts);
+
+    final String[] contentTypes = {
+      "application/json"
+    };
+    final String contentType = apiClient.selectHeaderContentType(contentTypes);
+
+    String[] authNames = new String[] {  };
+
+    
+
+    
+    
+    TypeRef returnType = new TypeRef<String>() {};
+    return apiClient.invokeAPI(path, "GET", queryParams, postBody, postBinaryBody, headerParams, formParams, accept, contentType, authNames, returnType);
     
     
 
@@ -535,12 +585,12 @@ public class QueryApi {
     
 
     final String[] accepts = {
-      
+      "application/json"
     };
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
@@ -594,7 +644,7 @@ public class QueryApi {
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 

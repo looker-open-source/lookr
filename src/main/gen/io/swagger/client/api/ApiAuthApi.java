@@ -6,18 +6,12 @@ import io.swagger.client.Configuration;
 import io.swagger.client.Pair;
 import io.swagger.client.TypeRef;
 
-import io.swagger.client.model.*;
-
-import java.util.*;
-
 import io.swagger.client.model.AccessToken;
 import io.swagger.client.model.Error;
 
-import java.io.File;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-09-08T14:44:15.944-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-20T15:30:04.098-08:00")
 public class ApiAuthApi {
   private ApiClient apiClient;
 
@@ -68,12 +62,12 @@ public class ApiAuthApi {
     
 
     final String[] accepts = {
-      
+      "application/json"
     };
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
@@ -115,12 +109,12 @@ public class ApiAuthApi {
     
 
     final String[] accepts = {
-      
+      "application/json"
     };
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 

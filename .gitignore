@@ -20,6 +20,7 @@
 .tmproj
 nbproject
 Thumbs.db
+config.json
 
 # Folders to ignore
 .hg

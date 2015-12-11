@@ -1,4 +1,5 @@
 package io.swagger.client;
+
 import io.swagger.client.api.ApiAuthApi;
 import io.swagger.client.api.QueryApi;
 import io.swagger.client.model.AccessToken;
@@ -48,37 +49,21 @@ public class TestRunInlineQuery {
             // required parameters
             String model = "";
             String view = "";
-            String fields_array[] = new String[]{"", "", ""};
+            String fields_array[] = new String[]{"", ""};
             List fields = Arrays.asList(fields_array);
 
             // non-essential parameters
-            List<String> pivots = new ArrayList<String>();
-                pivots.add("");
+//            List<String> pivots = new ArrayList<String>();
+//                pivots.add("");
             Map<String, String> filters = new HashMap<String, String>();
             filters.put("","");
-            java.util
-//            List<String> sorts = new ArrayList<String>();
-            Long id = null;
-            String limit = null;
-            String columnLimit = null;
-            Boolean total = null;
-            String rowTotal = null;
-            Double runtime = null;
-            String visibleUiSections = null;
-            String slug = null;
-            String clientId = null;
-            String shareUrl = null;
-            String expandedShareUrl = null;
-            String queryTimezone = null;
-
-
 
             // add required fields to query
             query.setModel(model);
             query.setView(view);
             query.setFields(fields);
             query.setFilters(filters);
-            query.setPivots(pivots);
+//            query.setPivots(pivots);
 
             // run look
             System.out.println(lookerQuery.runInlineQuery("json", query));

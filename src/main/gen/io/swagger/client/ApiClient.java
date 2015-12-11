@@ -39,12 +39,12 @@ import io.swagger.client.auth.HttpBasicAuth;
 import io.swagger.client.auth.ApiKeyAuth;
 import io.swagger.client.auth.OAuth;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-09-08T14:44:15.944-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-20T15:30:04.098-08:00")
 public class ApiClient {
   private Map<String, Client> hostMap = new HashMap<String, Client>();
   private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   private boolean debugging = false;
-  private String basePath = "";
+  private String basePath = "https://metanew.looker.com:19999/api/3.0";
   private JSON json = new JSON();
 
   private Map<String, Authentication> authentications;
@@ -55,12 +55,14 @@ public class ApiClient {
   private DateFormat dateFormat;
 
   public ApiClient() {
-    // Use ISO 8601 format for date and datetime.
-    // See https://en.wikipedia.org/wiki/ISO_8601
+    // Use RFC3339 format for date and datetime.
+    // See http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14
     this.dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
     // Use UTC as the default time zone.
     this.dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+    this.json.setDateFormat((DateFormat) dateFormat.clone());
 
     // Set default User-Agent.
     setUserAgent("Java-Swagger");
@@ -69,6 +71,13 @@ public class ApiClient {
     authentications = new HashMap<String, Authentication>();
     // Prevent the authentications from being modified.
     authentications = Collections.unmodifiableMap(authentications);
+  }
+
+  /**
+   * Gets the JSON instance to do JSON serialization and deserialization.
+   */
+  public JSON getJSON() {
+    return json;
   }
 
   public String getBasePath() {
@@ -164,6 +173,19 @@ public class ApiClient {
   }
 
   /**
+   * Helper method to set access token for the first OAuth2 authentication.
+   */
+  public void setAccessToken(String accessToken) {
+    for (Authentication auth : authentications.values()) {
+      if (auth instanceof OAuth) {
+        ((OAuth) auth).setAccessToken(accessToken);
+        return;
+      }
+    }
+    throw new RuntimeException("No OAuth2 authentication configured!");
+  }
+
+  /**
    * Set the User-Agent header's value (by adding to the default header map).
    */
   public ApiClient setUserAgent(String userAgent) {
@@ -209,8 +231,10 @@ public class ApiClient {
   /**
    * Set the date format used to parse/format date parameters.
    */
-  public ApiClient getDateFormat(DateFormat dateFormat) {
+  public ApiClient setDateFormat(DateFormat dateFormat) {
     this.dateFormat = dateFormat;
+    // also set the date format for model (de)serialization with Date properties
+    this.json.setDateFormat((DateFormat) dateFormat.clone());
     return this;
   }
 
@@ -382,8 +406,15 @@ public class ApiClient {
 
     if (contentType.startsWith("application/json")) {
       return json.deserialize(body, returnType);
+    } else if (returnType.getType().equals(String.class)) {
+      // Expecting string, return the raw response body.
+      return (T) body;
     } else {
-      throw new ApiException(500, "can not deserialize Content-Type: " + contentType);
+      throw new ApiException(
+        500,
+        "Content type \"" + contentType + "\" is not supported for type: "
+          + returnType.getType()
+      );
     }
   }
 

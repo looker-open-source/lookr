@@ -1,7 +1,6 @@
 package io.swagger.client.model;
 
 import io.swagger.client.StringUtil;
-import io.swagger.client.model.DashboardLayoutComponent;
 import io.swagger.client.model.DashboardElement;
 import io.swagger.client.model.DashboardFilter;
 import java.util.*;
@@ -16,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-09-08T14:44:15.944-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-20T15:30:04.098-08:00")
 public class Dashboard   {
   
   private String id = null;
@@ -34,7 +33,6 @@ public class Dashboard   {
   private Long spaceId = null;
   private List<DashboardElement> elements = new ArrayList<DashboardElement>();
   private List<DashboardLayout> layouts = new ArrayList<DashboardLayout>();
-  private List<DashboardLayoutComponent> layoutComponents = new ArrayList<DashboardLayoutComponent>();
   private List<DashboardFilter> filters = new ArrayList<DashboardFilter>();
 
   
@@ -234,19 +232,6 @@ public class Dashboard   {
 
   
   /**
-   * Layout Components
-   **/
-  @ApiModelProperty(value = "Layout Components")
-  @JsonProperty("layout_components")
-  public List<DashboardLayoutComponent> getLayoutComponents() {
-    return layoutComponents;
-  }
-  public void setLayoutComponents(List<DashboardLayoutComponent> layoutComponents) {
-    this.layoutComponents = layoutComponents;
-  }
-
-  
-  /**
    * Filters
    **/
   @ApiModelProperty(value = "Filters")
@@ -280,7 +265,6 @@ public class Dashboard   {
     sb.append("    spaceId: ").append(StringUtil.toIndentedString(spaceId)).append("\n");
     sb.append("    elements: ").append(StringUtil.toIndentedString(elements)).append("\n");
     sb.append("    layouts: ").append(StringUtil.toIndentedString(layouts)).append("\n");
-    sb.append("    layoutComponents: ").append(StringUtil.toIndentedString(layoutComponents)).append("\n");
     sb.append("    filters: ").append(StringUtil.toIndentedString(filters)).append("\n");
     sb.append("}");
     return sb.toString();

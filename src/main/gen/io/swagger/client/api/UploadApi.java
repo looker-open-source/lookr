@@ -6,19 +6,14 @@ import io.swagger.client.Configuration;
 import io.swagger.client.Pair;
 import io.swagger.client.TypeRef;
 
-import io.swagger.client.model.*;
+import io.swagger.client.model.UploadTable;
+import io.swagger.client.model.Error;
+import io.swagger.client.model.ValidationError;
+import io.swagger.client.model.Body2;
 
 import java.util.*;
 
-import io.swagger.client.model.Error;
-import io.swagger.client.model.UploadTable;
-import io.swagger.client.model.ValidationError;
-
-import java.io.File;
-import java.util.Map;
-import java.util.HashMap;
-
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-09-08T14:44:15.944-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-20T15:30:04.098-08:00")
 public class UploadApi {
   private ApiClient apiClient;
 
@@ -63,12 +58,12 @@ public class UploadApi {
     
 
     final String[] accepts = {
-      
+      "application/json"
     };
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
@@ -116,12 +111,12 @@ public class UploadApi {
     
 
     final String[] accepts = {
-      
+      "application/json"
     };
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
@@ -170,12 +165,12 @@ public class UploadApi {
     
 
     final String[] accepts = {
-      
+      "application/json"
     };
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
@@ -230,12 +225,12 @@ public class UploadApi {
     
 
     final String[] accepts = {
-      
+      "application/json"
     };
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
@@ -260,7 +255,7 @@ public class UploadApi {
    * @param body File contents
    * @return UploadTable
    */
-  public UploadTable loadUpload (Long uploadId, String body) throws ApiException {
+  public UploadTable loadUpload (Long uploadId, Body2 body) throws ApiException {
     Object postBody = body;
     byte[] postBinaryBody = null;
     
@@ -290,7 +285,7 @@ public class UploadApi {
     
 
     final String[] accepts = {
-      
+      "application/json"
     };
     final String accept = apiClient.selectHeaderAccept(accepts);
 
@@ -344,12 +339,12 @@ public class UploadApi {
     
 
     final String[] accepts = {
-      
+      "application/json"
     };
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 
@@ -398,12 +393,12 @@ public class UploadApi {
     
 
     final String[] accepts = {
-      
+      "application/json"
     };
     final String accept = apiClient.selectHeaderAccept(accepts);
 
     final String[] contentTypes = {
-      
+      "application/json"
     };
     final String contentType = apiClient.selectHeaderContentType(contentTypes);
 

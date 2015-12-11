@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-09-08T14:44:15.944-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-20T15:30:04.098-08:00")
 public class ScheduledTask   {
   
   private Long id = null;
@@ -17,6 +17,7 @@ public class ScheduledTask   {
   private String timezone = null;
   private String type = null;
   private Long userId = null;
+  private Double lastRunAt = null;
 
   
   /**
@@ -84,6 +85,19 @@ public class ScheduledTask   {
   }
 
   
+  /**
+   * Last time the schedule ran
+   **/
+  @ApiModelProperty(value = "Last time the schedule ran")
+  @JsonProperty("last_run_at")
+  public Double getLastRunAt() {
+    return lastRunAt;
+  }
+  public void setLastRunAt(Double lastRunAt) {
+    this.lastRunAt = lastRunAt;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -95,6 +109,7 @@ public class ScheduledTask   {
     sb.append("    timezone: ").append(StringUtil.toIndentedString(timezone)).append("\n");
     sb.append("    type: ").append(StringUtil.toIndentedString(type)).append("\n");
     sb.append("    userId: ").append(StringUtil.toIndentedString(userId)).append("\n");
+    sb.append("    lastRunAt: ").append(StringUtil.toIndentedString(lastRunAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }

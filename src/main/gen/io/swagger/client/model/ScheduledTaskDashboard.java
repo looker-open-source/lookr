@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-09-08T14:44:15.944-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-20T15:30:04.098-08:00")
 public class ScheduledTaskDashboard   {
   
   private Long id = null;
@@ -20,6 +20,7 @@ public class ScheduledTaskDashboard   {
   private String format = null;
   private String dashboardPath = null;
   private Long dashboardId = null;
+  private Double lastRunAt = null;
   private String actions = null;
 
   
@@ -128,6 +129,19 @@ public class ScheduledTaskDashboard   {
 
   
   /**
+   * Last time the schedule ran
+   **/
+  @ApiModelProperty(value = "Last time the schedule ran")
+  @JsonProperty("last_run_at")
+  public Double getLastRunAt() {
+    return lastRunAt;
+  }
+  public void setLastRunAt(Double lastRunAt) {
+    this.lastRunAt = lastRunAt;
+  }
+
+  
+  /**
    * Actions
    **/
   @ApiModelProperty(value = "Actions")
@@ -154,6 +168,7 @@ public class ScheduledTaskDashboard   {
     sb.append("    format: ").append(StringUtil.toIndentedString(format)).append("\n");
     sb.append("    dashboardPath: ").append(StringUtil.toIndentedString(dashboardPath)).append("\n");
     sb.append("    dashboardId: ").append(StringUtil.toIndentedString(dashboardId)).append("\n");
+    sb.append("    lastRunAt: ").append(StringUtil.toIndentedString(lastRunAt)).append("\n");
     sb.append("    actions: ").append(StringUtil.toIndentedString(actions)).append("\n");
     sb.append("}");
     return sb.toString();

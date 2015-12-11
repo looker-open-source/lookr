@@ -1,6 +1,7 @@
 package io.swagger.client.model;
 
 import io.swagger.client.StringUtil;
+import io.swagger.client.model.Dialect;
 
 
 
@@ -9,25 +10,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-09-08T14:44:15.944-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-20T15:30:04.098-08:00")
 public class DBConnection   {
   
-  private Long id = null;
   private String name = null;
-  private String dialect = null;
-
-  
-  /**
-   * Unique Id
-   **/
-  @ApiModelProperty(value = "Unique Id")
-  @JsonProperty("id")
-  public Long getId() {
-    return id;
-  }
-  public void setId(Long id) {
-    this.id = id;
-  }
+  private Dialect dialect = null;
 
   
   /**
@@ -44,13 +31,14 @@ public class DBConnection   {
 
   
   /**
+   * SQL Dialect
    **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "SQL Dialect")
   @JsonProperty("dialect")
-  public String getDialect() {
+  public Dialect getDialect() {
     return dialect;
   }
-  public void setDialect(String dialect) {
+  public void setDialect(Dialect dialect) {
     this.dialect = dialect;
   }
 
@@ -61,7 +49,6 @@ public class DBConnection   {
     StringBuilder sb = new StringBuilder();
     sb.append("class DBConnection {\n");
     
-    sb.append("    id: ").append(StringUtil.toIndentedString(id)).append("\n");
     sb.append("    name: ").append(StringUtil.toIndentedString(name)).append("\n");
     sb.append("    dialect: ").append(StringUtil.toIndentedString(dialect)).append("\n");
     sb.append("}");

@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-09-08T14:44:15.944-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-20T15:30:04.098-08:00")
 public class LookWithQuery   {
   
   private Long id = null;
@@ -21,8 +21,8 @@ public class LookWithQuery   {
   private Long queryId = null;
   private String description = null;
   private Boolean scheduled = null;
-  private String scheduleDescription = null;
-  private String scheduleShortDescription = null;
+  private String scheduleCronString = null;
+  private String scheduleLastRunAt = null;
   private String shortUrl = null;
   private SpaceBase space = null;
   private Boolean _public = null;
@@ -117,28 +117,28 @@ public class LookWithQuery   {
 
   
   /**
-   * Schedule Description
+   * Cron String for schedule
    **/
-  @ApiModelProperty(value = "Schedule Description")
-  @JsonProperty("schedule_description")
-  public String getScheduleDescription() {
-    return scheduleDescription;
+  @ApiModelProperty(value = "Cron String for schedule")
+  @JsonProperty("schedule_cron_string")
+  public String getScheduleCronString() {
+    return scheduleCronString;
   }
-  public void setScheduleDescription(String scheduleDescription) {
-    this.scheduleDescription = scheduleDescription;
+  public void setScheduleCronString(String scheduleCronString) {
+    this.scheduleCronString = scheduleCronString;
   }
 
   
   /**
-   * Schedule Short Description
+   * Last time the schedule ran
    **/
-  @ApiModelProperty(value = "Schedule Short Description")
-  @JsonProperty("schedule_short_description")
-  public String getScheduleShortDescription() {
-    return scheduleShortDescription;
+  @ApiModelProperty(value = "Last time the schedule ran")
+  @JsonProperty("schedule_last_run_at")
+  public String getScheduleLastRunAt() {
+    return scheduleLastRunAt;
   }
-  public void setScheduleShortDescription(String scheduleShortDescription) {
-    this.scheduleShortDescription = scheduleShortDescription;
+  public void setScheduleLastRunAt(String scheduleLastRunAt) {
+    this.scheduleLastRunAt = scheduleLastRunAt;
   }
 
   
@@ -323,8 +323,8 @@ public class LookWithQuery   {
     sb.append("    queryId: ").append(StringUtil.toIndentedString(queryId)).append("\n");
     sb.append("    description: ").append(StringUtil.toIndentedString(description)).append("\n");
     sb.append("    scheduled: ").append(StringUtil.toIndentedString(scheduled)).append("\n");
-    sb.append("    scheduleDescription: ").append(StringUtil.toIndentedString(scheduleDescription)).append("\n");
-    sb.append("    scheduleShortDescription: ").append(StringUtil.toIndentedString(scheduleShortDescription)).append("\n");
+    sb.append("    scheduleCronString: ").append(StringUtil.toIndentedString(scheduleCronString)).append("\n");
+    sb.append("    scheduleLastRunAt: ").append(StringUtil.toIndentedString(scheduleLastRunAt)).append("\n");
     sb.append("    shortUrl: ").append(StringUtil.toIndentedString(shortUrl)).append("\n");
     sb.append("    space: ").append(StringUtil.toIndentedString(space)).append("\n");
     sb.append("    _public: ").append(StringUtil.toIndentedString(_public)).append("\n");

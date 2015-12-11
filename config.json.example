@@ -1,0 +1,5 @@
+{
+  "clientId":"your_api_3_id",
+  "clientSecret":"your_api_3_secret",
+  "apiEndpoint":"your_api_endpoint:port/api/3.0"
+}

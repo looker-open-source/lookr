@@ -1,7 +1,8 @@
 package io.swagger.client.model;
 
 import io.swagger.client.StringUtil;
-import io.swagger.client.model.SamlGroup;
+import io.swagger.client.model.SamlGroupRead;
+import io.swagger.client.model.SamlGroupWrite;
 import io.swagger.client.model.Role;
 import java.util.*;
 
@@ -12,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-09-08T14:44:15.944-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-20T15:30:04.098-08:00")
 public class SamlConfig   {
   
   private Boolean enabled = null;
@@ -32,8 +33,8 @@ public class SamlConfig   {
   private List<Long> defaultNewUserRoleIds = new ArrayList<Long>();
   private Boolean setRolesFromGroups = null;
   private String groupsAttribute = null;
-  private SamlGroup groups = null;
-  private SamlGroup groupsWithRoleIds = null;
+  private SamlGroupRead groups = null;
+  private SamlGroupWrite groupsWithRoleIds = null;
   private Boolean authRequiresRole = null;
   private String url = null;
 
@@ -169,9 +170,9 @@ public class SamlConfig   {
 
   
   /**
-   * Slug to identify configurations that are created in order to run a Saml config Looker
+   * Slug to identify configurations that are created in order to run a Saml config test
    **/
-  @ApiModelProperty(value = "Slug to identify configurations that are created in order to run a Saml config Looker")
+  @ApiModelProperty(value = "Slug to identify configurations that are created in order to run a Saml config test")
   @JsonProperty("test_slug")
   public String getTestSlug() {
     return testSlug;
@@ -264,10 +265,10 @@ public class SamlConfig   {
    **/
   @ApiModelProperty(value = "(Read-only) Array of mappings between Saml Groups and Looker Roles")
   @JsonProperty("groups")
-  public SamlGroup getGroups() {
+  public SamlGroupRead getGroups() {
     return groups;
   }
-  public void setGroups(SamlGroup groups) {
+  public void setGroups(SamlGroupRead groups) {
     this.groups = groups;
   }
 
@@ -277,10 +278,10 @@ public class SamlConfig   {
    **/
   @ApiModelProperty(value = "(Write-only) Array of mappings between Saml Groups and arrays of Looker Role ids")
   @JsonProperty("groups_with_role_ids")
-  public SamlGroup getGroupsWithRoleIds() {
+  public SamlGroupWrite getGroupsWithRoleIds() {
     return groupsWithRoleIds;
   }
-  public void setGroupsWithRoleIds(SamlGroup groupsWithRoleIds) {
+  public void setGroupsWithRoleIds(SamlGroupWrite groupsWithRoleIds) {
     this.groupsWithRoleIds = groupsWithRoleIds;
   }
 

@@ -1,9 +1,10 @@
 package io.swagger.client.model;
 
 import io.swagger.client.StringUtil;
-import io.swagger.client.model.LDAPGroup;
+import io.swagger.client.model.LDAPGroupRead;
 import io.swagger.client.model.Role;
 import java.util.*;
+import io.swagger.client.model.LDAPGroupWrite;
 
 
 
@@ -12,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-09-08T14:44:15.944-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-20T15:30:04.098-08:00")
 public class LDAPConfig   {
   
   private Boolean enabled = null;
@@ -36,8 +37,8 @@ public class LDAPConfig   {
   private Role defaultNewUserRoles = null;
   private List<Long> defaultNewUserRoleIds = new ArrayList<Long>();
   private Boolean setRolesFromGroups = null;
-  private LDAPGroup groups = null;
-  private LDAPGroup groupsWithRoleIds = null;
+  private LDAPGroupRead groups = null;
+  private LDAPGroupWrite groupsWithRoleIds = null;
   private Boolean authRequiresRole = null;
   private String groupsFinderType = null;
   private String groupsBaseDn = null;
@@ -324,10 +325,10 @@ public class LDAPConfig   {
    **/
   @ApiModelProperty(value = "(Read-only) Array of mappings between LDAP Groups and Looker Roles")
   @JsonProperty("groups")
-  public LDAPGroup getGroups() {
+  public LDAPGroupRead getGroups() {
     return groups;
   }
-  public void setGroups(LDAPGroup groups) {
+  public void setGroups(LDAPGroupRead groups) {
     this.groups = groups;
   }
 
@@ -337,10 +338,10 @@ public class LDAPConfig   {
    **/
   @ApiModelProperty(value = "(Write-only) Array of mappings between LDAP Groups and arrays of Looker Role ids")
   @JsonProperty("groups_with_role_ids")
-  public LDAPGroup getGroupsWithRoleIds() {
+  public LDAPGroupWrite getGroupsWithRoleIds() {
     return groupsWithRoleIds;
   }
-  public void setGroupsWithRoleIds(LDAPGroup groupsWithRoleIds) {
+  public void setGroupsWithRoleIds(LDAPGroupWrite groupsWithRoleIds) {
     this.groupsWithRoleIds = groupsWithRoleIds;
   }
 

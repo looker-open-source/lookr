@@ -9,10 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-09-08T14:44:15.944-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-20T15:30:04.098-08:00")
 public class AsyncQuery   {
   
-  private String slug = null;
+  private String queryTaskId = null;
   private Double runtime = null;
 
   
@@ -20,12 +20,12 @@ public class AsyncQuery   {
    * Unique Id
    **/
   @ApiModelProperty(value = "Unique Id")
-  @JsonProperty("slug")
-  public String getSlug() {
-    return slug;
+  @JsonProperty("query_task_id")
+  public String getQueryTaskId() {
+    return queryTaskId;
   }
-  public void setSlug(String slug) {
-    this.slug = slug;
+  public void setQueryTaskId(String queryTaskId) {
+    this.queryTaskId = queryTaskId;
   }
 
   
@@ -48,7 +48,7 @@ public class AsyncQuery   {
     StringBuilder sb = new StringBuilder();
     sb.append("class AsyncQuery {\n");
     
-    sb.append("    slug: ").append(StringUtil.toIndentedString(slug)).append("\n");
+    sb.append("    queryTaskId: ").append(StringUtil.toIndentedString(queryTaskId)).append("\n");
     sb.append("    runtime: ").append(StringUtil.toIndentedString(runtime)).append("\n");
     sb.append("}");
     return sb.toString();

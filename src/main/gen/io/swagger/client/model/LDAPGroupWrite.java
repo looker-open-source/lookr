@@ -1,7 +1,6 @@
 package io.swagger.client.model;
 
 import io.swagger.client.StringUtil;
-import io.swagger.client.model.Role;
 import java.util.*;
 
 
@@ -11,11 +10,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-09-08T14:44:15.944-07:00")
-public class LDAPGroup   {
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-20T15:30:04.098-08:00")
+public class LDAPGroupWrite   {
   
   private String name = null;
-  private List<Role> roles = new ArrayList<Role>();
+  private List<Long> roleIds = new ArrayList<Long>();
   private String url = null;
 
   
@@ -33,15 +32,15 @@ public class LDAPGroup   {
 
   
   /**
-   * Looker Roles
+   * Looker Role Ids
    **/
-  @ApiModelProperty(value = "Looker Roles")
-  @JsonProperty("roles")
-  public List<Role> getRoles() {
-    return roles;
+  @ApiModelProperty(value = "Looker Role Ids")
+  @JsonProperty("role_ids")
+  public List<Long> getRoleIds() {
+    return roleIds;
   }
-  public void setRoles(List<Role> roles) {
-    this.roles = roles;
+  public void setRoleIds(List<Long> roleIds) {
+    this.roleIds = roleIds;
   }
 
   
@@ -62,10 +61,10 @@ public class LDAPGroup   {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class LDAPGroup {\n");
+    sb.append("class LDAPGroupWrite {\n");
     
     sb.append("    name: ").append(StringUtil.toIndentedString(name)).append("\n");
-    sb.append("    roles: ").append(StringUtil.toIndentedString(roles)).append("\n");
+    sb.append("    roleIds: ").append(StringUtil.toIndentedString(roleIds)).append("\n");
     sb.append("    url: ").append(StringUtil.toIndentedString(url)).append("\n");
     sb.append("}");
     return sb.toString();

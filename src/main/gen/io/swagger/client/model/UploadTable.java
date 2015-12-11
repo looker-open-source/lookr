@@ -1,6 +1,8 @@
 package io.swagger.client.model;
 
 import io.swagger.client.StringUtil;
+import java.util.Map;
+import java.util.*;
 
 
 
@@ -9,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-09-08T14:44:15.944-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-20T15:30:04.098-08:00")
 public class UploadTable   {
   
   private Long id = null;
@@ -18,7 +20,7 @@ public class UploadTable   {
   private String tableName = null;
   private String viewName = null;
   private String fileType = null;
-  private String definition = null;
+  private Map<String, String> definition = new HashMap<String, String>();
   private String createdAt = null;
   private String builtAt = null;
   private String createdAtRelative = null;
@@ -109,10 +111,10 @@ public class UploadTable   {
    **/
   @ApiModelProperty(value = "Definition of the table and uploaded file")
   @JsonProperty("definition")
-  public String getDefinition() {
+  public Map<String, String> getDefinition() {
     return definition;
   }
-  public void setDefinition(String definition) {
+  public void setDefinition(Map<String, String> definition) {
     this.definition = definition;
   }
 

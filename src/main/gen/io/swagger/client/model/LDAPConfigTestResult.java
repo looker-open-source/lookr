@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-09-08T14:44:15.944-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2015-11-20T15:30:04.098-08:00")
 public class LDAPConfigTestResult   {
   
   private String status = null;
@@ -35,9 +35,9 @@ public class LDAPConfigTestResult   {
 
   
   /**
-   * Short human readable Looker about the result
+   * Short human readable test about the result
    **/
-  @ApiModelProperty(value = "Short human readable Looker about the result")
+  @ApiModelProperty(value = "Short human readable test about the result")
   @JsonProperty("message")
   public String getMessage() {
     return message;
