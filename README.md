@@ -18,19 +18,19 @@ library("LookR")
 
 # setting up the client and authenticating (id and secret are available on your Looker instance)
 looker_setup(	id = "myapi3id",
-							secret = "myapi3secret",
-							api_path = "https://mylookerendpoint.com:19999/api/3.0"
-						)
+				secret = "myapi3secret",
+				api_path = "https://mylookerendpoint.com:19999/api/3.0"
+)
 
 # running a Look by its look_id
 my_look <- run_look(2039)
 
 # running an inline query by providing query components (note: model, view, and fields are required parameters)
-my_inline_query <- run_inline_query(	model = "thelook", 
-																			view = "orders", 
-																			fields = c("orders.count", "orders.created_month")
-																			filters = list(c("orders.created_month", "90 days"), c("orders.status", "complete"))
-																		)
+my_inline_query <- run_inline_query(model = "thelook", 
+									view = "orders", 
+									fields = c("orders.count", "orders.created_month")
+									filters = list(c("orders.created_month", "90 days"), c("orders.status", "complete"))
+)
 ```
 ### Contributing
 - Clone this repo `git clone git@github.com:looker/lookr.git`;
