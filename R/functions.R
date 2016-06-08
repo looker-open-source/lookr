@@ -78,10 +78,10 @@ run_look <- function(look_id = NULL, format = "json"){
 
 
 # run inline query by building up query components
-run_inline_query <- function(model, base_view, fields, filters = NULL, pivots = NULL, sorts = NULL, limit = NULL){
+run_inline_query <- function(model, explore, fields, filters = NULL, pivots = NULL, sorts = NULL, limit = NULL){
 	
 	# warn if any required parameters are missing
-	if(missing(model) || missing(base_view) || missing(fields)) {
+	if(missing(model) || missing(explore) || missing(fields)) {
 		stop("One or more required parameters are missing.")
 	}
 	
