@@ -99,7 +99,7 @@ run_inline_query <- function(model, explore, fields, filters = NULL, pivots = NU
 	# build up the query
 	query <- .jnew("io/swagger/client/model/Query")
 	.jcall(query, "V", "setModel", model)
-	.jcall(query, "V", "setView", base_view)
+	.jcall(query, "V", "setView", explore)
 	fields_array_list <- J("java/util/Arrays", method = "asList", .jcastToArray(fields))
 	J(query, "setFields", fields_array_list)
 	
