@@ -1,6 +1,6 @@
 # preliminaries #
 require("rJava")
-require("rjson")
+require("rjsonio")
 
 # instantiate the client and authenticate
 looker_setup <- function(id = NULL, secret = NULL, api_path = NULL){
@@ -70,7 +70,7 @@ run_look <- function(look_id = NULL, format = "json"){
 
 	
 	# extract and prepare query results
-	json_response <- fromJSON(response, nullValue=NA)
+	json_response <- fromJSON(response, nullValue = NA)
 	return(data.frame(do.call("rbind", lapply(json_response, unlist))))
 	}
 	
