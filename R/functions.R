@@ -112,7 +112,7 @@ run_inline_query <- function(model, explore, fields, filters = NULL, pivots = NU
 	response <- J(queryApi, "runInlineQuery", "json", query)
 
 	# extract and prepare query results
-	json_response <- fromJSON(response)
+	json_response <- RJSONIO::fromJSON(response)
 	return(data.frame(do.call("rbind", lapply(json_response, unlist))))
 	}
 }
