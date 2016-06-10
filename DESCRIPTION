@@ -7,4 +7,4 @@ Author: Scott Hoover
 Maintainer: Scott Hoover <scott@looker.com>
 Description: LookR is a package that contains functions that interface with the Looker API.
 License: GPL-2
-Depends: R (>= 2.7.0), rJava, rjson
+Depends: R (>= 2.7.0), rJava, jsonlite
