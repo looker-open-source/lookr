@@ -69,9 +69,9 @@ Install rJava:
 
 `sudo apt-get install r-cran-rjava`
 
-Install rjson:
+Install RJSONIO:
 
-`sudo apt-get install r-cran-rjson`
+`sudo apt-get install r-cran-RJSONIO`
 
 Install curl utilities for future devtools support:
 
@@ -108,7 +108,7 @@ my_look <- run_look(2039)
 
 # running an inline query by providing query components (note: model, view, and fields are required parameters)
 my_inline_query <- run_inline_query(model = "thelook",
-									explore = "orders", 
+									explore = "orders",
 									fields = c("orders.count", "orders.created_month")
 									filters = list(c("orders.created_month", "90 days"), c("orders.status", "complete"))
 )
