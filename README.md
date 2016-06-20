@@ -1,7 +1,7 @@
 # LookR
+
 ### Overview
 LookR is an open-source R library that provides the user an interface from the R Console or command line to the Looker API (3.0). The API methods are determined dynamically by a Swagger JSON file available on a given Looker instance. All client methods are written in Java and called from R using the rJava library.
-
 
 ### OSX Installation
 
@@ -12,12 +12,15 @@ install.packages("devtools")
 library("devtools")
 install_github("looker/lookr")	# to get upstream changes, run this command periodically
 ```
+
 ### Ubuntu Installation
 
 #### Preliminaries
 Note: I am testing this in an virtual environment that's running Ubuntu 14.04. Make sure Apt is installed. Open up a terminal window and type 
   
-`apt`
+```
+apt
+```
 
 You should see something like this:
 
@@ -26,69 +29,116 @@ You should see something like this:
 If not, try installing Apt referencing Step 1 from [here](https://www.digitalocean.com/community/tutorials/how-to-set-up-r-on-ubuntu-14-04).
 
 #### Java Setup
+
 Determine which Java version you have running (LookR has only been tested on Java 7 and 8):
-`java -version`
+
+```
+java -version
+```
 
 If you don't have Java installed or you think it might be best to upgrade, run the following commands:
 
-`sudo apt-get install python-software-properties`
+```
+sudo apt-get install python-software-properties
+```
 
-`sudo add-apt-repository ppa:webupd8team/java`
+```
+sudo add-apt-repository ppa:webupd8team/java
+```
 
-`sudo apt-get update`
+```
+sudo apt-get update
+```
 
-`sudo apt-get install oracle-java8-installer`
+```
+sudo apt-get install oracle-java8-installer
+```
 
-Once you're have a JRE and Java SDK installed, confirm that the necessary Java environmental variables are set:
-`echo $JAVA_HOME`
+Once you have a JRE and Java SDK installed, confirm that the necessary Java environmental variables are set:
+
+```
+echo $JAVA_HOME
+```
 
 If there are no results, run:
-`export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")`
 
-`export PATH=$PATH:$JAVA_HOME/bin`
+```
+export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+```
+
+```
+export PATH=$PATH:$JAVA_HOME/bin
+```
 
 Create a Java config file for R:
-`sudo vi /etc/ld.so.conf.d/java.conf`
+```
+sudo vi /etc/ld.so.conf.d/java.conf
+```
 
 Then paste `/usr/lib/jvm/java-8-oracle/jre/lib/amd64` and `/usr/lib/jvm/java-8-oracle/jre/lib/amd64/server` into that file and save it.
 
 Set the shared library variable:
 
-`export LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/amd64:$JAVA_HOME/jre/lib/amd64/server`
+```
+export LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/amd64:$JAVA_HOME/jre/lib/amd64/server
+```
 
 Set up R's Java config file:
 
-`sudo R CMD javareconf`
+```
+sudo R CMD javareconf
+```
 
 #### R Setup
+
+> Note that LookR requires R version 3.2 or later.
+
 Install R base:
 
-`sudo apt-get -y install r-base`
+```
+sudo apt-get -y install r-base
+```
 
 Install rJava:
 
-`sudo apt-get install r-cran-rjava`
+```
+sudo apt-get install r-cran-rjava
+```
 
 Install rjson:
 
-`sudo apt-get install r-cran-rjson`
+```
+sudo apt-get install r-cran-rjson
+```
 
 Install curl utilities for future devtools support:
 
-`sudo apt-get -y build-dep libcurl4-gnutls-dev`
-`sudo apt-get -y install libcurl4-gnutls-dev`
+```
+sudo apt-get -y build-dep libcurl4-gnutls-dev
+```
+
+```
+sudo apt-get -y install libcurl4-gnutls-dev
+```
 
 Enter the R command-line client:
 
-`R`
+```
+R
+```
 
 Install devtools:
 
-`install.packages("devtools")`
+```
+install.packages("devtools")
+```
 
 Install LookR:
 
-`install_github("looker/lookr")`
+```
+library("devtools")
+install_github("looker/lookr")
+```
 
 
 ### Usage
@@ -113,6 +163,7 @@ my_inline_query <- run_inline_query(model = "thelook",
 									filters = list(c("orders.created_month", "90 days"), c("orders.status", "complete"))
 )
 ```
+
 ### Contributing
 - Clone this repo `git clone git@github.com:looker/lookr.git`;
 - Download Intellij IDEA (Community Edition is fine), or your preferred JAVA IDE;
