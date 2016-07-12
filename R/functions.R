@@ -81,7 +81,7 @@ run_look <- function(look_id = NULL, format = "json"){
 run_inline_query <- function(model, explore, fields, filters = NULL, pivots = NULL, sorts = NULL, limit = NULL){
 	
 	# warn if any required parameters are missing
-	if(missing(model) || missing(explore) || missing(fields)) {
+	if(missing(model) || missing(view) || missing(fields)) {
 		stop("One or more required parameters are missing.")
 	}
 	
@@ -99,7 +99,7 @@ run_inline_query <- function(model, explore, fields, filters = NULL, pivots = NU
 	# build up the query
 	query <- .jnew("io/swagger/client/model/Query")
 	.jcall(query, "V", "setModel", model)
-	.jcall(query, "V", "setView", explore)
+	.jcall(query, "V", "setView", view)
 	fields_array_list <- J("java/util/Arrays", method = "asList", .jcastToArray(fields))
 	J(query, "setFields", fields_array_list)
 	
