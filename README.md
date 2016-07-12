@@ -15,8 +15,8 @@ install_github("looker/lookr")	# to get upstream changes, run this command perio
 ### Ubuntu Installation
 
 #### Preliminaries
-Note: I am testing this in an virtual environment that's running Ubuntu 14.04. Make sure Apt is installed. Open up a terminal window and type 
-  
+Note: I am testing this in an virtual environment that's running Ubuntu 14.04. Make sure Apt is installed. Open up a terminal window and type
+
 `apt`
 
 You should see something like this:
@@ -69,9 +69,9 @@ Install rJava:
 
 `sudo apt-get install r-cran-rjava`
 
-Install rjson:
+Install RJSONIO:
 
-`sudo apt-get install r-cran-rjson`
+`sudo apt-get install r-cran-RJSONIO`
 
 Install curl utilities for future devtools support:
 
@@ -107,8 +107,8 @@ looker_setup(	id = "myapi3id",
 my_look <- run_look(2039)
 
 # running an inline query by providing query components (note: model, view, and fields are required parameters)
-my_inline_query <- run_inline_query(model = "thelook", 
-									view = "orders", 
+my_inline_query <- run_inline_query(model = "thelook",
+									view = "orders", # refers to the base view, or the name of the explore from which you are querying from
 									fields = c("orders.count", "orders.created_month")
 									filters = list(c("orders.created_month", "90 days"), c("orders.status", "complete"))
 )
