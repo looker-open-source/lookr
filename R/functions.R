@@ -52,7 +52,7 @@ ensure_logged_in <- function(){
 }
 
 # run look by its look id 
-run_look <- function(look_id = NULL, format = "json"){
+run_look <- function(look_id = NULL, format = "json", limit = NULL){
 	
 	# ensure_logged_in
 	ensure_logged_in()
@@ -64,6 +64,12 @@ run_look <- function(look_id = NULL, format = "json"){
 
 	# create a global instance of LookApi
 	lookApi <<- .jnew("io/swagger/client/api/LookApi", client)
+	
+	# build up Look
+	look <- .jnew("io/swagger/client/model/Look")
+	if(!is.null(limit)){
+	  .jcall(look, "V", "setLimit", limit)
+	}
 	
 	# run look
 	response <- J(lookApi, "runLook", .jnew("java/lang/Long", .jlong(look_id)), format)
@@ -100,6 +106,9 @@ run_inline_query <- function(model, view, fields, filters = NULL, pivots = NULL,
 	query <- .jnew("io/swagger/client/model/Query")
 	.jcall(query, "V", "setModel", model)
 	.jcall(query, "V", "setView", view)
+	if(!is.null(limit)){
+	  .jcall(query, "V", "setLimit", limit)
+	}
 	fields_array_list <- J("java/util/Arrays", method = "asList", .jcastToArray(fields))
 	J(query, "setFields", fields_array_list)
 	
