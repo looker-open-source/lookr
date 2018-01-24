@@ -7,11 +7,11 @@ looker_setup <- function(id = NULL, secret = NULL, api_path = NULL){
 	clientId <<- id
 	clientSecret <<- secret
 	basePath <<- api_path
-		
+
 	if((is.null(clientId) || is.null(clientSecret))){
 		warning("A client id and secret are required for login.")
 	}
-	
+
 	client <<- .jnew("io/swagger/client/ApiClient")
 	J(client, "setBasePath", basePath)
 	auth <<- .jnew("io/swagger/client/api/ApiAuthApi", client)
@@ -37,7 +37,7 @@ token_authenticated <- function(){
 						result <- (exists("token") && exists("expires_at")) && expires_at > Sys.time()
 			}, error = function(cond) {message("You have not authenticated your session. See the looker_setup function.")
 			}, finally = {}
-			
+
 	)
 	return(result)
 }
@@ -51,12 +51,12 @@ ensure_logged_in <- function(){
 	}
 }
 
-# run look by its look id 
+# run look by its look id
 run_look <- function(look_id = NULL, format = "json", limit = NULL){
-	
+
 	# ensure_logged_in
 	ensure_logged_in()
-	
+
 	# test if authenticated ApiClient exists
 	if(find_java_objects("api/ApiAuthApi") == FALSE){
 		warning("You need to use the looker_setup(...) function before calling looks.")
@@ -64,36 +64,36 @@ run_look <- function(look_id = NULL, format = "json", limit = NULL){
 
 	# create a global instance of LookApi
 	lookApi <<- .jnew("io/swagger/client/api/LookApi", client)
-	
+
 	# build up Look
 	look <- .jnew("io/swagger/client/model/Look")
 	if(!is.null(limit)){
 	  .jcall(look, "V", "setLimit", limit)
 	}
-	
+
 	# run look
 	response <- J(lookApi, "runLook", .jnew("java/lang/Long", .jlong(look_id)), format)
 
-	
+
 	# extract and prepare query results
 	json_response <- RJSONIO::fromJSON(response, nullValue = NA)
 	return(data.frame(do.call("rbind", lapply(json_response, unlist))))
 	}
-	
+
 }
 
 
 # run inline query by building up query components
 run_inline_query <- function(model, view, fields, filters = NULL, pivots = NULL, sorts = NULL, limit = NULL){
-	
+
 	# warn if any required parameters are missing
 	if(missing(model) || missing(view) || missing(fields)) {
 		stop("One or more required parameters are missing.")
 	}
-	
+
 	# ensure_logged_in
 	ensure_logged_in()
-	
+
 	# test if authenticated ApiClient exists
 	if(find_java_objects("api/ApiAuthApi") == FALSE){
 		warning("You need to use the looker_setup(...) function before building queries.")
@@ -101,7 +101,7 @@ run_inline_query <- function(model, view, fields, filters = NULL, pivots = NULL,
 
 	# create a global instance of QueryApi
 	queryApi <<- .jnew("io/swagger/client/api/QueryApi", client)
-	
+
 	# build up the query
 	query <- .jnew("io/swagger/client/model/Query")
 	.jcall(query, "V", "setModel", model)
@@ -111,17 +111,17 @@ run_inline_query <- function(model, view, fields, filters = NULL, pivots = NULL,
 	}
 	fields_array_list <- J("java/util/Arrays", method = "asList", .jcastToArray(fields))
 	J(query, "setFields", fields_array_list)
-	
+
 	# handle filters
-	filter_hash <- .jnew("java/util/HashMap")	
+	filter_hash <- .jnew("java/util/HashMap")
 	lapply(filters, function(x){J(filter_hash, method = "put", x[1], x[2])})
 	J(query, "setFilters", filter_hash)
-	
-	# run query	
+
+	# run query
 	response <- J(queryApi, "runInlineQuery", "json", query)
 
 	# extract and prepare query results
-	json_response <- RJSONIO::fromJSON(response)
+	json_response <- RJSONIO::fromJSON(response, nullValue = NA)
 	return(data.frame(do.call("rbind", lapply(json_response, unlist))))
 	}
 }
