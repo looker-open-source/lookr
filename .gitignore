@@ -11,6 +11,7 @@
 *.sass-cache
 *.iml
 *.md.html
+*.Rproj
 
 # OS or Editor folders
 .DS_Store
@@ -35,3 +36,8 @@ out
 .gradle
 build
 .Rproj.user
+
+# Build stuff
+.Rbuildignore
+.Rhistory
+dependency-reduced-pom.xml
