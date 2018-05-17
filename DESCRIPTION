@@ -1,10 +1,13 @@
-Package: LookR
-Type: Package
-Title: An Interface for the Looker API
-Version: 2.0
-Date: 2015-10-05
-Author: Scott Hoover
-Maintainer: Scott Hoover <scott@looker.com>
-Description: LookR is a package that contains functions that interface with the Looker API.
-License: GPL-2
-Depends: R (>= 2.7.0), rJava, RJSONIO
+Package: lookr
+Version: 0.1.0
+Date: 2018-04-27
+Title: LookR
+Authors@R: c(person("Maxie", "Corbin", role = c("aut", "cre"), email = "maxie@looker.com"))
+Depends: R (>= 3.4.3)
+Imports: R6, httr, configr, jsonlite
+License: MIT + file LICENSE
+Description: Software Development Kit for connecting to Looker and making requests via the API. Built on top of bindings generated automatically using Swagger.
+URL: https://github.com/looker/lookr
+BugReports: https://github.com/looker/lookr/issues
+Suggests: testthat, httpuv
+RoxygenNote: 6.0.1

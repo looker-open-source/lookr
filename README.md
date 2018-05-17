@@ -1,173 +1,84 @@
-# LookR
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+LookR
+=====
 
-### Overview
-LookR is an open-source R library that provides the user an interface from the R Console or command line to the Looker API (3.0). The API methods are determined dynamically by a Swagger JSON file available on a given Looker instance. All client methods are written in Java and called from R using the rJava library.
+This is an SDK for using the Looker API with the R programming language. Our priority is to add support for the endpoints that are most useful to data scientists and analysts working in R (the ones that get data from Looker) but eventually the goal is to add support for every endpoint in the Looker API.
 
-### OSX Installation
+For more information about the Looker API's capabilities and for details about what each endpoint does, see the [Looker API reference documentation](https://docs.looker.com/reference/api-and-integration/api-reference).
 
-The LookR library is not distributed on CRAN; instead, one must build directly from source. Run the following commands in the R console or command-line client.
+Install
+-------
 
-```R
-install.packages("devtools")
-library("devtools")
-install_github("looker/lookr")	# to get upstream changes, run this command periodically
+Use `devtools` to install from this repository:
+
+``` r
+devtools::install_github("looker/lookr")
+library(lookr)
 ```
 
-### Ubuntu Installation
+Configure
+---------
 
-#### Preliminaries
-Note: I am testing this in an virtual environment that's running Ubuntu 14.04. Make sure Apt is installed. Open up a terminal window and type
+First, make sure that you have your API credentials and the URL to your Looker host in a file called `looker.ini`. LookR uses the information in this file to authenticate. See below for a sample of what `looker.ini` should look like:
 
-`apt`
+`looker-sample.ini`
 
+    [Looker]
+    # API version is required
+    api_version=3.0
+    # Base URL for API. Do not include /api/* in the url
+    base_url=https://<your-looker-endpoint>:19999
+    # API 3 client id
+    client_id=your_API3_client_id
+    # API 3 client secret
+    client_secret=your_API3_client_secret
+    # Optional embed secret for SSO embedding
+    embed_secret=your_embed_SSO_secret
+    # Optional user_id to impersonate
+    user_id=
+    # Set to false if testing locally against self-signed certs. Otherwise leave True
+    verify_ssl=True
 
-You should see something like this:
+*Make sure that this file is not checked into version control.*
 
-![image](https://cloud.githubusercontent.com/assets/2467394/14268697/ecba665a-fa92-11e5-8128-38a7edfd1326.png)
+Connect
+-------
 
-If not, try installing Apt referencing Step 1 from [here](https://www.digitalocean.com/community/tutorials/how-to-set-up-r-on-ubuntu-14-04).
+All of the endpoints are accessed from methods contained in an instance of the `LookerSDK` class, which is implemented in [`R6`](https://cran.r-project.org/web/packages/R6/index.html). To start using LookR, create an instance of that class:
 
-#### Java Setup
-
-Determine which Java version you have running (LookR has only been tested on Java 7 and 8):
-
-```
-java -version
-```
-
-If you don't have Java installed or you think it might be best to upgrade, run the following commands:
-
-```
-sudo apt-get install python-software-properties
-```
-
-```
-sudo add-apt-repository ppa:webupd8team/java
-```
-
-```
-sudo apt-get update
+``` r
+sdk <- LookerSDK$new(configFile = "looker.ini")
 ```
 
-```
-sudo apt-get install oracle-java8-installer
-```
+If you're using a version of RStudio that includes the [Connections Pane](https://support.rstudio.com/hc/en-us/articles/115010915687-Using-RStudio-Connections), you can also use that to create a new connection to Looker.
 
-Once you have a JRE and Java SDK installed, confirm that the necessary Java environmental variables are set:
+Whether you use the Connection Pane to create the connection or not, you will be able to browse your projects, models, and explores in the Connections Pane as long as your API user has access to them.
 
-```
-echo $JAVA_HOME
-```
+Query
+-----
 
-If there are no results, run:
+You can use LookR to fetch the results of a saved Look by calling `runLook`:
 
-```
-export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+``` r
+data <- sdk$runLook(lookId = 1337)
 ```
 
-```
-export PATH=$PATH:$JAVA_HOME/bin
-```
+You can also use a new query by calling `runInlineQuery`. `model`, `view`, and `fields` are mandatory arguments:
 
-Create a Java config file for R:
-```
-sudo vi /etc/ld.so.conf.d/java.conf
-```
-
-Then paste `/usr/lib/jvm/java-8-oracle/jre/lib/amd64` and `/usr/lib/jvm/java-8-oracle/jre/lib/amd64/server` into that file and save it.
-
-Set the shared library variable:
-
-```
-export LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/amd64:$JAVA_HOME/jre/lib/amd64/server
+``` r
+data <- sdk$runInlineQuery(model = "model_name",
+                           view = "my_awesome_explore",
+                           fields = c("id", "count"))
 ```
 
-Set up R's Java config file:
+and you can optionally supply `filters`, `sorts`, `limit`, and `queryTimezone`:
 
+``` r
+data <- sdk$runInlineQuery(model = "model_name",
+                           view = "my_awesome_explore",
+                           fields = c("id", "count"),
+                           filters = list("field_name" = "filter_expression",
+                                          "another_field" = "filter_expression"),
+                           limit = 500,
+                           queryTimezone = "America/Los_Angeles")
 ```
-sudo R CMD javareconf
-```
-
-#### R Setup
-
-> Note that LookR requires R version 3.2 or later.
-
-Install R base:
-
-```
-sudo apt-get -y install r-base
-```
-
-Install rJava:
-
-```
-sudo apt-get install r-cran-rjava
-```
-
-Install RJSONIO:
-
-`sudo apt-get install r-cran-RJSONIO`
-
-
-Install curl utilities for future devtools support:
-
-```
-sudo apt-get -y build-dep libcurl4-gnutls-dev
-```
-
-```
-sudo apt-get -y install libcurl4-gnutls-dev
-```
-
-Enter the R command-line client:
-
-```
-R
-```
-
-Install devtools:
-
-```
-install.packages("devtools")
-```
-
-Install LookR:
-
-```
-library("devtools")
-install_github("looker/lookr")
-```
-
-
-### Usage
-```R
-# preliminaires #
-library("devtools")
-library("LookR")
-
-# setting up the client and authenticating (id and secret are available on your Looker instance)
-looker_setup(	id = "myapi3id",
-				secret = "myapi3secret",
-				api_path = "https://mylookerendpoint.com:19999/api/3.0"
-)
-
-# running a Look by its look_id
-my_look <- run_look(2039)
-
-# running an inline query by providing query components (note: model, view, and fields are required parameters)
-my_inline_query <- run_inline_query(model = "thelook",
-									view = "orders", # refers to the base view, or the name of the explore from which you are querying from
-									fields = c("orders.count", "orders.created_month")
-									filters = list(c("orders.created_month", "90 days"), c("orders.status", "complete"))
-)
-```
-
-### Contributing
-- Clone this repo `git clone git@github.com:looker/lookr.git`;
-- Download Intellij IDEA (Community Edition is fine), or your preferred JAVA IDE;
-- In your Java IDE, generate a new project from external source—namely, `lookr/pom.xml`;
-- When deploying new changes, make sure to bundle an uber jar containing all of the dependencies.
-
-### TODO
-1. tests;
-2. push as many R functions as possible into Java.
