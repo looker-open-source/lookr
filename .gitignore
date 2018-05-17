@@ -12,6 +12,7 @@
 *.iml
 *.md.html
 *.Rproj
+*.Rproj.*
 
 # OS or Editor folders
 .DS_Store
@@ -35,9 +36,11 @@ out
 .idea
 .gradle
 build
-.Rproj.user
+.Rprofile
+
 
 # Build stuff
 .Rbuildignore
 .Rhistory
 dependency-reduced-pom.xml
+packrat/lib*/
