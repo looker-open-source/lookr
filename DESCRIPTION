@@ -1,5 +1,5 @@
 Package: lookr
-Version: 0.1.0
+Version: 1.0.0
 Date: 2018-04-27
 Title: LookR
 Authors@R: c(person("Maxie", "Corbin", role = c("aut", "cre"), email = "maxie@looker.com"))
