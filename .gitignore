@@ -44,3 +44,4 @@ build
 .Rhistory
 dependency-reduced-pom.xml
 packrat/lib*/
+.Rproj.user
