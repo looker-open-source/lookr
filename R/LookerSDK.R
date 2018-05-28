@@ -5,6 +5,7 @@
 #' All of the endpoints that should be called by end-users are methods of this object.
 #' Instantiate a new instance of this class with the \code{$new} method shown below.
 #' 
+#' 
 #' @section Usage:
 #' \preformatted{
 #' sdk <- LookerSDK$new(configFile = "looker.ini", login = TRUE,
@@ -20,6 +21,7 @@
 #'   \item{configFile}{Path to configuration file containing API settings and credentials.}
 #'   \item{login}{If \code{TRUE}, get an access token upon object creation.}
 #'   \item{settings}{Optional, directly supply an \code{ApiSettings} object.}
+#'   \item{userSession}{Optional, directly supply a \code{UserSession} object.}
 #'   \item{userSession}{Optional, directly supply a \code{UserSession} object.}
 #' }
 #' 
@@ -124,11 +126,11 @@ LookerSDK <- R6::R6Class(
   public = list(
     connectCode = NULL,
     
-    initialize = function(configFile = "looker.ini", login = TRUE, settings, userSession) {
+    initialize = function(configFile = "looker.ini", config, settings, userSession) {
       if(!missing(settings)) {
         self$settings <- settings
       } else {
-        self$settings <- ApiSettings$new(configFile = configFile)
+        self$settings <- ApiSettings$new(configFile = configFile, config = config)
       }
       if(!missing(userSession)) {
         self$userSession <- userSession
@@ -136,9 +138,13 @@ LookerSDK <- R6::R6Class(
         self$userSession <- UserSession$new(settings = self$settings)
       }
       
-      if(login) {
-        self$login()
-      }
+      self$login()
+      
+      addTaskCallback(function(expr, ...) {
+        self$connectCode <- paste(deparse(expr), sep = "\n", collapse = "\n")
+        self$on_connection_opened()
+        return(FALSE) # return FALSE so this only runs once
+      })
     },
     
     on_connection_opened = function(connectCode) {
@@ -278,12 +284,6 @@ LookerSDK <- R6::R6Class(
     login = function() {
       self$userSession$login()
       
-      addTaskCallback(function(expr, ...) {
-        self$connectCode <- deparse(expr)
-        self$on_connection_opened()
-        return(FALSE)
-      })
-      
       return(invisible(NULL))
     },
     
@@ -335,7 +335,7 @@ LookerSDK <- R6::R6Class(
         config = self$oauthHeader)$content
     },
     
-    runLook = function(lookId, resultFormat = "json_detail") {
+    runLook = function(lookId, resultFormat = "json") {
       self$refresh()
       
       httr::content(self$userSession$apiClient$callApi(
@@ -355,28 +355,45 @@ LookerSDK <- R6::R6Class(
       #   config = self$oauthHeader)$content
     },
     
-    runInlineQuery = function(model, view, fields,
-                              filters = NULL, sorts = NULL,
-                              limit = 500, queryTimezone = NULL) {
+    runInlineQuery = function(model, # these three are required
+                              view,
+                              fields,
+                              pivots = NULL,
+                              filters = NULL,
+                              sorts = NULL,
+                              limit = 500,
+                              queryTimezone = NULL,
+                              resultFormat = "json") {
       self$refresh()
+      
       if(any(missing(model), missing(view), missing(fields))) {
         stop("must provide all of the following arguments: model, view, fields")
       }
       
-      body <- jsonlite::toJSON(list(
-        model = jsonlite::unbox(model),
-        view = jsonlite::unbox(view),
-        fields = fields,
-        filters = ifelse(is.null(filters), list(), filters),
-        sorts = ifelse(is.null(sorts), character(), sorts),
-        limit = jsonlite::unbox(as.character(limit)),
-        query_timezone = ifelse(is.null(queryTimezone), character(), queryTimezone)))
+      body <- jsonlite::toJSON(
+        list(
+          model = jsonlite::unbox(model),
+          view = jsonlite::unbox(view),
+          fields = fields,
+          pivots = pivots,
+          filters = filters,
+          sorts = sorts,
+          limit = jsonlite::unbox(as.character(limit)),
+          query_timezone = queryTimezone
+        ), null = "null"
+      )
       
-      self$userSession$queryApi$run_inline_query(
-        result_format = "json_detail",
-        body = body,
+      response <- self$userSession$apiClient$callApi(
+        url = paste0(self$userSession$apiClient$basePath,
+                     "/queries/run/", resultFormat),
+        body = as.character(body),
+        queryParams = NULL,
+        headerParams = NULL,
+        method = "POST",
         config = self$oauthHeader
       )
+      
+      return(httr::content(response))
     },
     
     getLookmlModel = function(lookmlModelName, fields = NULL) {
