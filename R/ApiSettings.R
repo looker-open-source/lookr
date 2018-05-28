@@ -20,16 +20,26 @@ ApiSettings <- R6::R6Class(
     clientSecret = NULL,
     embedSecret = NULL,
     userId = NULL,
-    url = NULL,
     verifySSL = TRUE,
     
-    initialize = function(configFile = "looker.ini") {
-      self$configFile <- configFile
-      self$read(configFile)
+    initialize = function(configFile = "looker.ini", config) {
+      if(!missing(config)) {
+        self$apiVersion <- config[["apiVersion"]]
+        self$basePath <- config[["basePath"]]
+        self$clientId <- config[["clientId"]]
+        self$clientSecret <- config[["clientSecret"]]
+        self$embedSecret <- config[["embedSecret"]]
+        self$userId <- config[["userId"]]
+        self$verifySSL <- config[["verifySSL"]]
+      } else {
+        self$configFile <- configFile
+        self$read(configFile)
+      }
     },
     
     read = function(configFile) {
       config <- configr::read.config(configFile)
+      
       
       if(!is.null(config$Looker$api_version)) {
         self$apiVersion <- config$Looker$api_version
@@ -65,10 +75,6 @@ ApiSettings <- R6::R6Class(
       
       if(!is.null(config$Looker$user_id)) {
         self$userId <- config$Looker$user_id
-      }
-      
-      if(!is.null(config$Looker$url)) {
-        self$url <- config$Looker$url
       }
       
       if(!is.null(config$Looker$verify_ssl)) {

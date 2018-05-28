@@ -254,7 +254,7 @@ UserSession <- R6::R6Class(
     # public login method, calls private$.login and and self$loginUser
     login = function() {
       private$.login()
-      if(!is.null(self$settings$userId)) {
+      if(!is.null(self$settings$userId) && nchar(self$settings$userId) > 0) {
         self$loginUser()
       }
     },

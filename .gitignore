@@ -13,7 +13,6 @@
 *.md.html
 *.Rproj
 *.Rproj.*
-
 # OS or Editor folders
 .DS_Store
 .cache
@@ -23,7 +22,6 @@
 nbproject
 Thumbs.db
 config.json
-
 # Folders to ignore
 .hg
 .svn
@@ -37,11 +35,10 @@ out
 .gradle
 build
 .Rprofile
-
-
 # Build stuff
 .Rbuildignore
 .Rhistory
 dependency-reduced-pom.xml
 packrat/lib*/
 .Rproj.user
+looker.ini
