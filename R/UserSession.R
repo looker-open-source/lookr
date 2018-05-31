@@ -32,7 +32,7 @@ UserSession <- R6::R6Class(
     apiClient = function(value) {
       if(missing(value)) {
         if(is.null(private$.apiClient)) {
-          private$.apiClient <- ApiClient$new(basePath = paste0(self$settings$basePath,
+          private$.apiClient <- looker::ApiClient$new(basePath = paste0(self$settings$basePath,
                                                                         "/api/3.0"),
                                                       configuration = self$clientConfig)
         }
@@ -45,7 +45,7 @@ UserSession <- R6::R6Class(
     authClient = function(value) {
       if(missing(value)) {
         if(is.null(private$.authClient)) {
-          private$.authClient <- ApiAuthApi$new(self$apiClient)
+          private$.authClient <- looker::ApiAuthApi$new(self$apiClient)
         }
         return(private$.authClient)
       } else {
@@ -56,7 +56,7 @@ UserSession <- R6::R6Class(
     lookApi = function(value) {
       if(missing(value)) {
         if(is.null(private$.lookApi)) {
-          private$.lookApi <- LookApi$new(self$apiClient)
+          private$.lookApi <- looker::LookApi$new(self$apiClient)
         }
         return(private$.lookApi)
       } else {
@@ -67,7 +67,7 @@ UserSession <- R6::R6Class(
     queryApi = function(value) {
       if(missing(value)) {
         if(is.null(private$.queryApi)) {
-          private$.queryApi <- QueryApi$new(self$apiClient)
+          private$.queryApi <- looker::QueryApi$new(self$apiClient)
         }
         return(private$.queryApi)
       } else {
@@ -78,7 +78,7 @@ UserSession <- R6::R6Class(
     dashboardApi = function(value) {
       if(missing(value)) {
         if(is.null(private$.dashboardApi)) {
-          private$.dashboardApi <- DashboardApi$new(self$apiClient)
+          private$.dashboardApi <- looker::DashboardApi$new(self$apiClient)
         }
         return(private$.dashboardApi)
       } else {
@@ -89,7 +89,7 @@ UserSession <- R6::R6Class(
     userApi = function(value) {
       if(missing(value)) {
         if(is.null(private$.userApi)) {
-          private$.userApi <- UserApi$new(self$apiClient)
+          private$.userApi <- looker::UserApi$new(self$apiClient)
         }
         return(private$.userApi)
       } else {
@@ -100,7 +100,7 @@ UserSession <- R6::R6Class(
     lookmlModelApi = function(value) {
       if(missing(value)) {
         if(is.null(private$.lookmlModelApi)) {
-          private$.lookmlModelApi <- LookmlModelApi$new(self$apiClient)
+          private$.lookmlModelApi <- looker::LookmlModelApi$new(self$apiClient)
         }
         return(private$.lookmlModelApi)
       } else {
@@ -111,7 +111,7 @@ UserSession <- R6::R6Class(
     projectApi = function(value) {
       if(missing(value)) {
         if(is.null(private$.projectApi)) {
-          private$.projectApi <- ProjectApi$new(self$apiClient)
+          private$.projectApi <- looker::ProjectApi$new(self$apiClient)
         }
         return(private$.projectApi)
       } else {
@@ -196,31 +196,31 @@ UserSession <- R6::R6Class(
         client_credentials = TRUE)
       
       
-#       client <- ApiClient$new(basePath = self$settings$basePath,
-#                                       configuration = self$clientConfig)
-# 
-#       # this would give us parity with the Python SDK, but the AuthApiAuth
-#       # class is very broken so we can't use it
-# #
-# #       auth <- ApiAuthApi$new(client)
-# #
-# #       tokenResponse <- auth$login(client_id = self$settings$clientId,
-# #                                   client_secret = self$settings$clientSecret)
-# #
-#       # what follows is a workaround until we implement Oauth the way
-#       # swagger wants us to
-# 
-#       tokenResponse <- client$callApi(url = paste0(self$settings$basePath,
-#                                                    "/login"),
-#                                       method = "POST",
-#                                       queryParams = list(),
-#                                       headerParams = character(),
-#                                       body = paste0("client_id=",
-#                                                     self$settings$clientId,
-#                                                     "&client_secret=",
-#                                                     self$settings$clientSecret))
-# 
-#       self$token <- RJSONIO::fromJSON(rawToChar(tokenResponse$content))
+      #       client <- ApiClient$new(basePath = self$settings$basePath,
+      #                                       configuration = self$clientConfig)
+      # 
+      #       # this would give us parity with the Python SDK, but the AuthApiAuth
+      #       # class is very broken so we can't use it
+      # #
+      # #       auth <- ApiAuthApi$new(client)
+      # #
+      # #       tokenResponse <- auth$login(client_id = self$settings$clientId,
+      # #                                   client_secret = self$settings$clientSecret)
+      # #
+      #       # what follows is a workaround until we implement Oauth the way
+      #       # swagger wants us to
+      # 
+      #       tokenResponse <- client$callApi(url = paste0(self$settings$basePath,
+      #                                                    "/login"),
+      #                                       method = "POST",
+      #                                       queryParams = list(),
+      #                                       headerParams = character(),
+      #                                       body = paste0("client_id=",
+      #                                                     self$settings$clientId,
+      #                                                     "&client_secret=",
+      #                                                     self$settings$clientSecret))
+      # 
+      #       self$token <- RJSONIO::fromJSON(rawToChar(tokenResponse$content))
       
       if(is.null(self$token)) {
         stop("Login to ", self$settings$basePath, " failed")
@@ -324,7 +324,7 @@ UserSession <- R6::R6Class(
           private$.userId <- NULL
           private$.userToken <- NULL
           private$.login()
-          } else {
+        } else {
           self$reset()
         }
       }

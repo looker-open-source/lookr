@@ -29,11 +29,26 @@ Source: CRAN
 Version: 0.2.0
 Hash: e8805df54c65ac96d50235c44a82615c
 
+Package: backports
+Source: CRAN
+Version: 1.1.2
+Hash: 5ae7b3466e529e4400951ca18c137e40
+
+Package: brew
+Source: CRAN
+Version: 1.0-6
+Hash: 931f9972deae0f205e1c78a51f33149b
+
 Package: cli
 Source: CRAN
 Version: 1.0.0
 Hash: f4239f89feb7ddc65821e4514e9734ae
 Requires: assertthat, crayon
+
+Package: commonmark
+Source: CRAN
+Version: 1.4
+Hash: 91d7807331a4a37ef8376fb073960ee4
 
 Package: configr
 Source: CRAN
@@ -51,10 +66,21 @@ Source: CRAN
 Version: 3.1
 Hash: 877149b42d479b93ab15d5cef46c0f1b
 
+Package: desc
+Source: CRAN
+Version: 1.1.1
+Hash: 2f99e95211c4ba6efcf5538d096587fc
+Requires: R6, assertthat, crayon, rprojroot
+
 Package: digest
 Source: CRAN
 Version: 0.6.14
 Hash: 8017201df840795327c67825e98b52c1
+
+Package: git2r
+Source: CRAN
+Version: 0.21.0
+Hash: 64747922e287be74e8e8b46c107fd3ef
 
 Package: glue
 Source: CRAN
@@ -89,10 +115,23 @@ Version: 0.7.2
 Hash: 312ca7df4ef3536038ab87dcefe33fd7
 Requires: BH, Rcpp, rlang
 
+Package: looker
+Source: source
+Version: 1.0.0
+Hash: 7ea2121e7e805b7536160aac5bf02246
+Requires: R6, httr, jsonlite
+SourcePath: ~/R/packages/looker
+
 Package: magrittr
 Source: CRAN
 Version: 1.5
 Hash: bdc4d48c3135e8f3b399536ddf160df4
+
+Package: memoise
+Source: CRAN
+Version: 1.1.0
+Hash: 410fcd334bc626db100237cc1370f2e9
+Requires: digest
 
 Package: mime
 Source: CRAN
@@ -125,6 +164,17 @@ Source: CRAN
 Version: 0.1.6
 Hash: 8eb4b2dce38b8f663cb9364b28eaa76b
 
+Package: rprojroot
+Source: CRAN
+Version: 1.3-2
+Hash: a25c3f70c166fb3fbabc410eb32b6366
+Requires: backports
+
+Package: rstudioapi
+Source: CRAN
+Version: 0.7
+Hash: e2ebaff8160aff3e6b32e6e78a693c2d
+
 Package: stringi
 Source: CRAN
 Version: 1.1.6
@@ -142,10 +192,21 @@ Version: 2.0.0
 Hash: 537114b476376c5773bf3c557f5bbd19
 Requires: R6, cli, crayon, digest, magrittr, praise, rlang, withr
 
+Package: whisker
+Source: CRAN
+Version: 0.3-2
+Hash: 803d662762e532705c2c066a82d066e7
+
 Package: withr
 Source: CRAN
 Version: 2.1.1
 Hash: a86856ae0b4a7c3daf9a3ef0097a403b
+
+Package: xml2
+Source: CRAN
+Version: 1.2.0
+Hash: 24c1c4ee4b654065c8db42d36a6785a8
+Requires: Rcpp
 
 Package: yaml
 Source: CRAN
