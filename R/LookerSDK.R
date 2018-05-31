@@ -8,7 +8,7 @@
 #' 
 #' @section Usage:
 #' \preformatted{
-#' sdk <- LookerSDK$new(configFile = "looker.ini", login = TRUE,
+#' sdk <- LookerSDK$new(configFile = "looker.ini", config,
 #'                      settings, userSession)
 #' 
 #' sdk$login()
@@ -19,9 +19,8 @@
 #' @section Arguments:
 #' \describe{
 #'   \item{configFile}{Path to configuration file containing API settings and credentials.}
-#'   \item{login}{If \code{TRUE}, get an access token upon object creation.}
+#'   \item{config}{Optional, provide a list of configuration options instead of a file path. (This is mostly used for the RStudio integration)}
 #'   \item{settings}{Optional, directly supply an \code{ApiSettings} object.}
-#'   \item{userSession}{Optional, directly supply a \code{UserSession} object.}
 #'   \item{userSession}{Optional, directly supply a \code{UserSession} object.}
 #' }
 #' 
@@ -68,6 +67,7 @@
 #' 
 #' # Or use the looker.ini file in your working directory
 #' sdk <- lookr::LookerSDK$new()
+#' 
 #' }
 NULL
 
