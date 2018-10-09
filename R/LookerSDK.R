@@ -338,7 +338,7 @@ LookerSDK <- R6::R6Class(
     runLook = function(lookId, resultFormat = "json") {
       self$refresh()
       
-      httr::content(self$userSession$apiClient$callApi(
+      data <- httr::content(self$userSession$apiClient$callApi(
         url = paste0(self$userSession$apiClient$basePath,
                      "/looks/", lookId,
                      "/run/", resultFormat),
@@ -347,12 +347,10 @@ LookerSDK <- R6::R6Class(
         method = "GET",
         config = sdk$oauthHeader))
       
-      # # generated class not working
-      # self$userSession$lookApi$run_look(
-      #   look_id = lookId,
-      #   result_format = "json",
-      #   query = list(fields = fields),
-      #   config = self$oauthHeader)$content
+      return(data.frame(stringsAsFactors = FALSE,
+                        do.call("rbind", lapply(data, function(x) {
+                          x[sapply(x, is.null)] <- NA
+                          unlist(x)}))))
     },
     
     runInlineQuery = function(model, # these three are required
@@ -383,17 +381,19 @@ LookerSDK <- R6::R6Class(
         ), null = "null"
       )
       
-      response <- self$userSession$apiClient$callApi(
+      data <- httr::content(self$userSession$apiClient$callApi(
         url = paste0(self$userSession$apiClient$basePath,
                      "/queries/run/", resultFormat),
         body = as.character(body),
         queryParams = NULL,
         headerParams = NULL,
         method = "POST",
-        config = self$oauthHeader
-      )
+        config = self$oauthHeader))
       
-      return(httr::content(response))
+      return(data.frame(stringsAsFactors = FALSE,
+                 do.call("rbind", lapply(data, function(x) {
+                   x[sapply(x, is.null)] <- NA
+                   unlist(x)}))))
     },
     
     getLookmlModel = function(lookmlModelName, fields = NULL) {
