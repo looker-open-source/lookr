@@ -6,17 +6,6 @@ This is an SDK for using the Looker API with the R programming language. Our pri
 
 For more information about the Looker API's capabilities and for details about what each endpoint does, see the [Looker API reference documentation](https://docs.looker.com/reference/api-and-integration/api-reference).
 
-Important!
-----------
-
-*LookR used to be based on [`rJava`](https://cran.r-project.org/package=rJava), but this caused problems with reliability and many users struggled to get it to work. To fix this, we've rewritten a new SDK in native R. The versions have been reset as well.*
-
-*All of the old code is available on the old-lookr branch, so if you want to continue using it, you an install from that branch by setting* `ref` *to* `old-lookr`:
-
-``` r
-devtools::install_github("looker/lookr", ref = "old-lookr")
-```
-
 Install
 -------
 
@@ -25,6 +14,17 @@ Use `devtools` to install from this repository:
 ``` r
 devtools::install_github("looker/lookr")
 library(lookr)
+```
+
+Installing legacy LookR
+-----------------------
+
+*LookR used to be based on [`rJava`](https://cran.r-project.org/package=rJava), but this caused problems with reliability and many users struggled to get it to work. To fix this, we've rewritten a new SDK in native R. The versions have been reset as well.*
+
+*All of the old code is available on the old-lookr branch, so if you want to continue using it, you an install from that branch by setting* `ref` *to* `old-lookr`:
+
+``` r
+devtools::install_github("looker/lookr", ref = "old-lookr")
 ```
 
 Configure
