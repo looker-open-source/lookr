@@ -32,7 +32,7 @@ UserSession <- R6::R6Class(
     apiClient = function(value) {
       if(missing(value)) {
         if(is.null(private$.apiClient)) {
-          private$.apiClient <- looker::ApiClient$new(basePath = paste0(self$settings$basePath,
+          private$.apiClient <- ApiClient$new(basePath = paste0(self$settings$basePath,
                                                                         "/api/3.0"),
                                                       configuration = self$clientConfig)
         }
@@ -45,7 +45,7 @@ UserSession <- R6::R6Class(
     authClient = function(value) {
       if(missing(value)) {
         if(is.null(private$.authClient)) {
-          private$.authClient <- looker::ApiAuthApi$new(self$apiClient)
+          private$.authClient <- ApiAuthApi$new(self$apiClient)
         }
         return(private$.authClient)
       } else {
@@ -56,7 +56,7 @@ UserSession <- R6::R6Class(
     lookApi = function(value) {
       if(missing(value)) {
         if(is.null(private$.lookApi)) {
-          private$.lookApi <- looker::LookApi$new(self$apiClient)
+          private$.lookApi <- LookApi$new(self$apiClient)
         }
         return(private$.lookApi)
       } else {
@@ -67,7 +67,7 @@ UserSession <- R6::R6Class(
     queryApi = function(value) {
       if(missing(value)) {
         if(is.null(private$.queryApi)) {
-          private$.queryApi <- looker::QueryApi$new(self$apiClient)
+          private$.queryApi <- QueryApi$new(self$apiClient)
         }
         return(private$.queryApi)
       } else {
@@ -78,7 +78,7 @@ UserSession <- R6::R6Class(
     dashboardApi = function(value) {
       if(missing(value)) {
         if(is.null(private$.dashboardApi)) {
-          private$.dashboardApi <- looker::DashboardApi$new(self$apiClient)
+          private$.dashboardApi <- DashboardApi$new(self$apiClient)
         }
         return(private$.dashboardApi)
       } else {
@@ -89,7 +89,7 @@ UserSession <- R6::R6Class(
     userApi = function(value) {
       if(missing(value)) {
         if(is.null(private$.userApi)) {
-          private$.userApi <- looker::UserApi$new(self$apiClient)
+          private$.userApi <- UserApi$new(self$apiClient)
         }
         return(private$.userApi)
       } else {
@@ -100,7 +100,7 @@ UserSession <- R6::R6Class(
     lookmlModelApi = function(value) {
       if(missing(value)) {
         if(is.null(private$.lookmlModelApi)) {
-          private$.lookmlModelApi <- looker::LookmlModelApi$new(self$apiClient)
+          private$.lookmlModelApi <- LookmlModelApi$new(self$apiClient)
         }
         return(private$.lookmlModelApi)
       } else {
@@ -111,7 +111,7 @@ UserSession <- R6::R6Class(
     projectApi = function(value) {
       if(missing(value)) {
         if(is.null(private$.projectApi)) {
-          private$.projectApi <- looker::ProjectApi$new(self$apiClient)
+          private$.projectApi <- ProjectApi$new(self$apiClient)
         }
         return(private$.projectApi)
       } else {
