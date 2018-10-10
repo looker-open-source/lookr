@@ -10,8 +10,8 @@ Hash: 4cc8883584b955ed01f38f68bc03af6d
 
 Package: R6
 Source: CRAN
-Version: 2.2.2
-Hash: b2366cd9d2f3851a5704b4e192b985c2
+Version: 2.3.0
+Hash: 8eccabbf292b5aba632985cde6406fc3
 
 Package: Rcpp
 Source: CRAN
@@ -52,8 +52,8 @@ Hash: 91d7807331a4a37ef8376fb073960ee4
 
 Package: configr
 Source: CRAN
-Version: 0.3.2.1
-Hash: 26cbfc6e4abcb1ee8b6b77edc2ffdedd
+Version: 0.3.3
+Hash: ffb014bf2a2f02c7249cd043245e0094
 Requires: RcppTOML, glue, ini, jsonlite, stringr, yaml
 
 Package: crayon
@@ -101,8 +101,8 @@ Requires: R6, curl, jsonlite, mime, openssl
 
 Package: ini
 Source: CRAN
-Version: 0.3.0
-Hash: 6f838ce34ea57d28eaf08709680a5501
+Version: 0.3.1
+Hash: 9d6de5178c1cedabfb24e7d2acc9a092
 
 Package: jsonlite
 Source: CRAN
@@ -177,14 +177,14 @@ Hash: e2ebaff8160aff3e6b32e6e78a693c2d
 
 Package: stringi
 Source: CRAN
-Version: 1.1.6
-Hash: 4430faf2bcbe1b8de0d9be55bcfdcc0b
+Version: 1.2.3
+Hash: bccbb90bf5e1c53f659359c06c0dde79
 
 Package: stringr
 Source: CRAN
-Version: 1.2.0
-Hash: 25a86d7f410513ebb7c0bc6a5e16bdc3
-Requires: magrittr, stringi
+Version: 1.3.1
+Hash: 9f417a1d899ed1f080942ab36998e8b5
+Requires: glue, magrittr, stringi
 
 Package: testthat
 Source: CRAN
@@ -210,5 +210,5 @@ Requires: Rcpp
 
 Package: yaml
 Source: CRAN
-Version: 2.1.18
-Hash: 28c7e28c239d7a1d1bd579390bab89bd
+Version: 2.1.19
+Hash: 6e3d988c25e34c31f668e0ae41dc3259
