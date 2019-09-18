@@ -99,8 +99,8 @@ and you can optionally supply `filters`, `sorts`, `limit`, and `queryTimezone`:
 data <- sdk$runInlineQuery(model = "model_name",
                            view = "my_awesome_explore",
                            fields = c("id", "count"),
-                           filters = list("field_name" = "filter_expression",
-                                          "another_field" = "filter_expression"),
+                           filters = list(c("field_name", "filter_expression"),
+                                          c("another_field", "filter_expression")),
                            limit = 500,
                            queryTimezone = "America/Los_Angeles")
 ```
