@@ -376,7 +376,7 @@ LookerSDK <- R6::R6Class(
           view = jsonlite::unbox(view),
           fields = fields,
           pivots = pivots,
-          filters = filters,
+          filters = lapply(filters, jsonlite::unbox),
           sorts = sorts,
           limit = jsonlite::unbox(as.character(limit)),
           query_timezone = queryTimezone
