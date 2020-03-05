@@ -3,7 +3,7 @@ DEPRECATION WARNING
 ===================
 
 This package is deprecated and may not work as an interface to Looker.
-There currently is no R SDK for looker, and so you are better off
+There currently is no R SDK for Looker, as a result you are better off
 calling the API directly.
 
 LookR
