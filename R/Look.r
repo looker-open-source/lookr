@@ -40,7 +40,6 @@
 #' @field last_viewed_at
 #' @field is_run_on_load
 #' @field can
-#' @field limit
 #'
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -79,8 +78,7 @@ Look <- R6::R6Class(
     `last_viewed_at` = NULL,
     `is_run_on_load` = NULL,
     `can` = NULL,
-    `limit` = NULL
-    initialize = function(`id`, `content_metadata_id`, `view_count`, `favorite_count`, `last_accessed_at`, `content_favorite_id`, `title`, `user`, `query_id`, `description`, `short_url`, `space`, `public`, `public_slug`, `user_id`, `space_id`, `model`, `public_url`, `embed_url`, `image_embed_url`, `google_spreadsheet_formula`, `excel_file_url`, `created_at`, `deleted_at`, `updated_at`, `last_updater_id`, `deleter_id`, `deleted`, `last_viewed_at`, `is_run_on_load`, `can`, `limit`){
+    initialize = function(`id`, `content_metadata_id`, `view_count`, `favorite_count`, `last_accessed_at`, `content_favorite_id`, `title`, `user`, `query_id`, `description`, `short_url`, `space`, `public`, `public_slug`, `user_id`, `space_id`, `model`, `public_url`, `embed_url`, `image_embed_url`, `google_spreadsheet_formula`, `excel_file_url`, `created_at`, `deleted_at`, `updated_at`, `last_updater_id`, `deleter_id`, `deleted`, `last_viewed_at`, `is_run_on_load`, `can`){
       if (!missing(`id`)) {
         stopifnot(is.numeric(`id`), length(`id`) == 1)
         self$`id` <- `id`
@@ -201,9 +199,6 @@ Look <- R6::R6Class(
       if (!missing(`can`)) {
         self$`can` <- `can`
       }
-      if (!missing(`limit`)) {
-        self$`limit` <- `limit`
-      }
     },
     toJSON = function() {
       LookObject <- list()
@@ -299,9 +294,6 @@ Look <- R6::R6Class(
       }
       if (!is.null(self$`can`)) {
         LookObject[['can']] <- self$`can`
-      }
-      if (!is.null(self$`limit`)) {
-        LookObject[['limit']] <- self$`limit`
       }
 
       LookObject
@@ -407,9 +399,6 @@ Look <- R6::R6Class(
       if (!is.null(LookObject$`can`)) {
         self$`can` <- LookObject$`can`
       }
-      if (!is.null(LookObject$`limit`)) {
-        self$`limit` <- LookObject$`limit`
-      }
     },
     toJSONString = function() {
        sprintf(
@@ -444,8 +433,7 @@ Look <- R6::R6Class(
            "deleted": %s,
            "last_viewed_at": %s,
            "is_run_on_load": %s,
-           "can": %s,
-           "limit": %d
+           "can": %s
         }',
         self$`id`,
         self$`content_metadata_id`,
@@ -478,7 +466,6 @@ Look <- R6::R6Class(
         self$`last_viewed_at`,
         self$`is_run_on_load`,
         self$`can`
-        self$`limit`
       )
     },
     fromJSONString = function(LookJson) {
@@ -517,7 +504,6 @@ Look <- R6::R6Class(
       self$`last_viewed_at` <- LookObject$`last_viewed_at`
       self$`is_run_on_load` <- LookObject$`is_run_on_load`
       self$`can` <- LookObject$`can`
-      self$`limit` <- LookObject$`limit`
     }
   )
 )

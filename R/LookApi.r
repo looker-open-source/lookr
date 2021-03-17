@@ -179,11 +179,8 @@ LookApi <- R6::R6Class(
     run_look = function(look_id, result_format, limit, apply_formatting, apply_vis, cache, image_width, image_height, generate_drill_links, force_production, cache_only, path_prefix, rebuild_pdts, server_table_calcs, ...){
       args <- list(...)
       queryParams <- list()
+      print(queryParams)
       headerParams <- character()
-
-      if (!missing(`limit`)) {
-        queryParams['limit'] <- limit
-      }
 
       if (!missing(`apply_formatting`)) {
         queryParams['apply_formatting'] <- apply_formatting
