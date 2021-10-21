@@ -2,6 +2,13 @@
 LookR
 =====
 
+This is not currently support by the Looker Team.
+-------------------------------------------------
+
+It was created and is maintained as a volunteer effort. Please use a requests library like [httr](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html) or refernce the supported SDKs [here](https://github.com/looker-open-source/sdk-codegen). 
+
+We intend to support R as an output of our Looker Client SDK project, which is in active development: https://github.com/looker-open-source/sdk-codegen
+
 This is an SDK for using the Looker API with the R programming language. Our priority is to add support for the endpoints that are most useful to data scientists and analysts working in R (the ones that get data from Looker) but eventually the goal is to add support for every endpoint in the Looker API.
 
 For more information about the Looker API's capabilities and for details about what each endpoint does, see the [Looker API reference documentation](https://docs.looker.com/reference/api-and-integration/api-reference).
