@@ -138,6 +138,10 @@ LookerSDK <- R6::R6Class(
         self$userSession <- UserSession$new(settings = self$settings)
       }
       
+      if(as.logical(self$settings$verifySSL) == FALSE) {
+        message("disabling certificate authentication")
+        httr::set_config(httr::config(ssl_verifyhost = 0L))
+      }
       self$login()
       
       addTaskCallback(function(expr, ...) {

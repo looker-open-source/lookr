@@ -12,7 +12,7 @@ ApiSettings <- R6::R6Class(
   'ApiSettings',
   
   public = list(
-    apiVersion = "3.0",
+    apiVersion = "3.1",
     verbose = FALSE,
     configFile = NULL,
     basePath = NULL,
