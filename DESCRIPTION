@@ -1,13 +1,15 @@
 Package: lookr
-Version: 1.0.1
-Date: 2018-04-27
+Version: 1.0.2
+Date: 2021-11-22
 Title: LookR
-Authors@R: c(person("Maxie", "Corbin", role = c("aut", "cre"), email = "maxie@looker.com"))
+Authors@R: c(person("Mike", "DeAngelo", role = c("aut", "cre"), email = "drstrangelove@google.com"))
 Depends: R (>= 3.4.3)
 Imports: R6, httr, configr, jsonlite
 License: MIT + file LICENSE
 Description: Software Development Kit for connecting to Looker and making requests via the API. Built on top of bindings generated automatically using Swagger.
 URL: https://github.com/looker/lookr
 BugReports: https://github.com/looker/lookr/issues
-Suggests: testthat, httpuv
-RoxygenNote: 6.0.1
+Suggests: testthat, httpuv, configr
+Encoding: UTF-8
+Imports: jsonlite, httr, R6
+RoxygenNote: 6.0.1.9000
