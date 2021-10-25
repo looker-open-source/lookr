@@ -352,7 +352,7 @@ User <- R6::R6Class(
       UserObject
     },
     fromJSON = function(UserJson) {
-      UserObject <- jsonlite::fromJSON(UserJson)
+      UserObject <- jsonlite::parse_json(UserJson)
       if (!is.null(UserObject$`can`)) {
         self$`can` <- UserObject$`can`
       }
