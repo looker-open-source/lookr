@@ -24,7 +24,7 @@ ApiClient  <- R6::R6Class(
   public = list(
     basePath = "https://localhost:20000/api/3.1",
     configuration = NULL,
-    userAgent = NULL,
+    userAgent = "R-SDK",
     defaultHeaders = NULL,
     initialize = function(basePath, configuration, defaultHeaders){
         if (!missing(basePath)) {
@@ -39,7 +39,7 @@ ApiClient  <- R6::R6Class(
             self$defaultHeaders <- defaultHeaders
         }
 
-        self$`userAgent` <- 'Swagger-Codegen/1.0.0/r'
+        self$`userAgent` <- 'R-SDK'
     },
     callApi = function(url, method, queryParams, headerParams, body, ...){
         headers <- httr::add_headers(headerParams)
