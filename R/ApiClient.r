@@ -22,7 +22,7 @@
 ApiClient  <- R6::R6Class(
   'ApiClient',
   public = list(
-    basePath = "https://localhost:20000/api/3.1",
+    basePath = "https://demo.looker.com:19999/api/3.1",
     configuration = NULL,
     userAgent = "R-SDK",
     defaultHeaders = NULL,
