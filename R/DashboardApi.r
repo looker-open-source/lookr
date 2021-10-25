@@ -109,7 +109,7 @@
 DashboardApi <- R6::R6Class(
   'DashboardApi',
   public = list(
-    userAgent = "Swagger-Codegen/1.0.0/r",
+    userAgent = "R-SDK",
     apiClient = NULL,
     initialize = function(apiClient){
       if (!missing(apiClient)) {

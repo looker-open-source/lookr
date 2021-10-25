@@ -31,7 +31,7 @@
 DatagroupApi <- R6::R6Class(
   'DatagroupApi',
   public = list(
-    userAgent = "Swagger-Codegen/1.0.0/r",
+    userAgent = "R-SDK",
     apiClient = NULL,
     initialize = function(apiClient){
       if (!missing(apiClient)) {
