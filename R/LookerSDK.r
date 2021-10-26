@@ -141,6 +141,7 @@ LookerSDK <- R6::R6Class(
       if(as.logical(self$settings$verifySSL) == FALSE) {
         message("disabling certificate authentication")
         httr::set_config(httr::config(ssl_verifyhost = 0L))
+        httr::set_config(httr::config(ssl_verifypeer = 0L))
       }
       self$login()
       
