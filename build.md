@@ -100,5 +100,17 @@ dashes <- sdk$allDashboards()
 dashes[[1]]$title
 [1] "Biz Pulse"
 
+sapply(sdk$allModels(), "[[", 'name')
+[1] "cucu_mysql_ee15852b"   "cucu_thelook_ee15852b" "system__activity"
+
+sapply(sdk$getLookmlModel('cucu_mysql_ee15852b')$explores, "[[", "name")
+[1] "customer_order_facts_ndt" "customer_order_facts_sql"
+[3] "customer"                 "customer_for_validator"
+[5] "order"                    "order_item"
+[7] "product"                  "supplier"
+
+sdk$getLookmlModelExplore('cucu_mysql_ee15852b', 'customer')$title
+[1] "Customer"
+
 q()
 ```
