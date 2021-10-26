@@ -30,6 +30,14 @@ want to continue using it, you an install from that branch by setting*
 devtools::install_github("looker/lookr", ref = "old-lookr")
 ```
 
+*The code recently changed to support API 3.1 instead of 3.0. There
+still is not a robust testing mechanism in place. If you need to use the
+older version install it from the `api-3.0` branch.
+
+``` r
+devtools::install_github("looker/lookr", ref = "api-3.0")
+```
+
 Install
 -------
 
@@ -52,7 +60,7 @@ should look like:
 
     [Looker]
     # API version is required
-    api_version=3.0
+    api_version=3.1
     # Base URL for API. Do not include /api/* in the url
     base_url=https://<your-looker-endpoint>:19999
     # API 3 client id
