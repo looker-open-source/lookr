@@ -219,7 +219,7 @@ LookerSDK <- R6::R6Class(
       } else {
         allModels <- self$allModels()
         models <- data.frame(stringsAsFactors = FALSE,
-                             name = allModels$name,
+                             name = sapply(allModels,"[[","name"),
                              project_name = sapply(allModels,"[[","project_name"),
                              has_content = sapply(allModels,"[[","has_content"),
                              type = "model")
@@ -229,7 +229,7 @@ LookerSDK <- R6::R6Class(
                       subset = (project_name == project) & has_content,
                       select = c(name, type)))
       } else {
-        exploreList <- unlist(allModels$explores[[which(allModels$name == model)]])
+        exploreList <- unlist(allModels[[which(name == model)]]$explores)
         return(data.frame(stringsAsFactors = FALSE,
                           name = sapply(exploreList,"[[","name"),
                           type = "explore"))
