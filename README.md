@@ -122,8 +122,8 @@ and you can optionally supply `filters`, `sorts`, `limit`, and
 data <- sdk$runInlineQuery(model = "model_name",
                            view = "my_awesome_explore",
                            fields = c("id", "count"),
-                           filters = list(c("field_name", "filter_expression"),
-                                          c("another_field", "filter_expression")),
+                           filters = list(field.name = jsonutil::unbox("filter_expression"),
+                                       another.field = jsonutil::unbox("filter_expression")),
                            limit = 500,
                            queryTimezone = "America/Los_Angeles")
 ```
