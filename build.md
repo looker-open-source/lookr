@@ -2,29 +2,42 @@
 
 Install R from instructions at https://cran.r-project.org/bin/linux/debian/#installation
 
-Pandoc is used in generating documents.
+Pandoc is used in generating documents. The package libssl-dev is used for ssl connections.
+The package libcurl4-openssl-dev is a basic http library.
 ```
-sudo apt install pandoc
+sudo apt install pandoc libssl-dev libcurl4-openssl-dev libxml2-dev
 ```
-The RMarkdown package generates markdown files in R
+The RMarkdown package generates markdown files in R. Devtools is a package that
+helps build and install packages. The others are supporting packages for those.
 ```
 R
-install.packages("rmarkdown")
+install.packages(c('usethis', 'httr', 'rcmdcheck', 'roxygen2', 'rversions'))
+install.packages(c('openssl', 'curl', 'xml2'))
+install.packages(c('rmarkdown', 'devtools'))
 q()
 ```
 
 # Get the most recent swagger.json file
 
 The `jq` filter does a pretty-print of the json. It isn't really required but
-nice.
+nice. It can be installed with `sudo apt install jq`
 
 ```
 curl https://demo.looker.com:19999/api/3.1/swagger.json | jq . > swagger.json
 ```
+Swagger requires java. It can be installed with `sudo apt install openjdk-11-jre`
+if you don't have java already installed.
 
 # Get swagger-codegen
 
 Get swagger-codegen-cli-*VERSION*.jar. Use the latest 2.X.X version for now.
+
+The easiest way to get this is from the maven central repository. Go to
+https://search.maven.org/artifact/io.swagger/swagger-codegen-cli/2.4.23/jar
+and use the Downloads button in the top right. Or
+```
+wget https://search.maven.org/remotecontent?filepath=io/swagger/swagger-codegen-cli/2.4.23/swagger-codegen-cli-2.4.23.jar -O swagger-codegen-cli-2.4.23.jar
+```
 
 # Run swagger-codegen from the root of the repository
 
