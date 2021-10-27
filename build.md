@@ -12,7 +12,7 @@ helps build and install packages. The others are supporting packages for those.
 ```
 R
 install.packages(c('usethis', 'httr', 'rcmdcheck', 'roxygen2', 'rversions'))
-install.packages(c('openssl', 'curl', 'xml2'))
+install.packages(c('openssl', 'curl', 'xml2', 'httpuv'))
 install.packages(c('rmarkdown', 'devtools'))
 q()
 ```
