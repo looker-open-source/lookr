@@ -22,9 +22,9 @@ problems with reliability and many users struggled to get it to work. To
 fix this, we’ve rewritten a new SDK in native R. The versions have been
 reset as well.*
 
-*All of the old code is available on the old-lookr branch, so if you
-want to continue using it, you an install from that branch by setting*
-`ref` *to* `old-lookr`:
+All of the old code is available on the old-lookr branch, so if you want
+to continue using it, you an install from that branch by setting\* `ref`
+*to* `old-lookr`\*:
 
 ``` r
 devtools::install_github("looker/lookr", ref = "old-lookr")
@@ -32,7 +32,7 @@ devtools::install_github("looker/lookr", ref = "old-lookr")
 
 *The code recently changed to support API 3.1 instead of 3.0. There
 still is not a robust testing mechanism in place. If you need to use the
-older version install it from the `api-3.0` branch.
+older version install it from the `api-3.0` branch.*
 
 ``` r
 devtools::install_github("looker/lookr", ref = "api-3.0")
@@ -58,21 +58,23 @@ should look like:
 
 `looker-sample.ini`
 
-    [Looker]
-    # API version is required
-    api_version=3.1
-    # Base URL for API. Do not include /api/* in the url
-    base_url=https://<your-looker-endpoint>:19999
-    # API 3 client id
-    client_id=your_API3_client_id
-    # API 3 client secret
-    client_secret=your_API3_client_secret
-    # Optional embed secret for SSO embedding
-    embed_secret=your_embed_SSO_secret
-    # Optional user_id to impersonate
-    user_id=
-    # Set to false if testing locally against self-signed certs. Otherwise leave True
-    verify_ssl=True
+``` r
+[Looker]
+# API version is required
+api_version=3.1
+# Base URL for API. Do not include /api/* in the url
+base_url=https://<your-looker-endpoint>:19999
+# API 3 client id
+client_id=your_API3_client_id
+# API 3 client secret
+client_secret=your_API3_client_secret
+# Optional embed secret for SSO embedding
+embed_secret=your_embed_SSO_secret
+# Optional user_id to impersonate
+user_id=
+# Set to false if testing locally against self-signed certs. Otherwise leave True
+verify_ssl=True
+```
 
 *Make sure that this file is not checked into version control.*
 
@@ -128,11 +130,12 @@ data <- sdk$runInlineQuery(model = "model_name",
                            queryTimezone = "America/Los_Angeles")
 ```
 
-The SDK returns data as a list of lists. The inner list has named elements for one row
-of data. The outer list is the collection of rows. R most naturally wants to work with
-columns of data. The following process will reformat the data in a useful way...
+The SDK returns data as a list of lists. The inner list has named
+elements for one row of data. The outer list is the collection of rows.
+R most naturally wants to work with columns of data. The following
+process will reformat the data in a useful way…
 
-```r
+``` r
 sdk <- lookr::LookerSDK$new(configFile = "looker.ini")
 
 # run a look or inline query
@@ -172,12 +175,15 @@ print(df)
 4  Bernard      2
 5 Milhouse      1
 ```
-# Other Operations
 
-The SDK exposes a number of the most frequently used and useful operations
-But the whole API is available through underlying methods. For example:
+Other Operations
+----------------
 
-```r
+The SDK exposes a number of the most frequently used and useful
+operations But the whole API is available through underlying methods.
+For example:
+
+``` r
 sdk$refresh()
 data <- sdk$userSession$lookApi$look(6, config = sdk$oauthHeader)$content
 print(data)
@@ -205,26 +211,30 @@ print(data)
     user_id: 1
     view_count: 1
 ```
-The sdk$refresh() call checks if the session is still authenticated and logs in
-again if needed.
 
-The `sdk` object has a `userSession` attribute. The `userSession` has references to
-subsections of the API. For example, the `lookApi` has the operations that deal
-with Looks. The `look` operation gets a Look by id.
+The `sdk$refresh()` call checks if the session is still authenticated
+and logs in again if needed.
 
-`config = sdk$oauthHeader` has to be the **last** parameter sent to any of these
-calls. That contains the token that needs to be sent to validate your authorization.
+The `sdk` object has a `userSession` attribute. The `userSession` has
+references to subsections of the API. For example, the `lookApi` has the
+operations that deal with Looks. The `look` operation gets a Look by id.
 
-These calls return a `responseObject` with two attributes. `responseObject$response`
-is the http response codes. Check the value of 
-`httr::status_code(responseObject$response)` for `200` to verify success. The
-`responseObject$content` is the data that is actually returned, assuming everything
-worked properly, or an error message.
+`config = sdk$oauthHeader` has to be the **last** parameter sent to any
+of these calls. That contains the token that needs to be sent to
+validate your authorization.
 
-Currently the `UserSession` supports several but not all the API objects.
+These calls return a `responseObject` with two attributes.
+`responseObject$response` is the http response codes. Check the value of
+`httr::status_code(responseObject$response)` for `200` to verify
+success. The `responseObject$content` is the data that is actually
+returned, assuming everything worked properly, or an error message.
+
+Currently the `UserSession` supports several but not all the API
+objects.
 
 R has tab completion to help explore these:
-```r
+
+``` r
 sdk$userSession$<TAB>
 sdk$userSession$.__enclos_env__    sdk$userSession$lookmlModelApi     sdk$userSession$clientConfig       sdk$userSession$activeToken
 sdk$userSession$oauthHeader        sdk$userSession$userApi            sdk$userSession$settings           sdk$userSession$me
@@ -234,12 +244,14 @@ sdk$userSession$tokenExpiresAt     sdk$userSession$lookApi            sdk$userSe
 sdk$userSession$userId             sdk$userSession$authClient         sdk$userSession$setAuthExpiration  sdk$userSession$reset
 sdk$userSession$projectApi         sdk$userSession$apiClient          sdk$userSession$assignApiClient    sdk$userSession$initialize
 ```
-We can see that `UserSession` has references to the `projectApi`, `userApi`, `queryApi`,
-`dashboardApi`, and `lookApi`.
 
-If we want to access an Api that isn't readily available, we can do it
+We can see that `UserSession` has references to the `projectApi`,
+`userApi`, `queryApi`, `dashboardApi`, and `lookApi`.
+
+If we want to access an Api that isn’t readily available, we can do it
 like this:
-```r
+
+``` r
 workspaceApi <- lookr::WorkspaceApi$new(sdk$userSession$apiClient)
 workspaceApi$ <TAB>
 workspaceApi$.__enclos_env__  workspaceApi$userAgent        workspaceApi$workspace        workspaceApi$initialize
