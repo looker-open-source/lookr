@@ -288,3 +288,8 @@ print(data)
     toJSON: function ()
     toJSONString: function ()
 ```
+
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/looker-open-source/lookr/workflows/R-CMD-check/badge.svg)](https://github.com/looker-open-source/lookr/actions)
+<!-- badges: end -->

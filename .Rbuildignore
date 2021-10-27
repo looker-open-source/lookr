@@ -15,3 +15,4 @@ swagger-codegen-cli-.*.jar
 swagger.*.json
 templates
 
+^\.github$
