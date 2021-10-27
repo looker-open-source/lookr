@@ -11,7 +11,7 @@ debugOperations-output.txt
 git_push.sh
 looker.ini
 packrat
-swagger-codegen-cli-*.jar
-swagger*.json
+swagger-codegen-cli-.*.jar
+swagger.*.json
 templates
 

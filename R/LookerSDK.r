@@ -214,14 +214,14 @@ LookerSDK <- R6::R6Class(
       if(all(missing(project), missing(model))) {
         projects <- self$allProjects()
         return(data.frame(stringsAsFactors = FALSE,
-                          name = projects$name,
+                          name = sapply(projects,"[[","name"),
                           type = c("project")))
       } else {
         allModels <- self$allModels()
         models <- data.frame(stringsAsFactors = FALSE,
                              name = allModels$name,
-                             project_name = allModels$project_name,
-                             has_content = allModels$has_content,
+                             project_name = sapply(allModels,"[[","project_name"),
+                             has_content = sapply(allModels,"[[","has_content"),
                              type = "model")
       }
       if(missing(model)) {
@@ -231,7 +231,7 @@ LookerSDK <- R6::R6Class(
       } else {
         exploreList <- unlist(allModels$explores[[which(allModels$name == model)]])
         return(data.frame(stringsAsFactors = FALSE,
-                          name = exploreList$name,
+                          name = sapply(exploreList,"[[","name"),
                           type = "explore"))
       }
     },
