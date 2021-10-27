@@ -127,3 +127,150 @@ data <- sdk$runInlineQuery(model = "model_name",
                            limit = 500,
                            queryTimezone = "America/Los_Angeles")
 ```
+
+The SDK returns data as a list of lists. The inner list has named elements for one row
+of data. The outer list is the collection of rows. R most naturally wants to work with
+columns of data. The following process will reformat the data in a useful way...
+
+```r
+sdk <- lookr::LookerSDK$new(configFile = "looker.ini")
+
+# run a look or inline query
+data <- sdk$runLook(lookId = 5 )
+
+# Verify that at least one row was returned
+length(data)
+[1] 5
+
+# get the column names from the first row
+names(data[[1]])
+[1] "customer.first_name" "order.count"
+
+# create a new list that represents each column
+fname = sapply(data, "[[", 1)
+ocount = sapply(data, "[[", 2)
+
+# create a data.frame object with the columns
+# the list names will become the default column names
+df <- data.frame(fname, ocount)
+print(df)
+     fname ocount
+1    Homer      5
+2     Bart      4
+3   Robert      3
+4  Bernard      2
+5 Milhouse      1
+
+# If a column can have a NULL value, use I(...) to wrap the column list
+ocount = list(5,4,NULL,2,1)
+df <- data.frame(fname, I(ocount))
+print(df)
+     fname ocount
+1    Homer      5
+2     Bart      4
+3   Robert
+4  Bernard      2
+5 Milhouse      1
+```
+# Other Operations
+
+The SDK exposes a number of the most frequently used and useful operations
+But the whole API is available through underlying methods. For example:
+
+```r
+sdk$refresh()
+data <- sdk$userSession$lookApi$look(6, config = sdk$oauthHeader)$content
+print(data)
+<LookWithQuery>
+  Public:
+    ...
+    folder_id: 5
+    fromJSON: function (LookWithQueryJson)
+    fromJSONObject: function (LookWithQueryJsonObject)
+    fromJSONString: function (LookWithQueryJson)
+    ...
+    id: 6
+    ...
+    model: LookModel, R6
+    public: NULL
+    public_slug: 2ytjPWrQrbxSHHZxGSYXXhgsF7Pjj6Wy
+    ...
+    query: Query, R6
+    query_id: 124
+    short_url: /looks/6
+    space: SpaceBase, R6
+    space_id: 5
+    title: Simple Look
+    ...
+    user_id: 1
+    view_count: 1
+```
+The sdk$refresh() call checks if the session is still authenticated and logs in
+again if needed.
+
+The `sdk` object has a `userSession` attribute. The `userSession` has references to
+subsections of the API. For example, the `lookApi` has the operations that deal
+with Looks. The `look` operation gets a Look by id.
+
+`config = sdk$oauthHeader` has to be the **last** parameter sent to any of these
+calls. That contains the token that needs to be sent to validate your authorization.
+
+These calls return a `responseObject` with two attributes. `responseObject$response`
+is the http response codes. Check the value of 
+`httr::status_code(responseObject$response)` for `200` to verify success. The
+`responseObject$content` is the data that is actually returned, assuming everything
+worked properly, or an error message.
+
+Currently the `UserSession` supports several but not all the API objects.
+
+R has tab completion to help explore these:
+```r
+sdk$userSession$<TAB>
+sdk$userSession$.__enclos_env__    sdk$userSession$lookmlModelApi     sdk$userSession$clientConfig       sdk$userSession$activeToken
+sdk$userSession$oauthHeader        sdk$userSession$userApi            sdk$userSession$settings           sdk$userSession$me
+sdk$userSession$userToken          sdk$userSession$dashboardApi       sdk$userSession$clone              sdk$userSession$isAuthenticated
+sdk$userSession$token              sdk$userSession$queryApi           sdk$userSession$logout             sdk$userSession$loginUser
+sdk$userSession$tokenExpiresAt     sdk$userSession$lookApi            sdk$userSession$impersonating      sdk$userSession$login
+sdk$userSession$userId             sdk$userSession$authClient         sdk$userSession$setAuthExpiration  sdk$userSession$reset
+sdk$userSession$projectApi         sdk$userSession$apiClient          sdk$userSession$assignApiClient    sdk$userSession$initialize
+```
+We can see that `UserSession` has references to the `projectApi`, `userApi`, `queryApi`,
+`dashboardApi`, and `lookApi`.
+
+If we want to access an Api that isn't readily available, we can do it
+like this:
+```r
+workspaceApi <- lookr::WorkspaceApi$new(sdk$userSession$apiClient)
+workspaceApi$ <TAB>
+workspaceApi$.__enclos_env__  workspaceApi$userAgent        workspaceApi$workspace        workspaceApi$initialize
+workspaceApi$apiClient        workspaceApi$clone            workspaceApi$all_workspaces
+data = workspaceApi$all_workspaces(config = sdk$oauthHeader)$content
+print(data)
+[[1]]
+<Workspace>
+  Public:
+    can: list
+    clone: function (deep = FALSE)
+    fromJSON: function (WorkspaceJson)
+    fromJSONObject: function (WorkspaceJsonObject)
+    fromJSONString: function (WorkspaceJson)
+    id: production
+    initialize: function (can, id, projects)
+    projects: list
+    toJSON: function ()
+    toJSONString: function ()
+
+[[2]]
+<Workspace>
+  Public:
+    can: list
+    clone: function (deep = FALSE)
+    fromJSON: function (WorkspaceJson)
+    fromJSONObject: function (WorkspaceJsonObject)
+    fromJSONString: function (WorkspaceJson)
+    id: dev
+    initialize: function (can, id, projects)
+    projects: list
+    toJSON: function ()
+    toJSONString: function ()
+```
