@@ -70,9 +70,15 @@ out
 .gradle
 build
 .Rprofile
-.Rbuildignore
 .Rhistory
 dependency-reduced-pom.xml
 packrat/lib*/
 .Rproj.user
 looker.ini
+.swagger-codegen-ignore
+.swagger-codegen/
+.travis.yml
+debugOperations-output.txt
+git_push.sh
+swagger-codegen-*.jar
+swagger*.json

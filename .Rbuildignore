@@ -1,0 +1,17 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+.swagger-codegen-ignore
+.travis.yml
+.swagger-codegen
+README.Rmd
+build.md
+codegen-config.json
+cran-comments.md
+debugOperations-output.txt
+git_push.sh
+looker.ini
+packrat
+swagger-codegen-cli-*.jar
+swagger*.json
+templates
+
