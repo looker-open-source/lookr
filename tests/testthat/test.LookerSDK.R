@@ -20,8 +20,8 @@ test_that("LookerSDK$login gets a valid token", {
   sdk <- LookerSDK$new(configFile = "~/lookr/looker.ini")
   
   token <- sdk$activeToken()
-  expect_length(token, 3)
-  expect_named(token, c("access_token", "token_type", "expires_in"), ignore.order = TRUE)
+  expect_length(token, 4)
+  expect_named(token, c("access_token", "token_type", "refresh_token", "expires_in"), ignore.order = TRUE)
   
   expect_is(token$access_token, "character")
   expect_match(token$access_token, "[A-Za-z0-9]{40,40}")

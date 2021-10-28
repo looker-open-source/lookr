@@ -41,13 +41,13 @@ ApiSettings <- R6::R6Class(
 
       config <- tryCatch( { configr::read.config(configFile) },
                           warning = function(cond) {
-                            message(paste0("read of ", configFile, " caused a warning"))
-                            message(cond)
+                            print(paste0("read of ", configFile, " caused a warning"))
+                            print(cond)
                             return(NULL)
                           },
                           error = function(cond) {
-                            message(paste0("read of ", configFile, " caused an error"))
-                            message(cond)
+                            print(paste0("read of ", configFile, " caused an error"))
+                            print(cond)
                             return(NA)
                           }
                         )
