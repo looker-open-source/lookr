@@ -5,7 +5,8 @@ Install R from instructions at https://cran.r-project.org/bin/linux/debian/#inst
 Pandoc is used in generating documents. The package libssl-dev is used for ssl connections.
 The package libcurl4-openssl-dev is a basic http library.
 ```
-sudo apt install pandoc libssl-dev libcurl4-openssl-dev libxml2-dev
+sudo apt install pandoc libssl-dev libcurl4-openssl-dev libxml2-dev \
+    texlive texlive-fonts-extra
 ```
 The RMarkdown package generates markdown files in R. Devtools is a package that
 helps build and install packages. The others are supporting packages for those.
@@ -23,7 +24,7 @@ The `jq` filter does a pretty-print of the json. It isn't really required but
 nice. It can be installed with `sudo apt install jq`
 
 ```
-curl https://demo.looker.com:19999/api/3.1/swagger.json | jq . > swagger.json
+curl https://demo.looker.com:19999/api/4.0/swagger.json | jq . > swagger.json
 ```
 Swagger requires java. It can be installed with `sudo apt install openjdk-11-jre`
 if you don't have java already installed.
@@ -66,12 +67,19 @@ java -DdebugOperations -jar swagger-codegen-cli-2.4.23.jar generate \
 
 # Generate the README.md
   
-Generate the README.md from README.Rmd since swagger clobbers it.
+Generate the README.md from README.Rmd since swagger
+sometimes clobbers it.
 
 ```
 R
 rmarkdown::render("README.Rmd")
 q()
+```
+
+# Generate the pdf version of the docs
+```
+cd lookr
+R CMD Rd2pdf .
 ```
 
 # Testing
@@ -126,4 +134,10 @@ sdk$getLookmlModelExplore('cucu_mysql_ee15852b', 'customer')$title
 [1] "Customer"
 
 q()
+```
+
+# Automatic testing
+```
+cd lookr
+R CMD check .
 ```

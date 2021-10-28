@@ -78,10 +78,6 @@ jobs:
         run: |
           python ${{ github.workspace }}/.github/scripts/wait_for_looker.py
 
-      - name: Where are we now
-        run: |
-          pwd
-
       - uses: r-lib/actions/check-r-package@v1
 
       - name: Show testthat output

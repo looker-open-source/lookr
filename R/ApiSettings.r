@@ -38,8 +38,20 @@ ApiSettings <- R6::R6Class(
     },
     
     read = function(configFile) {
-      config <- configr::read.config(configFile)
-      
+
+      config <- tryCatch( { configr::read.config(configFile) },
+                          warning = function(cond) {
+                            message(paste0("read of ", configFile, " caused a warning"))
+                            message(cond)
+                            return(NULL)
+                          },
+                          error = function(cond) {
+                            message(paste0("read of ", configFile, " caused an error"))
+                            message(cond)
+                            return(NA)
+                          }
+                        )
+
       if(!is.list(config)) {
         message(basename(configFile), " not found\n",
                 "Trying to use environment variables instead")
