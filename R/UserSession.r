@@ -33,8 +33,8 @@ UserSession <- R6::R6Class(
       if(missing(value)) {
         if(is.null(private$.apiClient)) {
           private$.apiClient <- ApiClient$new(basePath = paste0(self$settings$basePath,
-                                                                        "/api/4.0"),
-                                                      configuration = self$clientConfig)
+                                                        "/api/",self$settings$apiVersion),
+                                                    configuration = self$clientConfig)
         }
         return(private$.apiClient)
       } else {

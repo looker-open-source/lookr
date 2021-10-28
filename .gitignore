@@ -75,6 +75,7 @@ dependency-reduced-pom.xml
 packrat/lib*/
 .Rproj.user
 looker.ini
+looker_env.sh
 .swagger-codegen-ignore
 .swagger-codegen/
 .travis.yml
@@ -82,3 +83,5 @@ debugOperations-output.txt
 git_push.sh
 swagger-codegen-*.jar
 swagger*.json
+.R.Rout
+*.bak

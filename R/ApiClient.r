@@ -25,7 +25,7 @@ ApiClient  <- R6::R6Class(
   public = list(
     basePath = "https://demo.looker.com:19999/api/4.0",
     configuration = NULL,
-    userAgent = "R-SDK",
+    userAgent = "R-SDK 3.0.0",
     defaultHeaders = NULL,
     initialize = function(basePath, configuration, defaultHeaders){
         if (!missing(basePath)) {

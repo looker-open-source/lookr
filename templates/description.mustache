@@ -2,7 +2,13 @@ Package: {{{packageName}}}
 Version: {{{packageVersion}}}
 Date: {{{generatedDate}}}
 Title: LookR
-Authors@R: c(person("Mike", "DeAngelo", role = c("aut", "cre"), email = "drstrangelove@google.com"))
+Author: Mike DeAngelo <drstrangelove@google.com>
+Maintainer: Mike DeAngelo <drstrangelove@google.com>
+Authors@R: c(
+             person("Google LLC", role = c("cph"), email = "opensource@google.com"),
+             person("Maxie", "Corbin", role = c("cre"), email = "maxie@looker.com"),
+	     person("Mike", "DeAngelo", role = c("aut"), email = "drstrangelove@google.com")
+	    )
 Depends: R (>= 3.4.3)
 Imports: R6, httr, configr, jsonlite
 License: MIT + file LICENSE
