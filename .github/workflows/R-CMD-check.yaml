@@ -36,10 +36,6 @@ jobs:
       R_KEEP_PKG_SOURCE: yes
 
     steps:
-      - name: Where will looker.ini be set
-        run: |
-          pwd
-
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0.2.0
         with:
@@ -73,16 +69,6 @@ jobs:
         with:
           extra-packages: rcmdcheck
 
-      - name: Mock looker.ini
-        run: |
-          echo "[Looker]" > looker.ini
-          echo "api_version=4.0" >> looker.ini
-          echo "base_url=$LOOKERSDK_BASE_URL" >> looker.ini
-          echo "verify_ssl=$LOOKERSDK_VERIFY_SSL" >> looker.ini
-          echo "timeout=30" >> looker.ini
-          echo "client_id=$LOOKERSDK_CLIENT_ID" >> looker.ini
-          echo "client_secret=$LOOKERSDK_CLIENT_SECRET" >> looker.ini
-
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -97,9 +83,6 @@ jobs:
           pwd
 
       - uses: r-lib/actions/check-r-package@v1
-
-      - name: Delete looker.ini mock
-        run: rm looker.ini
 
       - name: Show testthat output
         if: always()
