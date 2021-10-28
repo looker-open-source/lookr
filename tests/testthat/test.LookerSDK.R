@@ -2,14 +2,14 @@ context("LookerSDK tests")
 
 test_that("LookerSDK$new works", {
   skip_on_cran()
-  sdk <- LookerSDK$new(configFile = "~/looker.ini")
+  sdk <- LookerSDK$new(configFile = "/home/runner/work/lookr/lookr/looker.ini")
   expect_is(sdk, "LookerSDK")
   expect_is(sdk$userSession, "UserSession")
 })
 
 test_that("LookerSDK$activeToken detects tokens", {
   skip_on_cran()
-  sdk <- LookerSDK$new(configFile = "~/looker.ini")
+  sdk <- LookerSDK$new(configFile = "/home/runner/work/lookr/lookr/looker.ini")
   expect_is(sdk$activeToken(), "list")
   sdk$logout()
   expect_null(sdk$activeToken())
@@ -17,7 +17,7 @@ test_that("LookerSDK$activeToken detects tokens", {
 
 test_that("LookerSDK$login gets a valid token", {
   skip_on_cran()
-  sdk <- LookerSDK$new(configFile = "~/looker.ini")
+  sdk <- LookerSDK$new(configFile = "/home/runner/work/lookr/lookr/looker.ini")
   
   token <- sdk$activeToken()
   expect_length(token, 3)
@@ -36,7 +36,7 @@ test_that("LookerSDK$login gets a valid token", {
 
 test_that("Test connection panel population code", {
   skip_on_cran()
-  sdk <- LookerSDK$new(configFile = "~/looker.ini")
+  sdk <- LookerSDK$new(configFile = "/home/runner/work/lookr/lookr/looker.ini")
   
   relationships <- sdk$describeRelationships()
   
