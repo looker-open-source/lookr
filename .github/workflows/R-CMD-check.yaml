@@ -35,6 +35,10 @@ jobs:
       R_KEEP_PKG_SOURCE: yes
 
     steps:
+      - name: Where will looker.ini be set
+        run: |
+          pwd
+
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0.2.0
         with:
@@ -86,6 +90,10 @@ jobs:
       - name: Check that Looker Docker image is ready
         run: |
           python ${{ github.workspace }}/.github/scripts/wait_for_looker.py
+
+      - name: Where are we now
+        run: |
+          pwd
 
       - uses: r-lib/actions/check-r-package@v1
 
