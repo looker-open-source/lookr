@@ -1,4 +1,8 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/looker-open-source/lookr/workflows/R-CMD-check/badge.svg)](https://github.com/looker-open-source/lookr/actions)
+<!-- badges: end -->
 
 LookR
 =====
@@ -288,8 +292,3 @@ print(data)
     toJSON: function ()
     toJSONString: function ()
 ```
-
-<!-- badges: start -->
-
-[![R-CMD-check](https://github.com/looker-open-source/lookr/workflows/R-CMD-check/badge.svg)](https://github.com/looker-open-source/lookr/actions)
-<!-- badges: end -->
