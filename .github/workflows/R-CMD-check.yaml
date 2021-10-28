@@ -84,10 +84,10 @@ jobs:
           docker logs -f looker-sdk-codegen-ci --until=30s &
           python ${{ github.workspace }}/.github/scripts/wait_for_looker.py
 
+      - uses: r-lib/actions/check-r-package@v1
+
       - name: Delete looker.ini mock
         run: rm looker.ini
-
-      - uses: r-lib/actions/check-r-package@v1
 
       - name: Show testthat output
         if: always()
