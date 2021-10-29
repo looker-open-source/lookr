@@ -29,3 +29,5 @@ templates
 .github
 .swagger-codegen
 ..Rcheck
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
