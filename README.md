@@ -182,6 +182,12 @@ print(df)
 5 Milhouse      1
 ```
 
+An alternative approach, using the `purrr` package:
+
+```
+purrr::map_df(data, purrr::flatten)
+```
+
 Other Operations
 ----------------
 
