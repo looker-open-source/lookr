@@ -17,6 +17,14 @@ For more information about the Looker API’s capabilities and for details
 about what each endpoint does, see the [Looker API reference
 documentation](https://docs.looker.com/reference/api-and-integration/api-reference).
 
+
+### Support
+This SDK is NOT officially supported by Looker/Google. It is community
+supported. Issues can be logged here in the GitHub Issues page. Details
+of Looker API and SDK support can be found at 
+[https://cloud.google.com/looker/docs/api-sdk-support-policy](https://cloud.google.com/looker/docs/api-sdk-support-policy).
+
+
 Important!
 ----------
 
