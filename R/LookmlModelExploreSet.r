@@ -61,7 +61,7 @@ LookmlModelExploreSet <- R6::R6Class(
            "name": %s,
            "value": [%s]
         }',
-        self$`name`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
         lapply(self$`value`, function(x) paste(paste0('"', x, '"'), sep=","))
       )
     },

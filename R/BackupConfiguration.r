@@ -124,13 +124,13 @@ BackupConfiguration <- R6::R6Class(
            "custom_s3_secret": %s,
            "url": %s
         }',
-        self$`can`,
-        self$`type`,
-        self$`custom_s3_bucket`,
-        self$`custom_s3_bucket_region`,
-        self$`custom_s3_key`,
-        self$`custom_s3_secret`,
-        self$`url`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`type`)) 'NULL' else self$`type`,
+	if(is.null(self$`custom_s3_bucket`)) 'NULL' else self$`custom_s3_bucket`,
+	if(is.null(self$`custom_s3_bucket_region`)) 'NULL' else self$`custom_s3_bucket_region`,
+	if(is.null(self$`custom_s3_key`)) 'NULL' else self$`custom_s3_key`,
+	if(is.null(self$`custom_s3_secret`)) 'NULL' else self$`custom_s3_secret`,
+	if(is.null(self$`url`)) 'NULL' else self$`url`
       )
     },
     fromJSONString = function(BackupConfigurationJson) {

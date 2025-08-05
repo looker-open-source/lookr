@@ -118,18 +118,18 @@ PermissionSet <- R6::R6Class(
            "can": %s,
            "all_access": %s,
            "built_in": %s,
-           "id": %d,
+           "id": %s,
            "name": %s,
            "permissions": [%s],
            "url": %s
         }',
-        self$`can`,
-        self$`all_access`,
-        self$`built_in`,
-        self$`id`,
-        self$`name`,
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`all_access`)) 'NULL' else self$`all_access`,
+	if(is.null(self$`built_in`)) 'NULL' else self$`built_in`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
         lapply(self$`permissions`, function(x) paste(paste0('"', x, '"'), sep=",")),
-        self$`url`
+	if(is.null(self$`url`)) 'NULL' else self$`url`
       )
     },
     fromJSONString = function(PermissionSetJson) {

@@ -60,8 +60,8 @@ CreateDashboardRenderTask <- R6::R6Class(
            "dashboard_filters": %s,
            "dashboard_style": %s
         }',
-        self$`dashboard_filters`,
-        self$`dashboard_style`
+	if(is.null(self$`dashboard_filters`)) 'NULL' else self$`dashboard_filters`,
+	if(is.null(self$`dashboard_style`)) 'NULL' else self$`dashboard_style`
       )
     },
     fromJSONString = function(CreateDashboardRenderTaskJson) {

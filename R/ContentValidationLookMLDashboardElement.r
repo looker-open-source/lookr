@@ -60,8 +60,8 @@ ContentValidationLookMLDashboardElement <- R6::R6Class(
            "lookml_link_id": %s,
            "title": %s
         }',
-        self$`lookml_link_id`,
-        self$`title`
+	if(is.null(self$`lookml_link_id`)) 'NULL' else self$`lookml_link_id`,
+	if(is.null(self$`title`)) 'NULL' else self$`title`
       )
     },
     fromJSONString = function(ContentValidationLookMLDashboardElementJson) {

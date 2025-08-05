@@ -58,10 +58,10 @@ ColorStop <- R6::R6Class(
        sprintf(
         '{
            "color": %s,
-           "offset": %d
+           "offset": %s
         }',
-        self$`color`,
-        self$`offset`
+	if(is.null(self$`color`)) 'NULL' else self$`color`,
+	if(is.null(self$`offset`)) 'NULL' else as.character(self$`offset`)
       )
     },
     fromJSONString = function(ColorStopJson) {

@@ -58,10 +58,10 @@ LookmlModelExploreFieldTimeInterval <- R6::R6Class(
        sprintf(
         '{
            "name": %s,
-           "count": %d
+           "count": %s
         }',
-        self$`name`,
-        self$`count`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`count`)) 'NULL' else as.character(self$`count`)
       )
     },
     fromJSONString = function(LookmlModelExploreFieldTimeIntervalJson) {

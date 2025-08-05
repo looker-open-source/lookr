@@ -109,12 +109,12 @@ CredentialsTotp <- R6::R6Class(
            "verified": %s,
            "url": %s
         }',
-        self$`can`,
-        self$`created_at`,
-        self$`is_disabled`,
-        self$`type`,
-        self$`verified`,
-        self$`url`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`created_at`)) 'NULL' else self$`created_at`,
+	if(is.null(self$`is_disabled`)) 'NULL' else self$`is_disabled`,
+	if(is.null(self$`type`)) 'NULL' else self$`type`,
+	if(is.null(self$`verified`)) 'NULL' else self$`verified`,
+	if(is.null(self$`url`)) 'NULL' else self$`url`
       )
     },
     fromJSONString = function(CredentialsTotpJson) {

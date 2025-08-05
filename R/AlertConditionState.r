@@ -60,8 +60,8 @@ AlertConditionState <- R6::R6Class(
            "previous_time_series_id": %s,
            "latest_time_series_id": %s
         }',
-        self$`previous_time_series_id`,
-        self$`latest_time_series_id`
+	if(is.null(self$`previous_time_series_id`)) 'NULL' else self$`previous_time_series_id`,
+	if(is.null(self$`latest_time_series_id`)) 'NULL' else self$`latest_time_series_id`
       )
     },
     fromJSONString = function(AlertConditionStateJson) {

@@ -60,8 +60,8 @@ CreateFolder <- R6::R6Class(
            "name": %s,
            "parent_id": %s
         }',
-        self$`name`,
-        self$`parent_id`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`parent_id`)) 'NULL' else self$`parent_id`
       )
     },
     fromJSONString = function(CreateFolderJson) {

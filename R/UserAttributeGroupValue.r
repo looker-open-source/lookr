@@ -116,20 +116,20 @@ UserAttributeGroupValue <- R6::R6Class(
        sprintf(
         '{
            "can": %s,
-           "id": %d,
-           "group_id": %d,
-           "user_attribute_id": %d,
+           "id": %s,
+           "group_id": %s,
+           "user_attribute_id": %s,
            "value_is_hidden": %s,
-           "rank": %d,
+           "rank": %s,
            "value": %s
         }',
-        self$`can`,
-        self$`id`,
-        self$`group_id`,
-        self$`user_attribute_id`,
-        self$`value_is_hidden`,
-        self$`rank`,
-        self$`value`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`group_id`)) 'NULL' else as.character(self$`group_id`),
+	if(is.null(self$`user_attribute_id`)) 'NULL' else as.character(self$`user_attribute_id`),
+	if(is.null(self$`value_is_hidden`)) 'NULL' else self$`value_is_hidden`,
+	if(is.null(self$`rank`)) 'NULL' else as.character(self$`rank`),
+	if(is.null(self$`value`)) 'NULL' else self$`value`
       )
     },
     fromJSONString = function(UserAttributeGroupValueJson) {

@@ -86,10 +86,10 @@ AlertAppliedDashboardFilter <- R6::R6Class(
            "filter_value": %s,
            "filter_description": %s
         }',
-        self$`filter_title`,
-        self$`field_name`,
-        self$`filter_value`,
-        self$`filter_description`
+	if(is.null(self$`filter_title`)) 'NULL' else self$`filter_title`,
+	if(is.null(self$`field_name`)) 'NULL' else self$`field_name`,
+	if(is.null(self$`filter_value`)) 'NULL' else self$`filter_value`,
+	if(is.null(self$`filter_description`)) 'NULL' else self$`filter_description`
       )
     },
     fromJSONString = function(AlertAppliedDashboardFilterJson) {

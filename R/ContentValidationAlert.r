@@ -81,15 +81,15 @@ ContentValidationAlert <- R6::R6Class(
     toJSONString = function() {
        sprintf(
         '{
-           "id": %d,
+           "id": %s,
            "lookml_dashboard_id": %s,
            "lookml_link_id": %s,
            "custom_title": %s
         }',
-        self$`id`,
-        self$`lookml_dashboard_id`,
-        self$`lookml_link_id`,
-        self$`custom_title`
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`lookml_dashboard_id`)) 'NULL' else self$`lookml_dashboard_id`,
+	if(is.null(self$`lookml_link_id`)) 'NULL' else self$`lookml_link_id`,
+	if(is.null(self$`custom_title`)) 'NULL' else self$`custom_title`
       )
     },
     fromJSONString = function(ContentValidationAlertJson) {

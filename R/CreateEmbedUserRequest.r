@@ -47,7 +47,7 @@ CreateEmbedUserRequest <- R6::R6Class(
         '{
            "external_user_id": %s
         }',
-        self$`external_user_id`
+	if(is.null(self$`external_user_id`)) 'NULL' else self$`external_user_id`
       )
     },
     fromJSONString = function(CreateEmbedUserRequestJson) {

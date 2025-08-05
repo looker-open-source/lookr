@@ -85,10 +85,10 @@ Permission <- R6::R6Class(
            "parent": %s,
            "description": %s
         }',
-        self$`can`,
-        self$`permission`,
-        self$`parent`,
-        self$`description`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`permission`)) 'NULL' else self$`permission`,
+	if(is.null(self$`parent`)) 'NULL' else self$`parent`,
+	if(is.null(self$`description`)) 'NULL' else self$`description`
       )
     },
     fromJSONString = function(PermissionJson) {

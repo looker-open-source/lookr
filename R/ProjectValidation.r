@@ -94,12 +94,12 @@ ProjectValidation <- R6::R6Class(
            "errors": [%s],
            "project_digest": %s,
            "models_not_validated": [%s],
-           "computation_time": %d
+           "computation_time": %s
         }',
         lapply(self$`errors`, function(x) paste(x$toJSON(), sep=",")),
-        self$`project_digest`,
+	if(is.null(self$`project_digest`)) 'NULL' else self$`project_digest`,
         lapply(self$`models_not_validated`, function(x) paste(x$toJSON(), sep=",")),
-        self$`computation_time`
+	if(is.null(self$`computation_time`)) 'NULL' else as.character(self$`computation_time`)
       )
     },
     fromJSONString = function(ProjectValidationJson) {

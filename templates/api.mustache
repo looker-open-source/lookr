@@ -22,7 +22,7 @@
 {{classname}} <- R6::R6Class(
   '{{classname}}',
   public = list(
-    userAgent = "R-SDK",
+    userAgent = "R-SDK {{packageVersion}}",
     apiClient = NULL,
     initialize = function(apiClient){
       if (!missing(apiClient)) {
@@ -95,20 +95,34 @@
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
         {{#returnType}}
-	data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
-	if (is.null(names(data))) {
-	  returnObjects <- lapply(data, function(x) {
+	if (httr::http_type(resp) == "application/json") {
+	  data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
+	  if ("{{returnType}}" == "Character") {
+	    Response$new(data, resp)
+	  } else if (is.null(names(data))) {
+	    returnObjects <- lapply(data, function(x) {
+	      returnObject <- {{returnType}}$new()
+	      #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
+	      returnObject$fromJSONObject(x)
+	      returnObject
+	    })
+	    Response$new(returnObjects, resp)
+	  } else {
 	    returnObject <- {{returnType}}$new()
-	    #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
-	    returnObject$fromJSONObject(x)
-	    returnObject
-	  })
-	  Response$new(returnObjects, resp)
+	    #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
+	    result <- returnObject$fromJSONObject(data)
+	    Response$new(returnObject, resp)
+	  }
+	} else if ((httr::http_type(resp) == "image/jpeg") || (httr::http_type(resp) == "image/png")) {
+	  Response$new(httr::content(resp, "raw"), resp)
+	# These types are known to httr. But fall through to the default.
+	# } else if (httr::http_type(resp) == "application/x-www-form-urlencoded") {
+	# } else if (httr::http_type(resp) == "text/html") {
+	# } else if (httr::http_type(resp) == "text/xml") {
+	# } else if (httr::http_type(resp) == "text/csv") {
+	# } else if (httr::http_type(resp) == "text/tab-separated-values") {
 	} else {
-	  returnObject <- {{returnType}}$new()
-	  #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
-	  result <- returnObject$fromJSONObject(data)
-	  Response$new(returnObject, resp)
+	  Response$new(httr::content(resp, "text", encoding = "UTF-8"), resp)
 	}
         {{/returnType}}
         {{^returnType}}

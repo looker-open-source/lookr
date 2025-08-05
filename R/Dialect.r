@@ -197,19 +197,19 @@ Dialect <- R6::R6Class(
            "supports_persistent_derived_tables": %s,
            "has_ssl_support": %s
         }',
-        self$`name`,
-        self$`label`,
-        self$`supports_cost_estimate`,
-        self$`persistent_table_indexes`,
-        self$`persistent_table_sortkeys`,
-        self$`persistent_table_distkey`,
-        self$`supports_streaming`,
-        self$`automatically_run_sql_runner_snippets`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`,
+	if(is.null(self$`supports_cost_estimate`)) 'NULL' else self$`supports_cost_estimate`,
+	if(is.null(self$`persistent_table_indexes`)) 'NULL' else self$`persistent_table_indexes`,
+	if(is.null(self$`persistent_table_sortkeys`)) 'NULL' else self$`persistent_table_sortkeys`,
+	if(is.null(self$`persistent_table_distkey`)) 'NULL' else self$`persistent_table_distkey`,
+	if(is.null(self$`supports_streaming`)) 'NULL' else self$`supports_streaming`,
+	if(is.null(self$`automatically_run_sql_runner_snippets`)) 'NULL' else self$`automatically_run_sql_runner_snippets`,
         lapply(self$`connection_tests`, function(x) paste(paste0('"', x, '"'), sep=",")),
-        self$`supports_inducer`,
-        self$`supports_multiple_databases`,
-        self$`supports_persistent_derived_tables`,
-        self$`has_ssl_support`
+	if(is.null(self$`supports_inducer`)) 'NULL' else self$`supports_inducer`,
+	if(is.null(self$`supports_multiple_databases`)) 'NULL' else self$`supports_multiple_databases`,
+	if(is.null(self$`supports_persistent_derived_tables`)) 'NULL' else self$`supports_persistent_derived_tables`,
+	if(is.null(self$`has_ssl_support`)) 'NULL' else self$`has_ssl_support`
       )
     },
     fromJSONString = function(DialectJson) {

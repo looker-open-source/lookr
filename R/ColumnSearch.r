@@ -86,10 +86,10 @@ ColumnSearch <- R6::R6Class(
            "column_name": %s,
            "data_type": %s
         }',
-        self$`schema_name`,
-        self$`table_name`,
-        self$`column_name`,
-        self$`data_type`
+	if(is.null(self$`schema_name`)) 'NULL' else self$`schema_name`,
+	if(is.null(self$`table_name`)) 'NULL' else self$`table_name`,
+	if(is.null(self$`column_name`)) 'NULL' else self$`column_name`,
+	if(is.null(self$`data_type`)) 'NULL' else self$`data_type`
       )
     },
     fromJSONString = function(ColumnSearchJson) {

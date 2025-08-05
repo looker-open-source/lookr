@@ -154,14 +154,14 @@ DataActionFormField <- R6::R6Class(
            "required": %s,
            "options": [%s]
         }',
-        self$`name`,
-        self$`label`,
-        self$`description`,
-        self$`type`,
-        self$`default`,
-        self$`oauth_url`,
-        self$`interactive`,
-        self$`required`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`,
+	if(is.null(self$`description`)) 'NULL' else self$`description`,
+	if(is.null(self$`type`)) 'NULL' else self$`type`,
+	if(is.null(self$`default`)) 'NULL' else self$`default`,
+	if(is.null(self$`oauth_url`)) 'NULL' else self$`oauth_url`,
+	if(is.null(self$`interactive`)) 'NULL' else self$`interactive`,
+	if(is.null(self$`required`)) 'NULL' else self$`required`,
         lapply(self$`options`, function(x) paste(x$toJSON(), sep=","))
       )
     },

@@ -199,19 +199,19 @@ LegacyFeature <- R6::R6Class(
            "approximate_end_of_life_date": %s,
            "has_disabled_on_upgrade": %s
         }',
-        self$`can`,
-        self$`id`,
-        self$`name`,
-        self$`description`,
-        self$`enabled_locally`,
-        self$`enabled`,
-        self$`disallowed_as_of_version`,
-        self$`disable_on_upgrade_to_version`,
-        self$`end_of_life_version`,
-        self$`documentation_url`,
-        self$`approximate_disable_date`,
-        self$`approximate_end_of_life_date`,
-        self$`has_disabled_on_upgrade`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`id`)) 'NULL' else self$`id`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`description`)) 'NULL' else self$`description`,
+	if(is.null(self$`enabled_locally`)) 'NULL' else self$`enabled_locally`,
+	if(is.null(self$`enabled`)) 'NULL' else self$`enabled`,
+	if(is.null(self$`disallowed_as_of_version`)) 'NULL' else self$`disallowed_as_of_version`,
+	if(is.null(self$`disable_on_upgrade_to_version`)) 'NULL' else self$`disable_on_upgrade_to_version`,
+	if(is.null(self$`end_of_life_version`)) 'NULL' else self$`end_of_life_version`,
+	if(is.null(self$`documentation_url`)) 'NULL' else self$`documentation_url`,
+	if(is.null(self$`approximate_disable_date`)) 'NULL' else self$`approximate_disable_date`,
+	if(is.null(self$`approximate_end_of_life_date`)) 'NULL' else self$`approximate_end_of_life_date`,
+	if(is.null(self$`has_disabled_on_upgrade`)) 'NULL' else self$`has_disabled_on_upgrade`
       )
     },
     fromJSONString = function(LegacyFeatureJson) {

@@ -162,8 +162,8 @@ ScheduledPlanDestination <- R6::R6Class(
     toJSONString = function() {
        sprintf(
         '{
-           "id": %d,
-           "scheduled_plan_id": %d,
+           "id": %s,
+           "scheduled_plan_id": %s,
            "format": %s,
            "apply_formatting": %s,
            "apply_vis": %s,
@@ -174,17 +174,17 @@ ScheduledPlanDestination <- R6::R6Class(
            "secret_parameters": %s,
            "message": %s
         }',
-        self$`id`,
-        self$`scheduled_plan_id`,
-        self$`format`,
-        self$`apply_formatting`,
-        self$`apply_vis`,
-        self$`address`,
-        self$`looker_recipient`,
-        self$`type`,
-        self$`parameters`,
-        self$`secret_parameters`,
-        self$`message`
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`scheduled_plan_id`)) 'NULL' else as.character(self$`scheduled_plan_id`),
+	if(is.null(self$`format`)) 'NULL' else self$`format`,
+	if(is.null(self$`apply_formatting`)) 'NULL' else self$`apply_formatting`,
+	if(is.null(self$`apply_vis`)) 'NULL' else self$`apply_vis`,
+	if(is.null(self$`address`)) 'NULL' else self$`address`,
+	if(is.null(self$`looker_recipient`)) 'NULL' else self$`looker_recipient`,
+	if(is.null(self$`type`)) 'NULL' else self$`type`,
+	if(is.null(self$`parameters`)) 'NULL' else self$`parameters`,
+	if(is.null(self$`secret_parameters`)) 'NULL' else self$`secret_parameters`,
+	if(is.null(self$`message`)) 'NULL' else self$`message`
       )
     },
     fromJSONString = function(ScheduledPlanDestinationJson) {

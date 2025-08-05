@@ -194,7 +194,7 @@ ContentValidatorError <- R6::R6Class(
         self$`lookml_dashboard`$toJSON(),
         self$`lookml_dashboard_element`$toJSON(),
         lapply(self$`errors`, function(x) paste(x$toJSON(), sep=",")),
-        self$`id`
+	if(is.null(self$`id`)) 'NULL' else self$`id`
       )
     },
     fromJSONString = function(ContentValidatorErrorJson) {

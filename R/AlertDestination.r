@@ -86,10 +86,10 @@ AlertDestination <- R6::R6Class(
            "action_hub_integration_id": %s,
            "action_hub_form_params_json": %s
         }',
-        self$`destination_type`,
-        self$`email_address`,
-        self$`action_hub_integration_id`,
-        self$`action_hub_form_params_json`
+	if(is.null(self$`destination_type`)) 'NULL' else self$`destination_type`,
+	if(is.null(self$`email_address`)) 'NULL' else self$`email_address`,
+	if(is.null(self$`action_hub_integration_id`)) 'NULL' else self$`action_hub_integration_id`,
+	if(is.null(self$`action_hub_form_params_json`)) 'NULL' else self$`action_hub_form_params_json`
       )
     },
     fromJSONString = function(AlertDestinationJson) {

@@ -122,15 +122,15 @@ LookmlTest <- R6::R6Class(
            "explore_name": %s,
            "query_url_params": %s,
            "file": %s,
-           "line": %d
+           "line": %s
         }',
-        self$`can`,
-        self$`model_name`,
-        self$`name`,
-        self$`explore_name`,
-        self$`query_url_params`,
-        self$`file`,
-        self$`line`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`model_name`)) 'NULL' else self$`model_name`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`explore_name`)) 'NULL' else self$`explore_name`,
+	if(is.null(self$`query_url_params`)) 'NULL' else self$`query_url_params`,
+	if(is.null(self$`file`)) 'NULL' else self$`file`,
+	if(is.null(self$`line`)) 'NULL' else as.character(self$`line`)
       )
     },
     fromJSONString = function(LookmlTestJson) {

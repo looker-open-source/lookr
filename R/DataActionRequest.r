@@ -62,7 +62,7 @@ DataActionRequest <- R6::R6Class(
            "form_values": %s
         }',
         self$`action`$toJSON(),
-        self$`form_values`
+	if(is.null(self$`form_values`)) 'NULL' else self$`form_values`
       )
     },
     fromJSONString = function(DataActionRequestJson) {

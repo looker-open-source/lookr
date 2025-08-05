@@ -75,7 +75,7 @@ IntegrationRequiredField <- R6::R6Class(
            "any_tag": [%s],
            "all_tags": [%s]
         }',
-        self$`tag`,
+	if(is.null(self$`tag`)) 'NULL' else self$`tag`,
         lapply(self$`any_tag`, function(x) paste(paste0('"', x, '"'), sep=",")),
         lapply(self$`all_tags`, function(x) paste(paste0('"', x, '"'), sep=","))
       )

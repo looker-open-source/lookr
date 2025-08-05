@@ -46,7 +46,7 @@ DigestEmailSend <- R6::R6Class(
         '{
            "configuration_delivered": %s
         }',
-        self$`configuration_delivered`
+	if(is.null(self$`configuration_delivered`)) 'NULL' else self$`configuration_delivered`
       )
     },
     fromJSONString = function(DigestEmailSendJson) {

@@ -60,8 +60,8 @@ MergeFields <- R6::R6Class(
            "field_name": %s,
            "source_field_name": %s
         }',
-        self$`field_name`,
-        self$`source_field_name`
+	if(is.null(self$`field_name`)) 'NULL' else self$`field_name`,
+	if(is.null(self$`source_field_name`)) 'NULL' else self$`source_field_name`
       )
     },
     fromJSONString = function(MergeFieldsJson) {

@@ -153,26 +153,26 @@ Datagroup <- R6::R6Class(
        sprintf(
         '{
            "can": %s,
-           "created_at": %d,
-           "id": %d,
+           "created_at": %s,
+           "id": %s,
            "model_name": %s,
            "name": %s,
-           "stale_before": %d,
-           "trigger_check_at": %d,
+           "stale_before": %s,
+           "trigger_check_at": %s,
            "trigger_error": %s,
            "trigger_value": %s,
-           "triggered_at": %d
+           "triggered_at": %s
         }',
-        self$`can`,
-        self$`created_at`,
-        self$`id`,
-        self$`model_name`,
-        self$`name`,
-        self$`stale_before`,
-        self$`trigger_check_at`,
-        self$`trigger_error`,
-        self$`trigger_value`,
-        self$`triggered_at`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`created_at`)) 'NULL' else as.character(self$`created_at`),
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`model_name`)) 'NULL' else self$`model_name`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`stale_before`)) 'NULL' else as.character(self$`stale_before`),
+	if(is.null(self$`trigger_check_at`)) 'NULL' else as.character(self$`trigger_check_at`),
+	if(is.null(self$`trigger_error`)) 'NULL' else self$`trigger_error`,
+	if(is.null(self$`trigger_value`)) 'NULL' else self$`trigger_value`,
+	if(is.null(self$`triggered_at`)) 'NULL' else as.character(self$`triggered_at`)
       )
     },
     fromJSONString = function(DatagroupJson) {

@@ -133,23 +133,23 @@ ContentFavorite <- R6::R6Class(
     toJSONString = function() {
        sprintf(
         '{
-           "id": %d,
-           "user_id": %d,
-           "content_metadata_id": %d,
-           "look_id": %d,
-           "dashboard_id": %d,
+           "id": %s,
+           "user_id": %s,
+           "content_metadata_id": %s,
+           "look_id": %s,
+           "dashboard_id": %s,
            "look": %s,
            "dashboard": %s,
-           "board_id": %d
+           "board_id": %s
         }',
-        self$`id`,
-        self$`user_id`,
-        self$`content_metadata_id`,
-        self$`look_id`,
-        self$`dashboard_id`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`user_id`)) 'NULL' else as.character(self$`user_id`),
+	if(is.null(self$`content_metadata_id`)) 'NULL' else as.character(self$`content_metadata_id`),
+	if(is.null(self$`look_id`)) 'NULL' else as.character(self$`look_id`),
+	if(is.null(self$`dashboard_id`)) 'NULL' else as.character(self$`dashboard_id`),
         self$`look`$toJSON(),
         self$`dashboard`$toJSON(),
-        self$`board_id`
+	if(is.null(self$`board_id`)) 'NULL' else as.character(self$`board_id`)
       )
     },
     fromJSONString = function(ContentFavoriteJson) {

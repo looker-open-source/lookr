@@ -99,11 +99,11 @@ DataActionResponse <- R6::R6Class(
            "validation_errors": %s,
            "message": %s
         }',
-        self$`webhook_id`,
-        self$`success`,
-        self$`refresh_query`,
+	if(is.null(self$`webhook_id`)) 'NULL' else self$`webhook_id`,
+	if(is.null(self$`success`)) 'NULL' else self$`success`,
+	if(is.null(self$`refresh_query`)) 'NULL' else self$`refresh_query`,
         self$`validation_errors`$toJSON(),
-        self$`message`
+	if(is.null(self$`message`)) 'NULL' else self$`message`
       )
     },
     fromJSONString = function(DataActionResponseJson) {

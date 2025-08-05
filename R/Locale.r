@@ -73,9 +73,9 @@ Locale <- R6::R6Class(
            "native_name": %s,
            "english_name": %s
         }',
-        self$`code`,
-        self$`native_name`,
-        self$`english_name`
+	if(is.null(self$`code`)) 'NULL' else self$`code`,
+	if(is.null(self$`native_name`)) 'NULL' else self$`native_name`,
+	if(is.null(self$`english_name`)) 'NULL' else self$`english_name`
       )
     },
     fromJSONString = function(LocaleJson) {

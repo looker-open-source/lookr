@@ -60,8 +60,8 @@ LocalizationSettings <- R6::R6Class(
            "default_locale": %s,
            "localization_level": %s
         }',
-        self$`default_locale`,
-        self$`localization_level`
+	if(is.null(self$`default_locale`)) 'NULL' else self$`default_locale`,
+	if(is.null(self$`localization_level`)) 'NULL' else self$`localization_level`
       )
     },
     fromJSONString = function(LocalizationSettingsJson) {

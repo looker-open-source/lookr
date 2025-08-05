@@ -116,20 +116,20 @@ CreateQueryTask <- R6::R6Class(
        sprintf(
         '{
            "can": %s,
-           "query_id": %d,
+           "query_id": %s,
            "result_format": %s,
            "source": %s,
            "deferred": %s,
-           "look_id": %d,
+           "look_id": %s,
            "dashboard_id": %s
         }',
-        self$`can`,
-        self$`query_id`,
-        self$`result_format`,
-        self$`source`,
-        self$`deferred`,
-        self$`look_id`,
-        self$`dashboard_id`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`query_id`)) 'NULL' else as.character(self$`query_id`),
+	if(is.null(self$`result_format`)) 'NULL' else self$`result_format`,
+	if(is.null(self$`source`)) 'NULL' else self$`source`,
+	if(is.null(self$`deferred`)) 'NULL' else self$`deferred`,
+	if(is.null(self$`look_id`)) 'NULL' else as.character(self$`look_id`),
+	if(is.null(self$`dashboard_id`)) 'NULL' else self$`dashboard_id`
       )
     },
     fromJSONString = function(CreateQueryTaskJson) {

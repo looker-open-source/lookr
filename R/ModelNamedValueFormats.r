@@ -85,10 +85,10 @@ ModelNamedValueFormats <- R6::R6Class(
            "name": %s,
            "strict_value_format": %s
         }',
-        self$`format_string`,
-        self$`label`,
-        self$`name`,
-        self$`strict_value_format`
+	if(is.null(self$`format_string`)) 'NULL' else self$`format_string`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`strict_value_format`)) 'NULL' else self$`strict_value_format`
       )
     },
     fromJSONString = function(ModelNamedValueFormatsJson) {

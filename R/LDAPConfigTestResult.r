@@ -132,13 +132,13 @@ LDAPConfigTestResult <- R6::R6Class(
            "user": %s,
            "url": %s
         }',
-        self$`details`,
+	if(is.null(self$`details`)) 'NULL' else self$`details`,
         lapply(self$`issues`, function(x) paste(x$toJSON(), sep=",")),
-        self$`message`,
-        self$`status`,
-        self$`trace`,
+	if(is.null(self$`message`)) 'NULL' else self$`message`,
+	if(is.null(self$`status`)) 'NULL' else self$`status`,
+	if(is.null(self$`trace`)) 'NULL' else self$`trace`,
         self$`user`$toJSON(),
-        self$`url`
+	if(is.null(self$`url`)) 'NULL' else self$`url`
       )
     },
     fromJSONString = function(LDAPConfigTestResultJson) {

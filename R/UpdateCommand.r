@@ -60,8 +60,8 @@ UpdateCommand <- R6::R6Class(
            "name": %s,
            "description": %s
         }',
-        self$`name`,
-        self$`description`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`description`)) 'NULL' else self$`description`
       )
     },
     fromJSONString = function(UpdateCommandJson) {

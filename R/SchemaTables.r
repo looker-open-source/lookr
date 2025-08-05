@@ -77,8 +77,8 @@ SchemaTables <- R6::R6Class(
            "is_default": %s,
            "tables": [%s]
         }',
-        self$`name`,
-        self$`is_default`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`is_default`)) 'NULL' else self$`is_default`,
         lapply(self$`tables`, function(x) paste(x$toJSON(), sep=","))
       )
     },

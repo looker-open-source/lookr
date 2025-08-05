@@ -77,8 +77,8 @@ OIDCUserAttributeRead <- R6::R6Class(
            "required": %s,
            "user_attributes": [%s]
         }',
-        self$`name`,
-        self$`required`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`required`)) 'NULL' else self$`required`,
         lapply(self$`user_attributes`, function(x) paste(x$toJSON(), sep=","))
       )
     },

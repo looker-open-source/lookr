@@ -116,21 +116,21 @@ DashboardAppearance <- R6::R6Class(
     toJSONString = function() {
        sprintf(
         '{
-           "page_side_margins": %d,
+           "page_side_margins": %s,
            "page_background_color": %s,
            "tile_title_alignment": %s,
-           "tile_space_between": %d,
+           "tile_space_between": %s,
            "tile_background_color": %s,
            "tile_shadow": %s,
            "key_color": %s
         }',
-        self$`page_side_margins`,
-        self$`page_background_color`,
-        self$`tile_title_alignment`,
-        self$`tile_space_between`,
-        self$`tile_background_color`,
-        self$`tile_shadow`,
-        self$`key_color`
+	if(is.null(self$`page_side_margins`)) 'NULL' else as.character(self$`page_side_margins`),
+	if(is.null(self$`page_background_color`)) 'NULL' else self$`page_background_color`,
+	if(is.null(self$`tile_title_alignment`)) 'NULL' else self$`tile_title_alignment`,
+	if(is.null(self$`tile_space_between`)) 'NULL' else as.character(self$`tile_space_between`),
+	if(is.null(self$`tile_background_color`)) 'NULL' else self$`tile_background_color`,
+	if(is.null(self$`tile_shadow`)) 'NULL' else self$`tile_shadow`,
+	if(is.null(self$`key_color`)) 'NULL' else self$`key_color`
       )
     },
     fromJSONString = function(DashboardAppearanceJson) {

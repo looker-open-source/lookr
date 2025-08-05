@@ -45,9 +45,9 @@ GroupIdForGroupInclusion <- R6::R6Class(
     toJSONString = function() {
        sprintf(
         '{
-           "group_id": %d
+           "group_id": %s
         }',
-        self$`group_id`
+	if(is.null(self$`group_id`)) 'NULL' else as.character(self$`group_id`)
       )
     },
     fromJSONString = function(GroupIdForGroupInclusionJson) {

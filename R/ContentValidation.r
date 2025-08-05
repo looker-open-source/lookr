@@ -135,22 +135,22 @@ ContentValidation <- R6::R6Class(
        sprintf(
         '{
            "content_with_errors": [%s],
-           "computation_time": %d,
-           "total_looks_validated": %d,
-           "total_dashboard_elements_validated": %d,
-           "total_dashboard_filters_validated": %d,
-           "total_scheduled_plans_validated": %d,
-           "total_alerts_validated": %d,
-           "total_explores_validated": %d
+           "computation_time": %s,
+           "total_looks_validated": %s,
+           "total_dashboard_elements_validated": %s,
+           "total_dashboard_filters_validated": %s,
+           "total_scheduled_plans_validated": %s,
+           "total_alerts_validated": %s,
+           "total_explores_validated": %s
         }',
         lapply(self$`content_with_errors`, function(x) paste(x$toJSON(), sep=",")),
-        self$`computation_time`,
-        self$`total_looks_validated`,
-        self$`total_dashboard_elements_validated`,
-        self$`total_dashboard_filters_validated`,
-        self$`total_scheduled_plans_validated`,
-        self$`total_alerts_validated`,
-        self$`total_explores_validated`
+	if(is.null(self$`computation_time`)) 'NULL' else as.character(self$`computation_time`),
+	if(is.null(self$`total_looks_validated`)) 'NULL' else as.character(self$`total_looks_validated`),
+	if(is.null(self$`total_dashboard_elements_validated`)) 'NULL' else as.character(self$`total_dashboard_elements_validated`),
+	if(is.null(self$`total_dashboard_filters_validated`)) 'NULL' else as.character(self$`total_dashboard_filters_validated`),
+	if(is.null(self$`total_scheduled_plans_validated`)) 'NULL' else as.character(self$`total_scheduled_plans_validated`),
+	if(is.null(self$`total_alerts_validated`)) 'NULL' else as.character(self$`total_alerts_validated`),
+	if(is.null(self$`total_explores_validated`)) 'NULL' else as.character(self$`total_explores_validated`)
       )
     },
     fromJSONString = function(ContentValidationJson) {

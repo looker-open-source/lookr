@@ -145,24 +145,24 @@ Role <- R6::R6Class(
        sprintf(
         '{
            "can": %s,
-           "id": %d,
+           "id": %s,
            "name": %s,
            "permission_set": %s,
-           "permission_set_id": %d,
+           "permission_set_id": %s,
            "model_set": %s,
-           "model_set_id": %d,
+           "model_set_id": %s,
            "url": %s,
            "users_url": %s
         }',
-        self$`can`,
-        self$`id`,
-        self$`name`,
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
         self$`permission_set`$toJSON(),
-        self$`permission_set_id`,
+	if(is.null(self$`permission_set_id`)) 'NULL' else as.character(self$`permission_set_id`),
         self$`model_set`$toJSON(),
-        self$`model_set_id`,
-        self$`url`,
-        self$`users_url`
+	if(is.null(self$`model_set_id`)) 'NULL' else as.character(self$`model_set_id`),
+	if(is.null(self$`url`)) 'NULL' else self$`url`,
+	if(is.null(self$`users_url`)) 'NULL' else self$`users_url`
       )
     },
     fromJSONString = function(RoleJson) {

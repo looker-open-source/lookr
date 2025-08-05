@@ -58,8 +58,8 @@ MobileSettings <- R6::R6Class(
            "mobile_force_authentication": %s,
            "mobile_app_integration": %s
         }',
-        self$`mobile_force_authentication`,
-        self$`mobile_app_integration`
+	if(is.null(self$`mobile_force_authentication`)) 'NULL' else self$`mobile_force_authentication`,
+	if(is.null(self$`mobile_app_integration`)) 'NULL' else self$`mobile_app_integration`
       )
     },
     fromJSONString = function(MobileSettingsJson) {

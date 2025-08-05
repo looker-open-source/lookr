@@ -160,16 +160,16 @@ IntegrationParam <- R6::R6Class(
            "per_user": %s,
            "delegate_oauth_url": %s
         }',
-        self$`name`,
-        self$`label`,
-        self$`description`,
-        self$`required`,
-        self$`has_value`,
-        self$`value`,
-        self$`user_attribute_name`,
-        self$`sensitive`,
-        self$`per_user`,
-        self$`delegate_oauth_url`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`,
+	if(is.null(self$`description`)) 'NULL' else self$`description`,
+	if(is.null(self$`required`)) 'NULL' else self$`required`,
+	if(is.null(self$`has_value`)) 'NULL' else self$`has_value`,
+	if(is.null(self$`value`)) 'NULL' else self$`value`,
+	if(is.null(self$`user_attribute_name`)) 'NULL' else self$`user_attribute_name`,
+	if(is.null(self$`sensitive`)) 'NULL' else self$`sensitive`,
+	if(is.null(self$`per_user`)) 'NULL' else self$`per_user`,
+	if(is.null(self$`delegate_oauth_url`)) 'NULL' else self$`delegate_oauth_url`
       )
     },
     fromJSONString = function(IntegrationParamJson) {

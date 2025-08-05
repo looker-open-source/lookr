@@ -60,8 +60,8 @@ ContentValidationFolder <- R6::R6Class(
            "name": %s,
            "id": %s
         }',
-        self$`name`,
-        self$`id`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`id`)) 'NULL' else self$`id`
       )
     },
     fromJSONString = function(ContentValidationFolderJson) {

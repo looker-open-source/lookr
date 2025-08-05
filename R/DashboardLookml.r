@@ -60,8 +60,8 @@ DashboardLookml <- R6::R6Class(
            "dashboard_id": %s,
            "lookml": %s
         }',
-        self$`dashboard_id`,
-        self$`lookml`
+	if(is.null(self$`dashboard_id`)) 'NULL' else self$`dashboard_id`,
+	if(is.null(self$`lookml`)) 'NULL' else self$`lookml`
       )
     },
     fromJSONString = function(DashboardLookmlJson) {

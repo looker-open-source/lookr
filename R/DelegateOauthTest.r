@@ -82,13 +82,13 @@ DelegateOauthTest <- R6::R6Class(
         '{
            "name": %s,
            "installation_target_id": %s,
-           "installation_id": %d,
+           "installation_id": %s,
            "success": %s
         }',
-        self$`name`,
-        self$`installation_target_id`,
-        self$`installation_id`,
-        self$`success`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`installation_target_id`)) 'NULL' else self$`installation_target_id`,
+	if(is.null(self$`installation_id`)) 'NULL' else as.character(self$`installation_id`),
+	if(is.null(self$`success`)) 'NULL' else self$`success`
       )
     },
     fromJSONString = function(DelegateOauthTestJson) {

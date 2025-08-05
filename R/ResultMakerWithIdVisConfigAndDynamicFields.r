@@ -162,25 +162,25 @@ ResultMakerWithIdVisConfigAndDynamicFields <- R6::R6Class(
     toJSONString = function() {
        sprintf(
         '{
-           "id": %d,
+           "id": %s,
            "dynamic_fields": %s,
            "filterables": [%s],
            "sorts": [%s],
            "merge_result_id": %s,
            "total": %s,
-           "query_id": %d,
+           "query_id": %s,
            "sql_query_id": %s,
            "query": %s,
            "vis_config": %s
         }',
-        self$`id`,
-        self$`dynamic_fields`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`dynamic_fields`)) 'NULL' else self$`dynamic_fields`,
         lapply(self$`filterables`, function(x) paste(x$toJSON(), sep=",")),
         lapply(self$`sorts`, function(x) paste(paste0('"', x, '"'), sep=",")),
-        self$`merge_result_id`,
-        self$`total`,
-        self$`query_id`,
-        self$`sql_query_id`,
+	if(is.null(self$`merge_result_id`)) 'NULL' else self$`merge_result_id`,
+	if(is.null(self$`total`)) 'NULL' else self$`total`,
+	if(is.null(self$`query_id`)) 'NULL' else as.character(self$`query_id`),
+	if(is.null(self$`sql_query_id`)) 'NULL' else self$`sql_query_id`,
         self$`query`$toJSON(),
         self$`vis_config`$toJSON()
       )

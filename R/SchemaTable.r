@@ -113,15 +113,15 @@ SchemaTable <- R6::R6Class(
            "name": %s,
            "sql_escaped_name": %s,
            "schema_name": %s,
-           "rows": %d,
+           "rows": %s,
            "external": %s,
            "snippets": [%s]
         }',
-        self$`name`,
-        self$`sql_escaped_name`,
-        self$`schema_name`,
-        self$`rows`,
-        self$`external`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`sql_escaped_name`)) 'NULL' else self$`sql_escaped_name`,
+	if(is.null(self$`schema_name`)) 'NULL' else self$`schema_name`,
+	if(is.null(self$`rows`)) 'NULL' else as.character(self$`rows`),
+	if(is.null(self$`external`)) 'NULL' else self$`external`,
         lapply(self$`snippets`, function(x) paste(x$toJSON(), sep=","))
       )
     },

@@ -73,8 +73,8 @@ OIDCUserAttributeWrite <- R6::R6Class(
            "required": %s,
            "user_attribute_ids": [%s]
         }',
-        self$`name`,
-        self$`required`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`required`)) 'NULL' else self$`required`,
         lapply(self$`user_attribute_ids`, function(x) paste(paste0('"', x, '"'), sep=","))
       )
     },

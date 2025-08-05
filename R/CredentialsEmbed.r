@@ -143,21 +143,21 @@ CredentialsEmbed <- R6::R6Class(
            "created_at": %s,
            "external_group_id": %s,
            "external_user_id": %s,
-           "id": %d,
+           "id": %s,
            "is_disabled": %s,
            "logged_in_at": %s,
            "type": %s,
            "url": %s
         }',
-        self$`can`,
-        self$`created_at`,
-        self$`external_group_id`,
-        self$`external_user_id`,
-        self$`id`,
-        self$`is_disabled`,
-        self$`logged_in_at`,
-        self$`type`,
-        self$`url`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`created_at`)) 'NULL' else self$`created_at`,
+	if(is.null(self$`external_group_id`)) 'NULL' else self$`external_group_id`,
+	if(is.null(self$`external_user_id`)) 'NULL' else self$`external_user_id`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`is_disabled`)) 'NULL' else self$`is_disabled`,
+	if(is.null(self$`logged_in_at`)) 'NULL' else self$`logged_in_at`,
+	if(is.null(self$`type`)) 'NULL' else self$`type`,
+	if(is.null(self$`url`)) 'NULL' else self$`url`
       )
     },
     fromJSONString = function(CredentialsEmbedJson) {

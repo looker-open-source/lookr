@@ -80,15 +80,15 @@ CostEstimate <- R6::R6Class(
     toJSONString = function() {
        sprintf(
         '{
-           "cost": %d,
+           "cost": %s,
            "cache_hit": %s,
            "cost_unit": %s,
            "message": %s
         }',
-        self$`cost`,
-        self$`cache_hit`,
-        self$`cost_unit`,
-        self$`message`
+	if(is.null(self$`cost`)) 'NULL' else as.character(self$`cost`),
+	if(is.null(self$`cache_hit`)) 'NULL' else self$`cache_hit`,
+	if(is.null(self$`cost_unit`)) 'NULL' else self$`cost_unit`,
+	if(is.null(self$`message`)) 'NULL' else self$`message`
       )
     },
     fromJSONString = function(CostEstimateJson) {

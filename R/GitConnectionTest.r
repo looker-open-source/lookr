@@ -72,9 +72,9 @@ GitConnectionTest <- R6::R6Class(
            "description": %s,
            "id": %s
         }',
-        self$`can`,
-        self$`description`,
-        self$`id`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`description`)) 'NULL' else self$`description`,
+	if(is.null(self$`id`)) 'NULL' else self$`id`
       )
     },
     fromJSONString = function(GitConnectionTestJson) {

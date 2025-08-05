@@ -86,10 +86,10 @@ ValidationErrorDetail <- R6::R6Class(
            "message": %s,
            "documentation_url": %s
         }',
-        self$`field`,
-        self$`code`,
-        self$`message`,
-        self$`documentation_url`
+	if(is.null(self$`field`)) 'NULL' else self$`field`,
+	if(is.null(self$`code`)) 'NULL' else self$`code`,
+	if(is.null(self$`message`)) 'NULL' else self$`message`,
+	if(is.null(self$`documentation_url`)) 'NULL' else self$`documentation_url`
       )
     },
     fromJSONString = function(ValidationErrorDetailJson) {

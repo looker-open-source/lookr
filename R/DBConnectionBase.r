@@ -104,11 +104,11 @@ DBConnectionBase <- R6::R6Class(
            "snippets": [%s],
            "pdts_enabled": %s
         }',
-        self$`can`,
-        self$`name`,
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
         self$`dialect`$toJSON(),
         lapply(self$`snippets`, function(x) paste(x$toJSON(), sep=",")),
-        self$`pdts_enabled`
+	if(is.null(self$`pdts_enabled`)) 'NULL' else self$`pdts_enabled`
       )
     },
     fromJSONString = function(DBConnectionBaseJson) {

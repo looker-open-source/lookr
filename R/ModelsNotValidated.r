@@ -60,8 +60,8 @@ ModelsNotValidated <- R6::R6Class(
            "name": %s,
            "project_file_id": %s
         }',
-        self$`name`,
-        self$`project_file_id`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`project_file_id`)) 'NULL' else self$`project_file_id`
       )
     },
     fromJSONString = function(ModelsNotValidatedJson) {

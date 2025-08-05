@@ -83,13 +83,13 @@ AccessToken <- R6::R6Class(
         '{
            "access_token": %s,
            "token_type": %s,
-           "expires_in": %d,
+           "expires_in": %s,
            "refresh_token": %s
         }',
-        self$`access_token`,
-        self$`token_type`,
-        self$`expires_in`,
-        self$`refresh_token`
+	if(is.null(self$`access_token`)) 'NULL' else self$`access_token`,
+	if(is.null(self$`token_type`)) 'NULL' else self$`token_type`,
+	if(is.null(self$`expires_in`)) 'NULL' else as.character(self$`expires_in`),
+	if(is.null(self$`refresh_token`)) 'NULL' else self$`refresh_token`
       )
     },
     fromJSONString = function(AccessTokenJson) {

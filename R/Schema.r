@@ -59,8 +59,8 @@ Schema <- R6::R6Class(
            "name": %s,
            "is_default": %s
         }',
-        self$`name`,
-        self$`is_default`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`is_default`)) 'NULL' else self$`is_default`
       )
     },
     fromJSONString = function(SchemaJson) {

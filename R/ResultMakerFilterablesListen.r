@@ -60,8 +60,8 @@ ResultMakerFilterablesListen <- R6::R6Class(
            "dashboard_filter_name": %s,
            "field": %s
         }',
-        self$`dashboard_filter_name`,
-        self$`field`
+	if(is.null(self$`dashboard_filter_name`)) 'NULL' else self$`dashboard_filter_name`,
+	if(is.null(self$`field`)) 'NULL' else self$`field`
       )
     },
     fromJSONString = function(ResultMakerFilterablesListenJson) {

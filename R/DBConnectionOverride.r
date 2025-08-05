@@ -189,18 +189,18 @@ DBConnectionOverride <- R6::R6Class(
            "jdbc_additional_params": %s,
            "after_connect_statements": %s
         }',
-        self$`context`,
-        self$`host`,
-        self$`port`,
-        self$`username`,
-        self$`password`,
-        self$`has_password`,
-        self$`certificate`,
-        self$`file_type`,
-        self$`database`,
-        self$`schema`,
-        self$`jdbc_additional_params`,
-        self$`after_connect_statements`
+	if(is.null(self$`context`)) 'NULL' else self$`context`,
+	if(is.null(self$`host`)) 'NULL' else self$`host`,
+	if(is.null(self$`port`)) 'NULL' else self$`port`,
+	if(is.null(self$`username`)) 'NULL' else self$`username`,
+	if(is.null(self$`password`)) 'NULL' else self$`password`,
+	if(is.null(self$`has_password`)) 'NULL' else self$`has_password`,
+	if(is.null(self$`certificate`)) 'NULL' else self$`certificate`,
+	if(is.null(self$`file_type`)) 'NULL' else self$`file_type`,
+	if(is.null(self$`database`)) 'NULL' else self$`database`,
+	if(is.null(self$`schema`)) 'NULL' else self$`schema`,
+	if(is.null(self$`jdbc_additional_params`)) 'NULL' else self$`jdbc_additional_params`,
+	if(is.null(self$`after_connect_statements`)) 'NULL' else self$`after_connect_statements`
       )
     },
     fromJSONString = function(DBConnectionOverrideJson) {

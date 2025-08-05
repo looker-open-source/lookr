@@ -98,11 +98,11 @@ LookmlModelNavExplore <- R6::R6Class(
            "hidden": %s,
            "group_label": %s
         }',
-        self$`name`,
-        self$`description`,
-        self$`label`,
-        self$`hidden`,
-        self$`group_label`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`description`)) 'NULL' else self$`description`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`,
+	if(is.null(self$`hidden`)) 'NULL' else self$`hidden`,
+	if(is.null(self$`group_label`)) 'NULL' else self$`group_label`
       )
     },
     fromJSONString = function(LookmlModelNavExploreJson) {

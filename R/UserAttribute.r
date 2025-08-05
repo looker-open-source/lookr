@@ -172,7 +172,7 @@ UserAttribute <- R6::R6Class(
        sprintf(
         '{
            "can": %s,
-           "id": %d,
+           "id": %s,
            "name": %s,
            "label": %s,
            "type": %s,
@@ -184,18 +184,18 @@ UserAttribute <- R6::R6Class(
            "user_can_edit": %s,
            "hidden_value_domain_whitelist": %s
         }',
-        self$`can`,
-        self$`id`,
-        self$`name`,
-        self$`label`,
-        self$`type`,
-        self$`default_value`,
-        self$`is_system`,
-        self$`is_permanent`,
-        self$`value_is_hidden`,
-        self$`user_can_view`,
-        self$`user_can_edit`,
-        self$`hidden_value_domain_whitelist`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`,
+	if(is.null(self$`type`)) 'NULL' else self$`type`,
+	if(is.null(self$`default_value`)) 'NULL' else self$`default_value`,
+	if(is.null(self$`is_system`)) 'NULL' else self$`is_system`,
+	if(is.null(self$`is_permanent`)) 'NULL' else self$`is_permanent`,
+	if(is.null(self$`value_is_hidden`)) 'NULL' else self$`value_is_hidden`,
+	if(is.null(self$`user_can_view`)) 'NULL' else self$`user_can_view`,
+	if(is.null(self$`user_can_edit`)) 'NULL' else self$`user_can_edit`,
+	if(is.null(self$`hidden_value_domain_whitelist`)) 'NULL' else self$`hidden_value_domain_whitelist`
       )
     },
     fromJSONString = function(UserAttributeJson) {

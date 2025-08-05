@@ -70,12 +70,12 @@ ContentValidationScheduledPlan <- R6::R6Class(
        sprintf(
         '{
            "name": %s,
-           "look_id": %d,
-           "id": %d
+           "look_id": %s,
+           "id": %s
         }',
-        self$`name`,
-        self$`look_id`,
-        self$`id`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`look_id`)) 'NULL' else as.character(self$`look_id`),
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`)
       )
     },
     fromJSONString = function(ContentValidationScheduledPlanJson) {

@@ -58,8 +58,8 @@ InternalHelpResources <- R6::R6Class(
            "can": %s,
            "enabled": %s
         }',
-        self$`can`,
-        self$`enabled`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`enabled`)) 'NULL' else self$`enabled`
       )
     },
     fromJSONString = function(InternalHelpResourcesJson) {

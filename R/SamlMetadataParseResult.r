@@ -85,10 +85,10 @@ SamlMetadataParseResult <- R6::R6Class(
            "idp_url": %s,
            "idp_cert": %s
         }',
-        self$`can`,
-        self$`idp_issuer`,
-        self$`idp_url`,
-        self$`idp_cert`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`idp_issuer`)) 'NULL' else self$`idp_issuer`,
+	if(is.null(self$`idp_url`)) 'NULL' else self$`idp_url`,
+	if(is.null(self$`idp_cert`)) 'NULL' else self$`idp_cert`
       )
     },
     fromJSONString = function(SamlMetadataParseResultJson) {

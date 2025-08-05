@@ -101,10 +101,10 @@ SqlQueryCreate <- R6::R6Class(
            "sql": %s,
            "vis_config": %s
         }',
-        self$`connection_name`,
-        self$`connection_id`,
-        self$`model_name`,
-        self$`sql`,
+	if(is.null(self$`connection_name`)) 'NULL' else self$`connection_name`,
+	if(is.null(self$`connection_id`)) 'NULL' else self$`connection_id`,
+	if(is.null(self$`model_name`)) 'NULL' else self$`model_name`,
+	if(is.null(self$`sql`)) 'NULL' else self$`sql`,
         self$`vis_config`$toJSON()
       )
     },

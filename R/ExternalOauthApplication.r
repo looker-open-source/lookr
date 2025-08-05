@@ -117,20 +117,20 @@ ExternalOauthApplication <- R6::R6Class(
        sprintf(
         '{
            "can": %s,
-           "id": %d,
+           "id": %s,
            "name": %s,
            "client_id": %s,
            "client_secret": %s,
            "dialect_name": %s,
            "created_at": %s
         }',
-        self$`can`,
-        self$`id`,
-        self$`name`,
-        self$`client_id`,
-        self$`client_secret`,
-        self$`dialect_name`,
-        self$`created_at`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`client_id`)) 'NULL' else self$`client_id`,
+	if(is.null(self$`client_secret`)) 'NULL' else self$`client_secret`,
+	if(is.null(self$`dialect_name`)) 'NULL' else self$`dialect_name`,
+	if(is.null(self$`created_at`)) 'NULL' else self$`created_at`
       )
     },
     fromJSONString = function(ExternalOauthApplicationJson) {

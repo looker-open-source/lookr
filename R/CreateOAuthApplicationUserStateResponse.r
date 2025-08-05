@@ -57,11 +57,11 @@ CreateOAuthApplicationUserStateResponse <- R6::R6Class(
     toJSONString = function() {
        sprintf(
         '{
-           "user_id": %d,
-           "oauth_application_id": %d
+           "user_id": %s,
+           "oauth_application_id": %s
         }',
-        self$`user_id`,
-        self$`oauth_application_id`
+	if(is.null(self$`user_id`)) 'NULL' else as.character(self$`user_id`),
+	if(is.null(self$`oauth_application_id`)) 'NULL' else as.character(self$`oauth_application_id`)
       )
     },
     fromJSONString = function(CreateOAuthApplicationUserStateResponseJson) {

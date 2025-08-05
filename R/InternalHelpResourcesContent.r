@@ -72,9 +72,9 @@ InternalHelpResourcesContent <- R6::R6Class(
            "organization_name": %s,
            "markdown_content": %s
         }',
-        self$`can`,
-        self$`organization_name`,
-        self$`markdown_content`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`organization_name`)) 'NULL' else self$`organization_name`,
+	if(is.null(self$`markdown_content`)) 'NULL' else self$`markdown_content`
       )
     },
     fromJSONString = function(InternalHelpResourcesContentJson) {

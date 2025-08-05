@@ -85,10 +85,10 @@ ImportedProject <- R6::R6Class(
            "ref": %s,
            "is_remote": %s
         }',
-        self$`name`,
-        self$`url`,
-        self$`ref`,
-        self$`is_remote`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`url`)) 'NULL' else self$`url`,
+	if(is.null(self$`ref`)) 'NULL' else self$`ref`,
+	if(is.null(self$`is_remote`)) 'NULL' else self$`is_remote`
       )
     },
     fromJSONString = function(ImportedProjectJson) {

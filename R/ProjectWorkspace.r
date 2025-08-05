@@ -139,14 +139,14 @@ ProjectWorkspace <- R6::R6Class(
            "git_branch": %s,
            "lookml_type": %s
         }',
-        self$`can`,
-        self$`project_id`,
-        self$`workspace_id`,
-        self$`git_status`,
-        self$`git_head`,
-        self$`dependency_status`,
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`project_id`)) 'NULL' else self$`project_id`,
+	if(is.null(self$`workspace_id`)) 'NULL' else self$`workspace_id`,
+	if(is.null(self$`git_status`)) 'NULL' else self$`git_status`,
+	if(is.null(self$`git_head`)) 'NULL' else self$`git_head`,
+	if(is.null(self$`dependency_status`)) 'NULL' else self$`dependency_status`,
         self$`git_branch`$toJSON(),
-        self$`lookml_type`
+	if(is.null(self$`lookml_type`)) 'NULL' else self$`lookml_type`
       )
     },
     fromJSONString = function(ProjectWorkspaceJson) {
