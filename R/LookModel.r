@@ -60,8 +60,8 @@ LookModel <- R6::R6Class(
            "id": %s,
            "label": %s
         }',
-        self$`id`,
-        self$`label`
+	if(is.null(self$`id`)) 'NULL' else self$`id`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`
       )
     },
     fromJSONString = function(LookModelJson) {

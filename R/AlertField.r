@@ -78,8 +78,8 @@ AlertField <- R6::R6Class(
            "name": %s,
            "filter": [%s]
         }',
-        self$`title`,
-        self$`name`,
+	if(is.null(self$`title`)) 'NULL' else self$`title`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
         lapply(self$`filter`, function(x) paste(x$toJSON(), sep=","))
       )
     },

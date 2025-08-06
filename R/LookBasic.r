@@ -93,16 +93,16 @@ LookBasic <- R6::R6Class(
        sprintf(
         '{
            "can": %s,
-           "content_metadata_id": %d,
-           "id": %d,
+           "content_metadata_id": %s,
+           "id": %s,
            "title": %s,
-           "user_id": %d
+           "user_id": %s
         }',
-        self$`can`,
-        self$`content_metadata_id`,
-        self$`id`,
-        self$`title`,
-        self$`user_id`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`content_metadata_id`)) 'NULL' else as.character(self$`content_metadata_id`),
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`title`)) 'NULL' else self$`title`,
+	if(is.null(self$`user_id`)) 'NULL' else as.character(self$`user_id`)
       )
     },
     fromJSONString = function(LookBasicJson) {

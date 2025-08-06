@@ -112,12 +112,12 @@ CreateOAuthApplicationUserStateRequest <- R6::R6Class(
            "refresh_token": %s,
            "refresh_token_expires_at": %s
         }',
-        self$`user_id`,
-        self$`oauth_application_id`,
-        self$`access_token`,
-        self$`access_token_expires_at`,
-        self$`refresh_token`,
-        self$`refresh_token_expires_at`
+	if(is.null(self$`user_id`)) 'NULL' else self$`user_id`,
+	if(is.null(self$`oauth_application_id`)) 'NULL' else self$`oauth_application_id`,
+	if(is.null(self$`access_token`)) 'NULL' else self$`access_token`,
+	if(is.null(self$`access_token_expires_at`)) 'NULL' else self$`access_token_expires_at`,
+	if(is.null(self$`refresh_token`)) 'NULL' else self$`refresh_token`,
+	if(is.null(self$`refresh_token_expires_at`)) 'NULL' else self$`refresh_token_expires_at`
       )
     },
     fromJSONString = function(CreateOAuthApplicationUserStateRequestJson) {

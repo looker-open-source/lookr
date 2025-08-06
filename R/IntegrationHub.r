@@ -161,7 +161,7 @@ IntegrationHub <- R6::R6Class(
        sprintf(
         '{
            "can": %s,
-           "id": %d,
+           "id": %s,
            "url": %s,
            "label": %s,
            "official": %s,
@@ -172,17 +172,17 @@ IntegrationHub <- R6::R6Class(
            "legal_agreement_required": %s,
            "legal_agreement_text": %s
         }',
-        self$`can`,
-        self$`id`,
-        self$`url`,
-        self$`label`,
-        self$`official`,
-        self$`fetch_error_message`,
-        self$`authorization_token`,
-        self$`has_authorization_token`,
-        self$`legal_agreement_signed`,
-        self$`legal_agreement_required`,
-        self$`legal_agreement_text`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`url`)) 'NULL' else self$`url`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`,
+	if(is.null(self$`official`)) 'NULL' else self$`official`,
+	if(is.null(self$`fetch_error_message`)) 'NULL' else self$`fetch_error_message`,
+	if(is.null(self$`authorization_token`)) 'NULL' else self$`authorization_token`,
+	if(is.null(self$`has_authorization_token`)) 'NULL' else self$`has_authorization_token`,
+	if(is.null(self$`legal_agreement_signed`)) 'NULL' else self$`legal_agreement_signed`,
+	if(is.null(self$`legal_agreement_required`)) 'NULL' else self$`legal_agreement_required`,
+	if(is.null(self$`legal_agreement_text`)) 'NULL' else self$`legal_agreement_text`
       )
     },
     fromJSONString = function(IntegrationHubJson) {

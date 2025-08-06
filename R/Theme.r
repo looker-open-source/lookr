@@ -109,15 +109,15 @@ Theme <- R6::R6Class(
            "can": %s,
            "begin_at": %s,
            "end_at": %s,
-           "id": %d,
+           "id": %s,
            "name": %s,
            "settings": %s
         }',
-        self$`can`,
-        self$`begin_at`,
-        self$`end_at`,
-        self$`id`,
-        self$`name`,
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`begin_at`)) 'NULL' else self$`begin_at`,
+	if(is.null(self$`end_at`)) 'NULL' else self$`end_at`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
         self$`settings`$toJSON()
       )
     },

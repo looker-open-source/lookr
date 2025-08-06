@@ -207,9 +207,9 @@ SqlQuery <- R6::R6Class(
         '{
            "can": %s,
            "slug": %s,
-           "last_runtime": %d,
-           "run_count": %d,
-           "browser_limit": %d,
+           "last_runtime": %s,
+           "run_count": %s,
+           "browser_limit": %s,
            "sql": %s,
            "last_run_at": %s,
            "connection": %s,
@@ -218,22 +218,22 @@ SqlQuery <- R6::R6Class(
            "explore_url": %s,
            "plaintext": %s,
            "vis_config": %s,
-           "result_maker_id": %d
+           "result_maker_id": %s
         }',
-        self$`can`,
-        self$`slug`,
-        self$`last_runtime`,
-        self$`run_count`,
-        self$`browser_limit`,
-        self$`sql`,
-        self$`last_run_at`,
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`slug`)) 'NULL' else self$`slug`,
+	if(is.null(self$`last_runtime`)) 'NULL' else as.character(self$`last_runtime`),
+	if(is.null(self$`run_count`)) 'NULL' else as.character(self$`run_count`),
+	if(is.null(self$`browser_limit`)) 'NULL' else as.character(self$`browser_limit`),
+	if(is.null(self$`sql`)) 'NULL' else self$`sql`,
+	if(is.null(self$`last_run_at`)) 'NULL' else self$`last_run_at`,
         self$`connection`$toJSON(),
-        self$`model_name`,
+	if(is.null(self$`model_name`)) 'NULL' else self$`model_name`,
         self$`creator`$toJSON(),
-        self$`explore_url`,
-        self$`plaintext`,
+	if(is.null(self$`explore_url`)) 'NULL' else self$`explore_url`,
+	if(is.null(self$`plaintext`)) 'NULL' else self$`plaintext`,
         self$`vis_config`$toJSON(),
-        self$`result_maker_id`
+	if(is.null(self$`result_maker_id`)) 'NULL' else as.character(self$`result_maker_id`)
       )
     },
     fromJSONString = function(SqlQueryJson) {

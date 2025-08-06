@@ -60,8 +60,8 @@ DashboardAggregateTableLookml <- R6::R6Class(
            "dashboard_id": %s,
            "aggregate_table_lookml": %s
         }',
-        self$`dashboard_id`,
-        self$`aggregate_table_lookml`
+	if(is.null(self$`dashboard_id`)) 'NULL' else self$`dashboard_id`,
+	if(is.null(self$`aggregate_table_lookml`)) 'NULL' else self$`aggregate_table_lookml`
       )
     },
     fromJSONString = function(DashboardAggregateTableLookmlJson) {

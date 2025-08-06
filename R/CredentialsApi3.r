@@ -116,20 +116,20 @@ CredentialsApi3 <- R6::R6Class(
        sprintf(
         '{
            "can": %s,
-           "id": %d,
+           "id": %s,
            "client_id": %s,
            "created_at": %s,
            "is_disabled": %s,
            "type": %s,
            "url": %s
         }',
-        self$`can`,
-        self$`id`,
-        self$`client_id`,
-        self$`created_at`,
-        self$`is_disabled`,
-        self$`type`,
-        self$`url`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`client_id`)) 'NULL' else self$`client_id`,
+	if(is.null(self$`created_at`)) 'NULL' else self$`created_at`,
+	if(is.null(self$`is_disabled`)) 'NULL' else self$`is_disabled`,
+	if(is.null(self$`type`)) 'NULL' else self$`type`,
+	if(is.null(self$`url`)) 'NULL' else self$`url`
       )
     },
     fromJSONString = function(CredentialsApi3Json) {

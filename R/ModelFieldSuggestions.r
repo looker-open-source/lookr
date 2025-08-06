@@ -98,10 +98,10 @@ ModelFieldSuggestions <- R6::R6Class(
            "used_calcite_materialization": %s
         }',
         lapply(self$`suggestions`, function(x) paste(paste0('"', x, '"'), sep=",")),
-        self$`error`,
-        self$`from_cache`,
-        self$`hit_limit`,
-        self$`used_calcite_materialization`
+	if(is.null(self$`error`)) 'NULL' else self$`error`,
+	if(is.null(self$`from_cache`)) 'NULL' else self$`from_cache`,
+	if(is.null(self$`hit_limit`)) 'NULL' else self$`hit_limit`,
+	if(is.null(self$`used_calcite_materialization`)) 'NULL' else self$`used_calcite_materialization`
       )
     },
     fromJSONString = function(ModelFieldSuggestionsJson) {

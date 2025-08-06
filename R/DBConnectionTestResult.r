@@ -98,11 +98,11 @@ DBConnectionTestResult <- R6::R6Class(
            "name": %s,
            "status": %s
         }',
-        self$`can`,
-        self$`connection_string`,
-        self$`message`,
-        self$`name`,
-        self$`status`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`connection_string`)) 'NULL' else self$`connection_string`,
+	if(is.null(self$`message`)) 'NULL' else self$`message`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`status`)) 'NULL' else self$`status`
       )
     },
     fromJSONString = function(DBConnectionTestResultJson) {

@@ -60,8 +60,8 @@ LookmlModelExploreFieldMeasureFilters <- R6::R6Class(
            "field": %s,
            "condition": %s
         }',
-        self$`field`,
-        self$`condition`
+	if(is.null(self$`field`)) 'NULL' else self$`field`,
+	if(is.null(self$`condition`)) 'NULL' else self$`condition`
       )
     },
     fromJSONString = function(LookmlModelExploreFieldMeasureFiltersJson) {

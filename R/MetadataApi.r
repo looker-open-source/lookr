@@ -50,7 +50,7 @@
 MetadataApi <- R6::R6Class(
   'MetadataApi',
   public = list(
-    userAgent = "R-SDK",
+    userAgent = "R-SDK 3.0.0",
     apiClient = NULL,
     initialize = function(apiClient){
       if (!missing(apiClient)) {
@@ -102,20 +102,34 @@ MetadataApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-	data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
-	if (is.null(names(data))) {
-	  returnObjects <- lapply(data, function(x) {
+	if (httr::http_type(resp) == "application/json") {
+	  data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
+	  if ("SchemaColumns" == "Character") {
+	    Response$new(data, resp)
+	  } else if (is.null(names(data))) {
+	    returnObjects <- lapply(data, function(x) {
+	      returnObject <- SchemaColumns$new()
+	      #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
+	      returnObject$fromJSONObject(x)
+	      returnObject
+	    })
+	    Response$new(returnObjects, resp)
+	  } else {
 	    returnObject <- SchemaColumns$new()
-	    #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
-	    returnObject$fromJSONObject(x)
-	    returnObject
-	  })
-	  Response$new(returnObjects, resp)
+	    #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
+	    result <- returnObject$fromJSONObject(data)
+	    Response$new(returnObject, resp)
+	  }
+	} else if ((httr::http_type(resp) == "image/jpeg") || (httr::http_type(resp) == "image/png")) {
+	  Response$new(httr::content(resp, "raw"), resp)
+	# These types are known to httr. But fall through to the default.
+	# } else if (httr::http_type(resp) == "application/x-www-form-urlencoded") {
+	# } else if (httr::http_type(resp) == "text/html") {
+	# } else if (httr::http_type(resp) == "text/xml") {
+	# } else if (httr::http_type(resp) == "text/csv") {
+	# } else if (httr::http_type(resp) == "text/tab-separated-values") {
 	} else {
-	  returnObject <- SchemaColumns$new()
-	  #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
-	  result <- returnObject$fromJSONObject(data)
-	  Response$new(returnObject, resp)
+	  Response$new(httr::content(resp, "text", encoding = "UTF-8"), resp)
 	}
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
         Response$new("API client error", resp)
@@ -152,20 +166,34 @@ MetadataApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-	data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
-	if (is.null(names(data))) {
-	  returnObjects <- lapply(data, function(x) {
+	if (httr::http_type(resp) == "application/json") {
+	  data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
+	  if ("CostEstimate" == "Character") {
+	    Response$new(data, resp)
+	  } else if (is.null(names(data))) {
+	    returnObjects <- lapply(data, function(x) {
+	      returnObject <- CostEstimate$new()
+	      #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
+	      returnObject$fromJSONObject(x)
+	      returnObject
+	    })
+	    Response$new(returnObjects, resp)
+	  } else {
 	    returnObject <- CostEstimate$new()
-	    #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
-	    returnObject$fromJSONObject(x)
-	    returnObject
-	  })
-	  Response$new(returnObjects, resp)
+	    #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
+	    result <- returnObject$fromJSONObject(data)
+	    Response$new(returnObject, resp)
+	  }
+	} else if ((httr::http_type(resp) == "image/jpeg") || (httr::http_type(resp) == "image/png")) {
+	  Response$new(httr::content(resp, "raw"), resp)
+	# These types are known to httr. But fall through to the default.
+	# } else if (httr::http_type(resp) == "application/x-www-form-urlencoded") {
+	# } else if (httr::http_type(resp) == "text/html") {
+	# } else if (httr::http_type(resp) == "text/xml") {
+	# } else if (httr::http_type(resp) == "text/csv") {
+	# } else if (httr::http_type(resp) == "text/tab-separated-values") {
 	} else {
-	  returnObject <- CostEstimate$new()
-	  #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
-	  result <- returnObject$fromJSONObject(data)
-	  Response$new(returnObject, resp)
+	  Response$new(httr::content(resp, "text", encoding = "UTF-8"), resp)
 	}
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
         Response$new("API client error", resp)
@@ -192,20 +220,34 @@ MetadataApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-	data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
-	if (is.null(names(data))) {
-	  returnObjects <- lapply(data, function(x) {
+	if (httr::http_type(resp) == "application/json") {
+	  data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
+	  if ("Character" == "Character") {
+	    Response$new(data, resp)
+	  } else if (is.null(names(data))) {
+	    returnObjects <- lapply(data, function(x) {
+	      returnObject <- Character$new()
+	      #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
+	      returnObject$fromJSONObject(x)
+	      returnObject
+	    })
+	    Response$new(returnObjects, resp)
+	  } else {
 	    returnObject <- Character$new()
-	    #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
-	    returnObject$fromJSONObject(x)
-	    returnObject
-	  })
-	  Response$new(returnObjects, resp)
+	    #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
+	    result <- returnObject$fromJSONObject(data)
+	    Response$new(returnObject, resp)
+	  }
+	} else if ((httr::http_type(resp) == "image/jpeg") || (httr::http_type(resp) == "image/png")) {
+	  Response$new(httr::content(resp, "raw"), resp)
+	# These types are known to httr. But fall through to the default.
+	# } else if (httr::http_type(resp) == "application/x-www-form-urlencoded") {
+	# } else if (httr::http_type(resp) == "text/html") {
+	# } else if (httr::http_type(resp) == "text/xml") {
+	# } else if (httr::http_type(resp) == "text/csv") {
+	# } else if (httr::http_type(resp) == "text/tab-separated-values") {
 	} else {
-	  returnObject <- Character$new()
-	  #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
-	  result <- returnObject$fromJSONObject(data)
-	  Response$new(returnObject, resp)
+	  Response$new(httr::content(resp, "text", encoding = "UTF-8"), resp)
 	}
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
         Response$new("API client error", resp)
@@ -236,20 +278,34 @@ MetadataApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-	data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
-	if (is.null(names(data))) {
-	  returnObjects <- lapply(data, function(x) {
+	if (httr::http_type(resp) == "application/json") {
+	  data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
+	  if ("ConnectionFeatures" == "Character") {
+	    Response$new(data, resp)
+	  } else if (is.null(names(data))) {
+	    returnObjects <- lapply(data, function(x) {
+	      returnObject <- ConnectionFeatures$new()
+	      #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
+	      returnObject$fromJSONObject(x)
+	      returnObject
+	    })
+	    Response$new(returnObjects, resp)
+	  } else {
 	    returnObject <- ConnectionFeatures$new()
-	    #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
-	    returnObject$fromJSONObject(x)
-	    returnObject
-	  })
-	  Response$new(returnObjects, resp)
+	    #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
+	    result <- returnObject$fromJSONObject(data)
+	    Response$new(returnObject, resp)
+	  }
+	} else if ((httr::http_type(resp) == "image/jpeg") || (httr::http_type(resp) == "image/png")) {
+	  Response$new(httr::content(resp, "raw"), resp)
+	# These types are known to httr. But fall through to the default.
+	# } else if (httr::http_type(resp) == "application/x-www-form-urlencoded") {
+	# } else if (httr::http_type(resp) == "text/html") {
+	# } else if (httr::http_type(resp) == "text/xml") {
+	# } else if (httr::http_type(resp) == "text/csv") {
+	# } else if (httr::http_type(resp) == "text/tab-separated-values") {
 	} else {
-	  returnObject <- ConnectionFeatures$new()
-	  #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
-	  result <- returnObject$fromJSONObject(data)
-	  Response$new(returnObject, resp)
+	  Response$new(httr::content(resp, "text", encoding = "UTF-8"), resp)
 	}
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
         Response$new("API client error", resp)
@@ -288,20 +344,34 @@ MetadataApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-	data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
-	if (is.null(names(data))) {
-	  returnObjects <- lapply(data, function(x) {
+	if (httr::http_type(resp) == "application/json") {
+	  data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
+	  if ("Schema" == "Character") {
+	    Response$new(data, resp)
+	  } else if (is.null(names(data))) {
+	    returnObjects <- lapply(data, function(x) {
+	      returnObject <- Schema$new()
+	      #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
+	      returnObject$fromJSONObject(x)
+	      returnObject
+	    })
+	    Response$new(returnObjects, resp)
+	  } else {
 	    returnObject <- Schema$new()
-	    #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
-	    returnObject$fromJSONObject(x)
-	    returnObject
-	  })
-	  Response$new(returnObjects, resp)
+	    #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
+	    result <- returnObject$fromJSONObject(data)
+	    Response$new(returnObject, resp)
+	  }
+	} else if ((httr::http_type(resp) == "image/jpeg") || (httr::http_type(resp) == "image/png")) {
+	  Response$new(httr::content(resp, "raw"), resp)
+	# These types are known to httr. But fall through to the default.
+	# } else if (httr::http_type(resp) == "application/x-www-form-urlencoded") {
+	# } else if (httr::http_type(resp) == "text/html") {
+	# } else if (httr::http_type(resp) == "text/xml") {
+	# } else if (httr::http_type(resp) == "text/csv") {
+	# } else if (httr::http_type(resp) == "text/tab-separated-values") {
 	} else {
-	  returnObject <- Schema$new()
-	  #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
-	  result <- returnObject$fromJSONObject(data)
-	  Response$new(returnObject, resp)
+	  Response$new(httr::content(resp, "text", encoding = "UTF-8"), resp)
 	}
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
         Response$new("API client error", resp)
@@ -336,20 +406,34 @@ MetadataApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-	data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
-	if (is.null(names(data))) {
-	  returnObjects <- lapply(data, function(x) {
+	if (httr::http_type(resp) == "application/json") {
+	  data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
+	  if ("ColumnSearch" == "Character") {
+	    Response$new(data, resp)
+	  } else if (is.null(names(data))) {
+	    returnObjects <- lapply(data, function(x) {
+	      returnObject <- ColumnSearch$new()
+	      #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
+	      returnObject$fromJSONObject(x)
+	      returnObject
+	    })
+	    Response$new(returnObjects, resp)
+	  } else {
 	    returnObject <- ColumnSearch$new()
-	    #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
-	    returnObject$fromJSONObject(x)
-	    returnObject
-	  })
-	  Response$new(returnObjects, resp)
+	    #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
+	    result <- returnObject$fromJSONObject(data)
+	    Response$new(returnObject, resp)
+	  }
+	} else if ((httr::http_type(resp) == "image/jpeg") || (httr::http_type(resp) == "image/png")) {
+	  Response$new(httr::content(resp, "raw"), resp)
+	# These types are known to httr. But fall through to the default.
+	# } else if (httr::http_type(resp) == "application/x-www-form-urlencoded") {
+	# } else if (httr::http_type(resp) == "text/html") {
+	# } else if (httr::http_type(resp) == "text/xml") {
+	# } else if (httr::http_type(resp) == "text/csv") {
+	# } else if (httr::http_type(resp) == "text/tab-separated-values") {
 	} else {
-	  returnObject <- ColumnSearch$new()
-	  #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
-	  result <- returnObject$fromJSONObject(data)
-	  Response$new(returnObject, resp)
+	  Response$new(httr::content(resp, "text", encoding = "UTF-8"), resp)
 	}
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
         Response$new("API client error", resp)
@@ -392,20 +476,34 @@ MetadataApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-	data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
-	if (is.null(names(data))) {
-	  returnObjects <- lapply(data, function(x) {
+	if (httr::http_type(resp) == "application/json") {
+	  data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
+	  if ("SchemaTables" == "Character") {
+	    Response$new(data, resp)
+	  } else if (is.null(names(data))) {
+	    returnObjects <- lapply(data, function(x) {
+	      returnObject <- SchemaTables$new()
+	      #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
+	      returnObject$fromJSONObject(x)
+	      returnObject
+	    })
+	    Response$new(returnObjects, resp)
+	  } else {
 	    returnObject <- SchemaTables$new()
-	    #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
-	    returnObject$fromJSONObject(x)
-	    returnObject
-	  })
-	  Response$new(returnObjects, resp)
+	    #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
+	    result <- returnObject$fromJSONObject(data)
+	    Response$new(returnObject, resp)
+	  }
+	} else if ((httr::http_type(resp) == "image/jpeg") || (httr::http_type(resp) == "image/png")) {
+	  Response$new(httr::content(resp, "raw"), resp)
+	# These types are known to httr. But fall through to the default.
+	# } else if (httr::http_type(resp) == "application/x-www-form-urlencoded") {
+	# } else if (httr::http_type(resp) == "text/html") {
+	# } else if (httr::http_type(resp) == "text/xml") {
+	# } else if (httr::http_type(resp) == "text/csv") {
+	# } else if (httr::http_type(resp) == "text/tab-separated-values") {
 	} else {
-	  returnObject <- SchemaTables$new()
-	  #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
-	  result <- returnObject$fromJSONObject(data)
-	  Response$new(returnObject, resp)
+	  Response$new(httr::content(resp, "text", encoding = "UTF-8"), resp)
 	}
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
         Response$new("API client error", resp)
@@ -432,20 +530,34 @@ MetadataApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-	data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
-	if (is.null(names(data))) {
-	  returnObjects <- lapply(data, function(x) {
+	if (httr::http_type(resp) == "application/json") {
+	  data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
+	  if ("Model" == "Character") {
+	    Response$new(data, resp)
+	  } else if (is.null(names(data))) {
+	    returnObjects <- lapply(data, function(x) {
+	      returnObject <- Model$new()
+	      #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
+	      returnObject$fromJSONObject(x)
+	      returnObject
+	    })
+	    Response$new(returnObjects, resp)
+	  } else {
 	    returnObject <- Model$new()
-	    #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
-	    returnObject$fromJSONObject(x)
-	    returnObject
-	  })
-	  Response$new(returnObjects, resp)
+	    #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
+	    result <- returnObject$fromJSONObject(data)
+	    Response$new(returnObject, resp)
+	  }
+	} else if ((httr::http_type(resp) == "image/jpeg") || (httr::http_type(resp) == "image/png")) {
+	  Response$new(httr::content(resp, "raw"), resp)
+	# These types are known to httr. But fall through to the default.
+	# } else if (httr::http_type(resp) == "application/x-www-form-urlencoded") {
+	# } else if (httr::http_type(resp) == "text/html") {
+	# } else if (httr::http_type(resp) == "text/xml") {
+	# } else if (httr::http_type(resp) == "text/csv") {
+	# } else if (httr::http_type(resp) == "text/tab-separated-values") {
 	} else {
-	  returnObject <- Model$new()
-	  #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
-	  result <- returnObject$fromJSONObject(data)
-	  Response$new(returnObject, resp)
+	  Response$new(httr::content(resp, "text", encoding = "UTF-8"), resp)
 	}
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
         Response$new("API client error", resp)
@@ -488,20 +600,34 @@ MetadataApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-	data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
-	if (is.null(names(data))) {
-	  returnObjects <- lapply(data, function(x) {
+	if (httr::http_type(resp) == "application/json") {
+	  data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
+	  if ("ModelFieldSuggestions" == "Character") {
+	    Response$new(data, resp)
+	  } else if (is.null(names(data))) {
+	    returnObjects <- lapply(data, function(x) {
+	      returnObject <- ModelFieldSuggestions$new()
+	      #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
+	      returnObject$fromJSONObject(x)
+	      returnObject
+	    })
+	    Response$new(returnObjects, resp)
+	  } else {
 	    returnObject <- ModelFieldSuggestions$new()
-	    #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
-	    returnObject$fromJSONObject(x)
-	    returnObject
-	  })
-	  Response$new(returnObjects, resp)
+	    #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
+	    result <- returnObject$fromJSONObject(data)
+	    Response$new(returnObject, resp)
+	  }
+	} else if ((httr::http_type(resp) == "image/jpeg") || (httr::http_type(resp) == "image/png")) {
+	  Response$new(httr::content(resp, "raw"), resp)
+	# These types are known to httr. But fall through to the default.
+	# } else if (httr::http_type(resp) == "application/x-www-form-urlencoded") {
+	# } else if (httr::http_type(resp) == "text/html") {
+	# } else if (httr::http_type(resp) == "text/xml") {
+	# } else if (httr::http_type(resp) == "text/csv") {
+	# } else if (httr::http_type(resp) == "text/tab-separated-values") {
 	} else {
-	  returnObject <- ModelFieldSuggestions$new()
-	  #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
-	  result <- returnObject$fromJSONObject(data)
-	  Response$new(returnObject, resp)
+	  Response$new(httr::content(resp, "text", encoding = "UTF-8"), resp)
 	}
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
         Response$new("API client error", resp)

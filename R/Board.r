@@ -182,30 +182,30 @@ Board <- R6::R6Class(
        sprintf(
         '{
            "can": %s,
-           "content_metadata_id": %d,
+           "content_metadata_id": %s,
            "created_at": %s,
            "deleted_at": %s,
            "description": %s,
            "board_sections": [%s],
-           "id": %d,
+           "id": %s,
            "section_order": [%s],
            "title": %s,
            "updated_at": %s,
-           "user_id": %d,
+           "user_id": %s,
            "primary_homepage": %s
         }',
-        self$`can`,
-        self$`content_metadata_id`,
-        self$`created_at`,
-        self$`deleted_at`,
-        self$`description`,
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`content_metadata_id`)) 'NULL' else as.character(self$`content_metadata_id`),
+	if(is.null(self$`created_at`)) 'NULL' else self$`created_at`,
+	if(is.null(self$`deleted_at`)) 'NULL' else self$`deleted_at`,
+	if(is.null(self$`description`)) 'NULL' else self$`description`,
         lapply(self$`board_sections`, function(x) paste(x$toJSON(), sep=",")),
-        self$`id`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
         lapply(self$`section_order`, function(x) paste(paste0('"', x, '"'), sep=",")),
-        self$`title`,
-        self$`updated_at`,
-        self$`user_id`,
-        self$`primary_homepage`
+	if(is.null(self$`title`)) 'NULL' else self$`title`,
+	if(is.null(self$`updated_at`)) 'NULL' else self$`updated_at`,
+	if(is.null(self$`user_id`)) 'NULL' else as.character(self$`user_id`),
+	if(is.null(self$`primary_homepage`)) 'NULL' else self$`primary_homepage`
       )
     },
     fromJSONString = function(BoardJson) {

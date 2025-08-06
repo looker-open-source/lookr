@@ -69,12 +69,12 @@ EmbedParams <- R6::R6Class(
        sprintf(
         '{
            "target_url": %s,
-           "session_length": %d,
+           "session_length": %s,
            "force_logout_login": %s
         }',
-        self$`target_url`,
-        self$`session_length`,
-        self$`force_logout_login`
+	if(is.null(self$`target_url`)) 'NULL' else self$`target_url`,
+	if(is.null(self$`session_length`)) 'NULL' else as.character(self$`session_length`),
+	if(is.null(self$`force_logout_login`)) 'NULL' else self$`force_logout_login`
       )
     },
     fromJSONString = function(EmbedParamsJson) {

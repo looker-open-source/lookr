@@ -151,14 +151,14 @@ ProjectFile <- R6::R6Class(
            "editable": %s,
            "git_status": %s
         }',
-        self$`can`,
-        self$`id`,
-        self$`path`,
-        self$`title`,
-        self$`type`,
-        self$`extension`,
-        self$`mime_type`,
-        self$`editable`,
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`id`)) 'NULL' else self$`id`,
+	if(is.null(self$`path`)) 'NULL' else self$`path`,
+	if(is.null(self$`title`)) 'NULL' else self$`title`,
+	if(is.null(self$`type`)) 'NULL' else self$`type`,
+	if(is.null(self$`extension`)) 'NULL' else self$`extension`,
+	if(is.null(self$`mime_type`)) 'NULL' else self$`mime_type`,
+	if(is.null(self$`editable`)) 'NULL' else self$`editable`,
         self$`git_status`$toJSON()
       )
     },

@@ -47,7 +47,7 @@ UserEmailOnly <- R6::R6Class(
         '{
            "email": %s
         }',
-        self$`email`
+	if(is.null(self$`email`)) 'NULL' else self$`email`
       )
     },
     fromJSONString = function(UserEmailOnlyJson) {

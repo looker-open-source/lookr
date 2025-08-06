@@ -70,11 +70,11 @@ ApiSession <- R6::R6Class(
         '{
            "can": %s,
            "workspace_id": %s,
-           "sudo_user_id": %d
+           "sudo_user_id": %s
         }',
-        self$`can`,
-        self$`workspace_id`,
-        self$`sudo_user_id`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`workspace_id`)) 'NULL' else self$`workspace_id`,
+	if(is.null(self$`sudo_user_id`)) 'NULL' else as.character(self$`sudo_user_id`)
       )
     },
     fromJSONString = function(ApiSessionJson) {

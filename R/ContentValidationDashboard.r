@@ -101,11 +101,11 @@ ContentValidationDashboard <- R6::R6Class(
            "title": %s,
            "url": %s
         }',
-        self$`description`,
-        self$`id`,
+	if(is.null(self$`description`)) 'NULL' else self$`description`,
+	if(is.null(self$`id`)) 'NULL' else self$`id`,
         self$`folder`$toJSON(),
-        self$`title`,
-        self$`url`
+	if(is.null(self$`title`)) 'NULL' else self$`title`,
+	if(is.null(self$`url`)) 'NULL' else self$`url`
       )
     },
     fromJSONString = function(ContentValidationDashboardJson) {

@@ -161,19 +161,19 @@ LookmlModelExploreFieldMapLayer <- R6::R6Class(
            "projection": %s,
            "format": %s,
            "extents_json_url": %s,
-           "max_zoom_level": %d,
-           "min_zoom_level": %d
+           "max_zoom_level": %s,
+           "min_zoom_level": %s
         }',
-        self$`url`,
-        self$`name`,
-        self$`feature_key`,
-        self$`property_key`,
-        self$`property_label_key`,
-        self$`projection`,
-        self$`format`,
-        self$`extents_json_url`,
-        self$`max_zoom_level`,
-        self$`min_zoom_level`
+	if(is.null(self$`url`)) 'NULL' else self$`url`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`feature_key`)) 'NULL' else self$`feature_key`,
+	if(is.null(self$`property_key`)) 'NULL' else self$`property_key`,
+	if(is.null(self$`property_label_key`)) 'NULL' else self$`property_label_key`,
+	if(is.null(self$`projection`)) 'NULL' else self$`projection`,
+	if(is.null(self$`format`)) 'NULL' else self$`format`,
+	if(is.null(self$`extents_json_url`)) 'NULL' else self$`extents_json_url`,
+	if(is.null(self$`max_zoom_level`)) 'NULL' else as.character(self$`max_zoom_level`),
+	if(is.null(self$`min_zoom_level`)) 'NULL' else as.character(self$`min_zoom_level`)
       )
     },
     fromJSONString = function(LookmlModelExploreFieldMapLayerJson) {

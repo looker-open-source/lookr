@@ -118,18 +118,18 @@ ModelSet <- R6::R6Class(
            "can": %s,
            "all_access": %s,
            "built_in": %s,
-           "id": %d,
+           "id": %s,
            "models": [%s],
            "name": %s,
            "url": %s
         }',
-        self$`can`,
-        self$`all_access`,
-        self$`built_in`,
-        self$`id`,
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`all_access`)) 'NULL' else self$`all_access`,
+	if(is.null(self$`built_in`)) 'NULL' else self$`built_in`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
         lapply(self$`models`, function(x) paste(paste0('"', x, '"'), sep=",")),
-        self$`name`,
-        self$`url`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`url`)) 'NULL' else self$`url`
       )
     },
     fromJSONString = function(ModelSetJson) {

@@ -106,11 +106,11 @@ ApiVersion <- R6::R6Class(
            "api_server_url": %s,
            "web_server_url": %s
         }',
-        self$`looker_release_version`,
+	if(is.null(self$`looker_release_version`)) 'NULL' else self$`looker_release_version`,
         self$`current_version`$toJSON(),
         lapply(self$`supported_versions`, function(x) paste(x$toJSON(), sep=",")),
-        self$`api_server_url`,
-        self$`web_server_url`
+	if(is.null(self$`api_server_url`)) 'NULL' else self$`api_server_url`,
+	if(is.null(self$`web_server_url`)) 'NULL' else self$`web_server_url`
       )
     },
     fromJSONString = function(ApiVersionJson) {

@@ -90,10 +90,10 @@ LDAPUserAttributeRead <- R6::R6Class(
            "user_attributes": [%s],
            "url": %s
         }',
-        self$`name`,
-        self$`required`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`required`)) 'NULL' else self$`required`,
         lapply(self$`user_attributes`, function(x) paste(x$toJSON(), sep=",")),
-        self$`url`
+	if(is.null(self$`url`)) 'NULL' else self$`url`
       )
     },
     fromJSONString = function(LDAPUserAttributeReadJson) {

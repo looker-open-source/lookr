@@ -83,14 +83,14 @@ ContentValidationLook <- R6::R6Class(
     toJSONString = function() {
        sprintf(
         '{
-           "id": %d,
+           "id": %s,
            "title": %s,
            "short_url": %s,
            "folder": %s
         }',
-        self$`id`,
-        self$`title`,
-        self$`short_url`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`title`)) 'NULL' else self$`title`,
+	if(is.null(self$`short_url`)) 'NULL' else self$`short_url`,
         self$`folder`$toJSON()
       )
     },

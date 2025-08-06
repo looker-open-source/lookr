@@ -60,8 +60,8 @@ Error <- R6::R6Class(
            "message": %s,
            "documentation_url": %s
         }',
-        self$`message`,
-        self$`documentation_url`
+	if(is.null(self$`message`)) 'NULL' else self$`message`,
+	if(is.null(self$`documentation_url`)) 'NULL' else self$`documentation_url`
       )
     },
     fromJSONString = function(ErrorJson) {

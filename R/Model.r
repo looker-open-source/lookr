@@ -78,8 +78,8 @@ Model <- R6::R6Class(
            "name": %s,
            "value_formats": [%s]
         }',
-        self$`connection`,
-        self$`name`,
+	if(is.null(self$`connection`)) 'NULL' else self$`connection`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
         lapply(self$`value_formats`, function(x) paste(x$toJSON(), sep=","))
       )
     },

@@ -4,6 +4,9 @@ output:
     variant: markdown_github
 ---
 
+# This repository is archived and READ ONLY
+------
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, echo = FALSE}
@@ -265,3 +268,19 @@ print(data)
     toJSONString: function ()
 ```
 
+We can get images like this...
+```{r eval = FALSE}
+install.packages("png")
+
+look.data <- sdk$userSession$lookApi$run_look(5, "png", config = sdk$oauthHeader)
+img_data <- png::readPNG(look.data$content)
+png::writePNG(img_data, "filename.png")
+```
+
+```{r eval = FALSE}
+install.packages("jpeg")
+
+look.data <- sdk$userSession$lookApi$run_look(5, "jpg", config = sdk$oauthHeader)
+img_data <- jpeg::readJPEG(look.data$content)
+jpeg::writeJPEG(img_data, "file.jpg")
+```

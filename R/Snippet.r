@@ -73,9 +73,9 @@ Snippet <- R6::R6Class(
            "label": %s,
            "sql": %s
         }',
-        self$`name`,
-        self$`label`,
-        self$`sql`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`,
+	if(is.null(self$`sql`)) 'NULL' else self$`sql`
       )
     },
     fromJSONString = function(SnippetJson) {

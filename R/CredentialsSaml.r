@@ -136,14 +136,14 @@ CredentialsSaml <- R6::R6Class(
            "type": %s,
            "url": %s
         }',
-        self$`can`,
-        self$`created_at`,
-        self$`email`,
-        self$`is_disabled`,
-        self$`logged_in_at`,
-        self$`saml_user_id`,
-        self$`type`,
-        self$`url`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`created_at`)) 'NULL' else self$`created_at`,
+	if(is.null(self$`email`)) 'NULL' else self$`email`,
+	if(is.null(self$`is_disabled`)) 'NULL' else self$`is_disabled`,
+	if(is.null(self$`logged_in_at`)) 'NULL' else self$`logged_in_at`,
+	if(is.null(self$`saml_user_id`)) 'NULL' else self$`saml_user_id`,
+	if(is.null(self$`type`)) 'NULL' else self$`type`,
+	if(is.null(self$`url`)) 'NULL' else self$`url`
       )
     },
     fromJSONString = function(CredentialsSamlJson) {

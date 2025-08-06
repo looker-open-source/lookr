@@ -86,10 +86,10 @@ ApiVersionElement <- R6::R6Class(
            "status": %s,
            "swagger_url": %s
         }',
-        self$`version`,
-        self$`full_version`,
-        self$`status`,
-        self$`swagger_url`
+	if(is.null(self$`version`)) 'NULL' else self$`version`,
+	if(is.null(self$`full_version`)) 'NULL' else self$`full_version`,
+	if(is.null(self$`status`)) 'NULL' else self$`status`,
+	if(is.null(self$`swagger_url`)) 'NULL' else self$`swagger_url`
       )
     },
     fromJSONString = function(ApiVersionElementJson) {

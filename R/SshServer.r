@@ -144,22 +144,22 @@ SshServer <- R6::R6Class(
            "ssh_server_id": %s,
            "ssh_server_name": %s,
            "ssh_server_host": %s,
-           "ssh_server_port": %d,
+           "ssh_server_port": %s,
            "ssh_server_user": %s,
            "finger_print": %s,
            "sha_finger_print": %s,
            "public_key": %s,
            "status": %s
         }',
-        self$`ssh_server_id`,
-        self$`ssh_server_name`,
-        self$`ssh_server_host`,
-        self$`ssh_server_port`,
-        self$`ssh_server_user`,
-        self$`finger_print`,
-        self$`sha_finger_print`,
-        self$`public_key`,
-        self$`status`
+	if(is.null(self$`ssh_server_id`)) 'NULL' else self$`ssh_server_id`,
+	if(is.null(self$`ssh_server_name`)) 'NULL' else self$`ssh_server_name`,
+	if(is.null(self$`ssh_server_host`)) 'NULL' else self$`ssh_server_host`,
+	if(is.null(self$`ssh_server_port`)) 'NULL' else as.character(self$`ssh_server_port`),
+	if(is.null(self$`ssh_server_user`)) 'NULL' else self$`ssh_server_user`,
+	if(is.null(self$`finger_print`)) 'NULL' else self$`finger_print`,
+	if(is.null(self$`sha_finger_print`)) 'NULL' else self$`sha_finger_print`,
+	if(is.null(self$`public_key`)) 'NULL' else self$`public_key`,
+	if(is.null(self$`status`)) 'NULL' else self$`status`
       )
     },
     fromJSONString = function(SshServerJson) {

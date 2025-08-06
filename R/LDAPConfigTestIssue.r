@@ -60,8 +60,8 @@ LDAPConfigTestIssue <- R6::R6Class(
            "severity": %s,
            "message": %s
         }',
-        self$`severity`,
-        self$`message`
+	if(is.null(self$`severity`)) 'NULL' else self$`severity`,
+	if(is.null(self$`message`)) 'NULL' else self$`message`
       )
     },
     fromJSONString = function(LDAPConfigTestIssueJson) {

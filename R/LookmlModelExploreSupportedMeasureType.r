@@ -61,7 +61,7 @@ LookmlModelExploreSupportedMeasureType <- R6::R6Class(
            "dimension_type": %s,
            "measure_types": [%s]
         }',
-        self$`dimension_type`,
+	if(is.null(self$`dimension_type`)) 'NULL' else self$`dimension_type`,
         lapply(self$`measure_types`, function(x) paste(paste0('"', x, '"'), sep=","))
       )
     },

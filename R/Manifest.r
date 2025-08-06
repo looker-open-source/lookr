@@ -92,8 +92,8 @@ Manifest <- R6::R6Class(
            "imports": [%s],
            "localization_settings": %s
         }',
-        self$`can`,
-        self$`name`,
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
         lapply(self$`imports`, function(x) paste(x$toJSON(), sep=",")),
         self$`localization_settings`$toJSON()
       )

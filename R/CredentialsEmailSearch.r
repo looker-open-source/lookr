@@ -161,16 +161,16 @@ CredentialsEmailSearch <- R6::R6Class(
            "url": %s,
            "user_url": %s
         }',
-        self$`can`,
-        self$`created_at`,
-        self$`email`,
-        self$`forced_password_reset_at_next_login`,
-        self$`is_disabled`,
-        self$`logged_in_at`,
-        self$`password_reset_url`,
-        self$`type`,
-        self$`url`,
-        self$`user_url`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`created_at`)) 'NULL' else self$`created_at`,
+	if(is.null(self$`email`)) 'NULL' else self$`email`,
+	if(is.null(self$`forced_password_reset_at_next_login`)) 'NULL' else self$`forced_password_reset_at_next_login`,
+	if(is.null(self$`is_disabled`)) 'NULL' else self$`is_disabled`,
+	if(is.null(self$`logged_in_at`)) 'NULL' else self$`logged_in_at`,
+	if(is.null(self$`password_reset_url`)) 'NULL' else self$`password_reset_url`,
+	if(is.null(self$`type`)) 'NULL' else self$`type`,
+	if(is.null(self$`url`)) 'NULL' else self$`url`,
+	if(is.null(self$`user_url`)) 'NULL' else self$`user_url`
       )
     },
     fromJSONString = function(CredentialsEmailSearchJson) {

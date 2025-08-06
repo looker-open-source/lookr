@@ -90,16 +90,16 @@ PasswordConfig <- R6::R6Class(
        sprintf(
         '{
            "can": %s,
-           "min_length": %d,
+           "min_length": %s,
            "require_numeric": %s,
            "require_upperlower": %s,
            "require_special": %s
         }',
-        self$`can`,
-        self$`min_length`,
-        self$`require_numeric`,
-        self$`require_upperlower`,
-        self$`require_special`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`min_length`)) 'NULL' else as.character(self$`min_length`),
+	if(is.null(self$`require_numeric`)) 'NULL' else self$`require_numeric`,
+	if(is.null(self$`require_upperlower`)) 'NULL' else self$`require_upperlower`,
+	if(is.null(self$`require_special`)) 'NULL' else self$`require_special`
       )
     },
     fromJSONString = function(PasswordConfigJson) {

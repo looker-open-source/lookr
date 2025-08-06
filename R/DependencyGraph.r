@@ -47,7 +47,7 @@ DependencyGraph <- R6::R6Class(
         '{
            "graph_text": %s
         }',
-        self$`graph_text`
+	if(is.null(self$`graph_text`)) 'NULL' else self$`graph_text`
       )
     },
     fromJSONString = function(DependencyGraphJson) {

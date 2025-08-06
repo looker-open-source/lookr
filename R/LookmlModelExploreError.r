@@ -72,9 +72,9 @@ LookmlModelExploreError <- R6::R6Class(
            "error_pos": %s,
            "field_error": %s
         }',
-        self$`message`,
-        self$`error_pos`,
-        self$`field_error`
+	if(is.null(self$`message`)) 'NULL' else self$`message`,
+	if(is.null(self$`error_pos`)) 'NULL' else self$`error_pos`,
+	if(is.null(self$`field_error`)) 'NULL' else self$`field_error`
       )
     },
     fromJSONString = function(LookmlModelExploreErrorJson) {

@@ -91,9 +91,9 @@ ResultMakerFilterables <- R6::R6Class(
            "name": %s,
            "listen": [%s]
         }',
-        self$`model`,
-        self$`view`,
-        self$`name`,
+	if(is.null(self$`model`)) 'NULL' else self$`model`,
+	if(is.null(self$`view`)) 'NULL' else self$`view`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
         lapply(self$`listen`, function(x) paste(x$toJSON(), sep=","))
       )
     },

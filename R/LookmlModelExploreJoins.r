@@ -205,19 +205,19 @@ LookmlModelExploreJoins <- R6::R6Class(
            "type": %s,
            "view_label": %s
         }',
-        self$`name`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
         lapply(self$`dependent_fields`, function(x) paste(paste0('"', x, '"'), sep=",")),
         lapply(self$`fields`, function(x) paste(paste0('"', x, '"'), sep=",")),
-        self$`foreign_key`,
-        self$`from`,
-        self$`outer_only`,
-        self$`relationship`,
+	if(is.null(self$`foreign_key`)) 'NULL' else self$`foreign_key`,
+	if(is.null(self$`from`)) 'NULL' else self$`from`,
+	if(is.null(self$`outer_only`)) 'NULL' else self$`outer_only`,
+	if(is.null(self$`relationship`)) 'NULL' else self$`relationship`,
         lapply(self$`required_joins`, function(x) paste(paste0('"', x, '"'), sep=",")),
-        self$`sql_foreign_key`,
-        self$`sql_on`,
-        self$`sql_table_name`,
-        self$`type`,
-        self$`view_label`
+	if(is.null(self$`sql_foreign_key`)) 'NULL' else self$`sql_foreign_key`,
+	if(is.null(self$`sql_on`)) 'NULL' else self$`sql_on`,
+	if(is.null(self$`sql_table_name`)) 'NULL' else self$`sql_table_name`,
+	if(is.null(self$`type`)) 'NULL' else self$`type`,
+	if(is.null(self$`view_label`)) 'NULL' else self$`view_label`
       )
     },
     fromJSONString = function(LookmlModelExploreJoinsJson) {

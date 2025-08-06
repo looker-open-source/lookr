@@ -60,8 +60,8 @@ LookmlModelExploreAccessFilter <- R6::R6Class(
            "field": %s,
            "user_attribute": %s
         }',
-        self$`field`,
-        self$`user_attribute`
+	if(is.null(self$`field`)) 'NULL' else self$`field`,
+	if(is.null(self$`user_attribute`)) 'NULL' else self$`user_attribute`
       )
     },
     fromJSONString = function(LookmlModelExploreAccessFilterJson) {

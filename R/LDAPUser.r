@@ -167,15 +167,15 @@ LDAPUser <- R6::R6Class(
            "url": %s
         }',
         lapply(self$`all_emails`, function(x) paste(paste0('"', x, '"'), sep=",")),
-        self$`attributes`,
-        self$`email`,
-        self$`first_name`,
+	if(is.null(self$`attributes`)) 'NULL' else self$`attributes`,
+	if(is.null(self$`email`)) 'NULL' else self$`email`,
+	if(is.null(self$`first_name`)) 'NULL' else self$`first_name`,
         lapply(self$`groups`, function(x) paste(paste0('"', x, '"'), sep=",")),
-        self$`last_name`,
-        self$`ldap_dn`,
-        self$`ldap_id`,
+	if(is.null(self$`last_name`)) 'NULL' else self$`last_name`,
+	if(is.null(self$`ldap_dn`)) 'NULL' else self$`ldap_dn`,
+	if(is.null(self$`ldap_id`)) 'NULL' else self$`ldap_id`,
         lapply(self$`roles`, function(x) paste(paste0('"', x, '"'), sep=",")),
-        self$`url`
+	if(is.null(self$`url`)) 'NULL' else self$`url`
       )
     },
     fromJSONString = function(LDAPUserJson) {

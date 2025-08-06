@@ -151,15 +151,15 @@ ContentValidationDashboardFilter <- R6::R6Class(
            "explore": %s,
            "dimension": %s
         }',
-        self$`id`,
-        self$`dashboard_id`,
-        self$`name`,
-        self$`title`,
-        self$`type`,
-        self$`default_value`,
-        self$`model`,
-        self$`explore`,
-        self$`dimension`
+	if(is.null(self$`id`)) 'NULL' else self$`id`,
+	if(is.null(self$`dashboard_id`)) 'NULL' else self$`dashboard_id`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`title`)) 'NULL' else self$`title`,
+	if(is.null(self$`type`)) 'NULL' else self$`type`,
+	if(is.null(self$`default_value`)) 'NULL' else self$`default_value`,
+	if(is.null(self$`model`)) 'NULL' else self$`model`,
+	if(is.null(self$`explore`)) 'NULL' else self$`explore`,
+	if(is.null(self$`dimension`)) 'NULL' else self$`dimension`
       )
     },
     fromJSONString = function(ContentValidationDashboardFilterJson) {

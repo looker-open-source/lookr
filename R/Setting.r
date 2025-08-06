@@ -100,9 +100,9 @@ Setting <- R6::R6Class(
            "whitelabel_configuration": %s,
            "custom_welcome_email": %s
         }',
-        self$`extension_framework_enabled`,
-        self$`marketplace_auto_install_enabled`,
-        self$`marketplace_enabled`,
+	if(is.null(self$`extension_framework_enabled`)) 'NULL' else self$`extension_framework_enabled`,
+	if(is.null(self$`marketplace_auto_install_enabled`)) 'NULL' else self$`marketplace_auto_install_enabled`,
+	if(is.null(self$`marketplace_enabled`)) 'NULL' else self$`marketplace_enabled`,
         self$`whitelabel_configuration`$toJSON(),
         self$`custom_welcome_email`$toJSON()
       )

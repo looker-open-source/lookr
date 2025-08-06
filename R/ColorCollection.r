@@ -114,8 +114,8 @@ ColorCollection <- R6::R6Class(
            "sequentialPalettes": [%s],
            "divergingPalettes": [%s]
         }',
-        self$`id`,
-        self$`label`,
+	if(is.null(self$`id`)) 'NULL' else self$`id`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`,
         lapply(self$`categoricalPalettes`, function(x) paste(x$toJSON(), sep=",")),
         lapply(self$`sequentialPalettes`, function(x) paste(x$toJSON(), sep=",")),
         lapply(self$`divergingPalettes`, function(x) paste(x$toJSON(), sep=","))

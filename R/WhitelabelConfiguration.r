@@ -215,7 +215,7 @@ WhitelabelConfiguration <- R6::R6Class(
     toJSONString = function() {
        sprintf(
         '{
-           "id": %d,
+           "id": %s,
            "logo_file": %s,
            "logo_url": %s,
            "favicon_file": %s,
@@ -232,22 +232,22 @@ WhitelabelConfiguration <- R6::R6Class(
            "alerts_links": %s,
            "folders_mentions": %s
         }',
-        self$`id`,
-        self$`logo_file`,
-        self$`logo_url`,
-        self$`favicon_file`,
-        self$`favicon_url`,
-        self$`default_title`,
-        self$`show_help_menu`,
-        self$`show_docs`,
-        self$`show_email_sub_options`,
-        self$`allow_looker_mentions`,
-        self$`allow_looker_links`,
-        self$`custom_welcome_email_advanced`,
-        self$`setup_mentions`,
-        self$`alerts_logo`,
-        self$`alerts_links`,
-        self$`folders_mentions`
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`logo_file`)) 'NULL' else self$`logo_file`,
+	if(is.null(self$`logo_url`)) 'NULL' else self$`logo_url`,
+	if(is.null(self$`favicon_file`)) 'NULL' else self$`favicon_file`,
+	if(is.null(self$`favicon_url`)) 'NULL' else self$`favicon_url`,
+	if(is.null(self$`default_title`)) 'NULL' else self$`default_title`,
+	if(is.null(self$`show_help_menu`)) 'NULL' else self$`show_help_menu`,
+	if(is.null(self$`show_docs`)) 'NULL' else self$`show_docs`,
+	if(is.null(self$`show_email_sub_options`)) 'NULL' else self$`show_email_sub_options`,
+	if(is.null(self$`allow_looker_mentions`)) 'NULL' else self$`allow_looker_mentions`,
+	if(is.null(self$`allow_looker_links`)) 'NULL' else self$`allow_looker_links`,
+	if(is.null(self$`custom_welcome_email_advanced`)) 'NULL' else self$`custom_welcome_email_advanced`,
+	if(is.null(self$`setup_mentions`)) 'NULL' else self$`setup_mentions`,
+	if(is.null(self$`alerts_logo`)) 'NULL' else self$`alerts_logo`,
+	if(is.null(self$`alerts_links`)) 'NULL' else self$`alerts_links`,
+	if(is.null(self$`folders_mentions`)) 'NULL' else self$`folders_mentions`
       )
     },
     fromJSONString = function(WhitelabelConfigurationJson) {

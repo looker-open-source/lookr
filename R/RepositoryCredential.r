@@ -136,14 +136,14 @@ RepositoryCredential <- R6::R6Class(
            "ssh_public_key": %s,
            "is_configured": %s
         }',
-        self$`can`,
-        self$`id`,
-        self$`root_project_id`,
-        self$`remote_url`,
-        self$`git_username`,
-        self$`git_password`,
-        self$`ssh_public_key`,
-        self$`is_configured`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`id`)) 'NULL' else self$`id`,
+	if(is.null(self$`root_project_id`)) 'NULL' else self$`root_project_id`,
+	if(is.null(self$`remote_url`)) 'NULL' else self$`remote_url`,
+	if(is.null(self$`git_username`)) 'NULL' else self$`git_username`,
+	if(is.null(self$`git_password`)) 'NULL' else self$`git_password`,
+	if(is.null(self$`ssh_public_key`)) 'NULL' else self$`ssh_public_key`,
+	if(is.null(self$`is_configured`)) 'NULL' else self$`is_configured`
       )
     },
     fromJSONString = function(RepositoryCredentialJson) {

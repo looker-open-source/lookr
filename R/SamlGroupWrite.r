@@ -106,19 +106,19 @@ SamlGroupWrite <- R6::R6Class(
     toJSONString = function() {
        sprintf(
         '{
-           "id": %d,
-           "looker_group_id": %d,
+           "id": %s,
+           "looker_group_id": %s,
            "looker_group_name": %s,
            "name": %s,
            "role_ids": [%s],
            "url": %s
         }',
-        self$`id`,
-        self$`looker_group_id`,
-        self$`looker_group_name`,
-        self$`name`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`looker_group_id`)) 'NULL' else as.character(self$`looker_group_id`),
+	if(is.null(self$`looker_group_name`)) 'NULL' else self$`looker_group_name`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
         lapply(self$`role_ids`, function(x) paste(paste0('"', x, '"'), sep=",")),
-        self$`url`
+	if(is.null(self$`url`)) 'NULL' else self$`url`
       )
     },
     fromJSONString = function(SamlGroupWriteJson) {

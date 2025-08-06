@@ -84,10 +84,10 @@ GitStatus <- R6::R6Class(
            "revertable": %s,
            "text": %s
         }',
-        self$`action`,
-        self$`conflict`,
-        self$`revertable`,
-        self$`text`
+	if(is.null(self$`action`)) 'NULL' else self$`action`,
+	if(is.null(self$`conflict`)) 'NULL' else self$`conflict`,
+	if(is.null(self$`revertable`)) 'NULL' else self$`revertable`,
+	if(is.null(self$`text`)) 'NULL' else self$`text`
       )
     },
     fromJSONString = function(GitStatusJson) {

@@ -77,8 +77,8 @@ IntegrationTestResult <- R6::R6Class(
            "message": %s,
            "delegate_oauth_result": [%s]
         }',
-        self$`success`,
-        self$`message`,
+	if(is.null(self$`success`)) 'NULL' else self$`success`,
+	if(is.null(self$`message`)) 'NULL' else self$`message`,
         lapply(self$`delegate_oauth_result`, function(x) paste(x$toJSON(), sep=","))
       )
     },

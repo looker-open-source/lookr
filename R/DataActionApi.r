@@ -29,7 +29,7 @@
 DataActionApi <- R6::R6Class(
   'DataActionApi',
   public = list(
-    userAgent = "R-SDK",
+    userAgent = "R-SDK 3.0.0",
     apiClient = NULL,
     initialize = function(apiClient){
       if (!missing(apiClient)) {
@@ -59,20 +59,34 @@ DataActionApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-	data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
-	if (is.null(names(data))) {
-	  returnObjects <- lapply(data, function(x) {
+	if (httr::http_type(resp) == "application/json") {
+	  data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
+	  if ("DataActionForm" == "Character") {
+	    Response$new(data, resp)
+	  } else if (is.null(names(data))) {
+	    returnObjects <- lapply(data, function(x) {
+	      returnObject <- DataActionForm$new()
+	      #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
+	      returnObject$fromJSONObject(x)
+	      returnObject
+	    })
+	    Response$new(returnObjects, resp)
+	  } else {
 	    returnObject <- DataActionForm$new()
-	    #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
-	    returnObject$fromJSONObject(x)
-	    returnObject
-	  })
-	  Response$new(returnObjects, resp)
+	    #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
+	    result <- returnObject$fromJSONObject(data)
+	    Response$new(returnObject, resp)
+	  }
+	} else if ((httr::http_type(resp) == "image/jpeg") || (httr::http_type(resp) == "image/png")) {
+	  Response$new(httr::content(resp, "raw"), resp)
+	# These types are known to httr. But fall through to the default.
+	# } else if (httr::http_type(resp) == "application/x-www-form-urlencoded") {
+	# } else if (httr::http_type(resp) == "text/html") {
+	# } else if (httr::http_type(resp) == "text/xml") {
+	# } else if (httr::http_type(resp) == "text/csv") {
+	# } else if (httr::http_type(resp) == "text/tab-separated-values") {
 	} else {
-	  returnObject <- DataActionForm$new()
-	  #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
-	  result <- returnObject$fromJSONObject(data)
-	  Response$new(returnObject, resp)
+	  Response$new(httr::content(resp, "text", encoding = "UTF-8"), resp)
 	}
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
         Response$new("API client error", resp)
@@ -101,20 +115,34 @@ DataActionApi <- R6::R6Class(
                                  ...)
       
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
-	data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
-	if (is.null(names(data))) {
-	  returnObjects <- lapply(data, function(x) {
+	if (httr::http_type(resp) == "application/json") {
+	  data <- jsonlite::fromJSON(httr::content(resp, "text", encoding = "UTF-8"),simplifyVector = FALSE)
+	  if ("DataActionResponse" == "Character") {
+	    Response$new(data, resp)
+	  } else if (is.null(names(data))) {
+	    returnObjects <- lapply(data, function(x) {
+	      returnObject <- DataActionResponse$new()
+	      #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
+	      returnObject$fromJSONObject(x)
+	      returnObject
+	    })
+	    Response$new(returnObjects, resp)
+	  } else {
 	    returnObject <- DataActionResponse$new()
-	    #returnObject$fromJSON(jsonlite::toJSON(x, auto_unbox = FALSE))
-	    returnObject$fromJSONObject(x)
-	    returnObject
-	  })
-	  Response$new(returnObjects, resp)
+	    #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
+	    result <- returnObject$fromJSONObject(data)
+	    Response$new(returnObject, resp)
+	  }
+	} else if ((httr::http_type(resp) == "image/jpeg") || (httr::http_type(resp) == "image/png")) {
+	  Response$new(httr::content(resp, "raw"), resp)
+	# These types are known to httr. But fall through to the default.
+	# } else if (httr::http_type(resp) == "application/x-www-form-urlencoded") {
+	# } else if (httr::http_type(resp) == "text/html") {
+	# } else if (httr::http_type(resp) == "text/xml") {
+	# } else if (httr::http_type(resp) == "text/csv") {
+	# } else if (httr::http_type(resp) == "text/tab-separated-values") {
 	} else {
-	  returnObject <- DataActionResponse$new()
-	  #result <- returnObject$fromJSON(httr::content(resp, "text", encoding = "UTF-8"))
-	  result <- returnObject$fromJSONObject(data)
-	  Response$new(returnObject, resp)
+	  Response$new(httr::content(resp, "text", encoding = "UTF-8"), resp)
 	}
       } else if (httr::status_code(resp) >= 400 && httr::status_code(resp) <= 499) {
         Response$new("API client error", resp)

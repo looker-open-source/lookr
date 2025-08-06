@@ -60,8 +60,8 @@ AlertFieldFilter <- R6::R6Class(
            "field_name": %s,
            "filter_value": %s
         }',
-        self$`field_name`,
-        self$`filter_value`
+	if(is.null(self$`field_name`)) 'NULL' else self$`field_name`,
+	if(is.null(self$`filter_value`)) 'NULL' else self$`filter_value`
       )
     },
     fromJSONString = function(AlertFieldFilterJson) {

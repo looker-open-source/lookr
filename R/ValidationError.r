@@ -78,9 +78,9 @@ ValidationError <- R6::R6Class(
            "errors": [%s],
            "documentation_url": %s
         }',
-        self$`message`,
+	if(is.null(self$`message`)) 'NULL' else self$`message`,
         lapply(self$`errors`, function(x) paste(x$toJSON(), sep=",")),
-        self$`documentation_url`
+	if(is.null(self$`documentation_url`)) 'NULL' else self$`documentation_url`
       )
     },
     fromJSONString = function(ValidationErrorJson) {

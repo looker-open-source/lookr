@@ -138,13 +138,13 @@ DialectInfo <- R6::R6Class(
            "name": %s,
            "supported_options": %s
         }',
-        self$`can`,
-        self$`default_max_connections`,
-        self$`default_port`,
-        self$`installed`,
-        self$`label`,
-        self$`label_for_database_equivalent`,
-        self$`name`,
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`default_max_connections`)) 'NULL' else self$`default_max_connections`,
+	if(is.null(self$`default_port`)) 'NULL' else self$`default_port`,
+	if(is.null(self$`installed`)) 'NULL' else self$`installed`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`,
+	if(is.null(self$`label_for_database_equivalent`)) 'NULL' else self$`label_for_database_equivalent`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
         self$`supported_options`$toJSON()
       )
     },

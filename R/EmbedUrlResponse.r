@@ -47,7 +47,7 @@ EmbedUrlResponse <- R6::R6Class(
         '{
            "url": %s
         }',
-        self$`url`
+	if(is.null(self$`url`)) 'NULL' else self$`url`
       )
     },
     fromJSONString = function(EmbedUrlResponseJson) {

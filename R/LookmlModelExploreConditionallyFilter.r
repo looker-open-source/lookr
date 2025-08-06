@@ -60,8 +60,8 @@ LookmlModelExploreConditionallyFilter <- R6::R6Class(
            "name": %s,
            "value": %s
         }',
-        self$`name`,
-        self$`value`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`value`)) 'NULL' else self$`value`
       )
     },
     fromJSONString = function(LookmlModelExploreConditionallyFilterJson) {

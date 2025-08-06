@@ -58,10 +58,10 @@ DataActionUserState <- R6::R6Class(
        sprintf(
         '{
            "data": %s,
-           "refresh_time": %d
+           "refresh_time": %s
         }',
-        self$`data`,
-        self$`refresh_time`
+	if(is.null(self$`data`)) 'NULL' else self$`data`,
+	if(is.null(self$`refresh_time`)) 'NULL' else as.character(self$`refresh_time`)
       )
     },
     fromJSONString = function(DataActionUserStateJson) {

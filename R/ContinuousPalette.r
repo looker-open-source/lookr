@@ -91,9 +91,9 @@ ContinuousPalette <- R6::R6Class(
            "type": %s,
            "stops": [%s]
         }',
-        self$`id`,
-        self$`label`,
-        self$`type`,
+	if(is.null(self$`id`)) 'NULL' else self$`id`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`,
+	if(is.null(self$`type`)) 'NULL' else self$`type`,
         lapply(self$`stops`, function(x) paste(x$toJSON(), sep=","))
       )
     },

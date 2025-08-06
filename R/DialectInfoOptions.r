@@ -154,16 +154,16 @@ DialectInfoOptions <- R6::R6Class(
            "tmp_table": %s,
            "username_required": %s
         }',
-        self$`additional_params`,
-        self$`auth`,
-        self$`host`,
-        self$`oauth_credentials`,
-        self$`project_name`,
-        self$`schema`,
-        self$`ssl`,
-        self$`timezone`,
-        self$`tmp_table`,
-        self$`username_required`
+	if(is.null(self$`additional_params`)) 'NULL' else self$`additional_params`,
+	if(is.null(self$`auth`)) 'NULL' else self$`auth`,
+	if(is.null(self$`host`)) 'NULL' else self$`host`,
+	if(is.null(self$`oauth_credentials`)) 'NULL' else self$`oauth_credentials`,
+	if(is.null(self$`project_name`)) 'NULL' else self$`project_name`,
+	if(is.null(self$`schema`)) 'NULL' else self$`schema`,
+	if(is.null(self$`ssl`)) 'NULL' else self$`ssl`,
+	if(is.null(self$`timezone`)) 'NULL' else self$`timezone`,
+	if(is.null(self$`tmp_table`)) 'NULL' else self$`tmp_table`,
+	if(is.null(self$`username_required`)) 'NULL' else self$`username_required`
       )
     },
     fromJSONString = function(DialectInfoOptionsJson) {

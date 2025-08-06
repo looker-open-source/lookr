@@ -47,7 +47,7 @@ LookmlModelExploreFieldEnumeration <- R6::R6Class(
         '{
            "label": %s
         }',
-        self$`label`
+	if(is.null(self$`label`)) 'NULL' else self$`label`
       )
     },
     fromJSONString = function(LookmlModelExploreFieldEnumerationJson) {

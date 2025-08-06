@@ -117,20 +117,20 @@ UserPublic <- R6::R6Class(
        sprintf(
         '{
            "can": %s,
-           "id": %d,
+           "id": %s,
            "first_name": %s,
            "last_name": %s,
            "display_name": %s,
            "avatar_url": %s,
            "url": %s
         }',
-        self$`can`,
-        self$`id`,
-        self$`first_name`,
-        self$`last_name`,
-        self$`display_name`,
-        self$`avatar_url`,
-        self$`url`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`first_name`)) 'NULL' else self$`first_name`,
+	if(is.null(self$`last_name`)) 'NULL' else self$`last_name`,
+	if(is.null(self$`display_name`)) 'NULL' else self$`display_name`,
+	if(is.null(self$`avatar_url`)) 'NULL' else self$`avatar_url`,
+	if(is.null(self$`url`)) 'NULL' else self$`url`
       )
     },
     fromJSONString = function(UserPublicJson) {

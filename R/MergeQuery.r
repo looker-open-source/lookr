@@ -162,22 +162,22 @@ MergeQuery <- R6::R6Class(
            "dynamic_fields": %s,
            "id": %s,
            "pivots": [%s],
-           "result_maker_id": %d,
+           "result_maker_id": %s,
            "sorts": [%s],
            "source_queries": [%s],
            "total": %s,
            "vis_config": %s
         }',
-        self$`can`,
-        self$`column_limit`,
-        self$`dynamic_fields`,
-        self$`id`,
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`column_limit`)) 'NULL' else self$`column_limit`,
+	if(is.null(self$`dynamic_fields`)) 'NULL' else self$`dynamic_fields`,
+	if(is.null(self$`id`)) 'NULL' else self$`id`,
         lapply(self$`pivots`, function(x) paste(paste0('"', x, '"'), sep=",")),
-        self$`result_maker_id`,
+	if(is.null(self$`result_maker_id`)) 'NULL' else as.character(self$`result_maker_id`),
         lapply(self$`sorts`, function(x) paste(paste0('"', x, '"'), sep=",")),
         lapply(self$`source_queries`, function(x) paste(x$toJSON(), sep=",")),
-        self$`total`,
-        self$`vis_config`
+	if(is.null(self$`total`)) 'NULL' else self$`total`,
+	if(is.null(self$`vis_config`)) 'NULL' else self$`vis_config`
       )
     },
     fromJSONString = function(MergeQueryJson) {

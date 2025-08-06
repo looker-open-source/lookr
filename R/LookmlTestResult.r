@@ -140,20 +140,20 @@ LookmlTestResult <- R6::R6Class(
            "can": %s,
            "model_name": %s,
            "test_name": %s,
-           "assertions_count": %d,
-           "assertions_failed": %d,
+           "assertions_count": %s,
+           "assertions_failed": %s,
            "errors": [%s],
            "warnings": [%s],
            "success": %s
         }',
-        self$`can`,
-        self$`model_name`,
-        self$`test_name`,
-        self$`assertions_count`,
-        self$`assertions_failed`,
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`model_name`)) 'NULL' else self$`model_name`,
+	if(is.null(self$`test_name`)) 'NULL' else self$`test_name`,
+	if(is.null(self$`assertions_count`)) 'NULL' else as.character(self$`assertions_count`),
+	if(is.null(self$`assertions_failed`)) 'NULL' else as.character(self$`assertions_failed`),
         lapply(self$`errors`, function(x) paste(x$toJSON(), sep=",")),
         lapply(self$`warnings`, function(x) paste(x$toJSON(), sep=",")),
-        self$`success`
+	if(is.null(self$`success`)) 'NULL' else self$`success`
       )
     },
     fromJSONString = function(LookmlTestResultJson) {

@@ -47,7 +47,7 @@ SshPublicKey <- R6::R6Class(
         '{
            "public_key": %s
         }',
-        self$`public_key`
+	if(is.null(self$`public_key`)) 'NULL' else self$`public_key`
       )
     },
     fromJSONString = function(SshPublicKeyJson) {

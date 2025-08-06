@@ -164,28 +164,28 @@ ContentMeta <- R6::R6Class(
        sprintf(
         '{
            "can": %s,
-           "id": %d,
+           "id": %s,
            "name": %s,
-           "parent_id": %d,
+           "parent_id": %s,
            "dashboard_id": %s,
-           "look_id": %d,
+           "look_id": %s,
            "folder_id": %s,
            "content_type": %s,
            "inherits": %s,
-           "inheriting_id": %d,
+           "inheriting_id": %s,
            "slug": %s
         }',
-        self$`can`,
-        self$`id`,
-        self$`name`,
-        self$`parent_id`,
-        self$`dashboard_id`,
-        self$`look_id`,
-        self$`folder_id`,
-        self$`content_type`,
-        self$`inherits`,
-        self$`inheriting_id`,
-        self$`slug`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`parent_id`)) 'NULL' else as.character(self$`parent_id`),
+	if(is.null(self$`dashboard_id`)) 'NULL' else self$`dashboard_id`,
+	if(is.null(self$`look_id`)) 'NULL' else as.character(self$`look_id`),
+	if(is.null(self$`folder_id`)) 'NULL' else self$`folder_id`,
+	if(is.null(self$`content_type`)) 'NULL' else self$`content_type`,
+	if(is.null(self$`inherits`)) 'NULL' else self$`inherits`,
+	if(is.null(self$`inheriting_id`)) 'NULL' else as.character(self$`inheriting_id`),
+	if(is.null(self$`slug`)) 'NULL' else self$`slug`
       )
     },
     fromJSONString = function(ContentMetaJson) {

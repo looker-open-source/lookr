@@ -87,9 +87,9 @@ DiscretePalette <- R6::R6Class(
            "type": %s,
            "colors": [%s]
         }',
-        self$`id`,
-        self$`label`,
-        self$`type`,
+	if(is.null(self$`id`)) 'NULL' else self$`id`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`,
+	if(is.null(self$`type`)) 'NULL' else self$`type`,
         lapply(self$`colors`, function(x) paste(paste0('"', x, '"'), sep=","))
       )
     },

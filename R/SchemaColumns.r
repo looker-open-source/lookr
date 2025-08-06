@@ -91,9 +91,9 @@ SchemaColumns <- R6::R6Class(
            "schema_name": %s,
            "columns": [%s]
         }',
-        self$`name`,
-        self$`sql_escaped_name`,
-        self$`schema_name`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`sql_escaped_name`)) 'NULL' else self$`sql_escaped_name`,
+	if(is.null(self$`schema_name`)) 'NULL' else self$`schema_name`,
         lapply(self$`columns`, function(x) paste(x$toJSON(), sep=","))
       )
     },

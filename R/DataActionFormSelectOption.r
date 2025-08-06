@@ -60,8 +60,8 @@ DataActionFormSelectOption <- R6::R6Class(
            "name": %s,
            "label": %s
         }',
-        self$`name`,
-        self$`label`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`
       )
     },
     fromJSONString = function(DataActionFormSelectOptionJson) {

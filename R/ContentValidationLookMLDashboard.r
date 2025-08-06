@@ -73,9 +73,9 @@ ContentValidationLookMLDashboard <- R6::R6Class(
            "title": %s,
            "space_id": %s
         }',
-        self$`id`,
-        self$`title`,
-        self$`space_id`
+	if(is.null(self$`id`)) 'NULL' else self$`id`,
+	if(is.null(self$`title`)) 'NULL' else self$`title`,
+	if(is.null(self$`space_id`)) 'NULL' else self$`space_id`
       )
     },
     fromJSONString = function(ContentValidationLookMLDashboardJson) {

@@ -76,11 +76,11 @@ MergeQuerySourceQuery <- R6::R6Class(
         '{
            "merge_fields": [%s],
            "name": %s,
-           "query_id": %d
+           "query_id": %s
         }',
         lapply(self$`merge_fields`, function(x) paste(x$toJSON(), sep=",")),
-        self$`name`,
-        self$`query_id`
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`query_id`)) 'NULL' else as.character(self$`query_id`)
       )
     },
     fromJSONString = function(MergeQuerySourceQueryJson) {

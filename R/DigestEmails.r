@@ -46,7 +46,7 @@ DigestEmails <- R6::R6Class(
         '{
            "is_enabled": %s
         }',
-        self$`is_enabled`
+	if(is.null(self$`is_enabled`)) 'NULL' else self$`is_enabled`
       )
     },
     fromJSONString = function(DigestEmailsJson) {

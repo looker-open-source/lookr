@@ -73,9 +73,9 @@ Timezone <- R6::R6Class(
            "label": %s,
            "group": %s
         }',
-        self$`value`,
-        self$`label`,
-        self$`group`
+	if(is.null(self$`value`)) 'NULL' else self$`value`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`,
+	if(is.null(self$`group`)) 'NULL' else self$`group`
       )
     },
     fromJSONString = function(TimezoneJson) {

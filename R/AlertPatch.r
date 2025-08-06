@@ -91,17 +91,17 @@ AlertPatch <- R6::R6Class(
     toJSONString = function() {
        sprintf(
         '{
-           "owner_id": %d,
+           "owner_id": %s,
            "is_disabled": %s,
            "disabled_reason": %s,
            "is_public": %s,
-           "threshold": %d
+           "threshold": %s
         }',
-        self$`owner_id`,
-        self$`is_disabled`,
-        self$`disabled_reason`,
-        self$`is_public`,
-        self$`threshold`
+	if(is.null(self$`owner_id`)) 'NULL' else as.character(self$`owner_id`),
+	if(is.null(self$`is_disabled`)) 'NULL' else self$`is_disabled`,
+	if(is.null(self$`disabled_reason`)) 'NULL' else self$`disabled_reason`,
+	if(is.null(self$`is_public`)) 'NULL' else self$`is_public`,
+	if(is.null(self$`threshold`)) 'NULL' else as.character(self$`threshold`)
       )
     },
     fromJSONString = function(AlertPatchJson) {

@@ -47,7 +47,7 @@ CreateCostEstimate <- R6::R6Class(
         '{
            "sql": %s
         }',
-        self$`sql`
+	if(is.null(self$`sql`)) 'NULL' else self$`sql`
       )
     },
     fromJSONString = function(CreateCostEstimateJson) {

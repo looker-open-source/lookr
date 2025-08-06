@@ -102,17 +102,17 @@ SessionConfig <- R6::R6Class(
         '{
            "can": %s,
            "allow_persistent_sessions": %s,
-           "session_minutes": %d,
+           "session_minutes": %s,
            "unlimited_sessions_per_user": %s,
            "use_inactivity_based_logout": %s,
            "track_session_location": %s
         }',
-        self$`can`,
-        self$`allow_persistent_sessions`,
-        self$`session_minutes`,
-        self$`unlimited_sessions_per_user`,
-        self$`use_inactivity_based_logout`,
-        self$`track_session_location`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`allow_persistent_sessions`)) 'NULL' else self$`allow_persistent_sessions`,
+	if(is.null(self$`session_minutes`)) 'NULL' else as.character(self$`session_minutes`),
+	if(is.null(self$`unlimited_sessions_per_user`)) 'NULL' else self$`unlimited_sessions_per_user`,
+	if(is.null(self$`use_inactivity_based_logout`)) 'NULL' else self$`use_inactivity_based_logout`,
+	if(is.null(self$`track_session_location`)) 'NULL' else self$`track_session_location`
       )
     },
     fromJSONString = function(SessionConfigJson) {

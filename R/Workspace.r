@@ -77,8 +77,8 @@ Workspace <- R6::R6Class(
            "id": %s,
            "projects": [%s]
         }',
-        self$`can`,
-        self$`id`,
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`id`)) 'NULL' else self$`id`,
         lapply(self$`projects`, function(x) paste(x$toJSON(), sep=","))
       )
     },

@@ -141,14 +141,14 @@ LookmlModel <- R6::R6Class(
            "project_name": %s,
            "unlimited_db_connections": %s
         }',
-        self$`can`,
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
         lapply(self$`allowed_db_connection_names`, function(x) paste(paste0('"', x, '"'), sep=",")),
         lapply(self$`explores`, function(x) paste(x$toJSON(), sep=",")),
-        self$`has_content`,
-        self$`label`,
-        self$`name`,
-        self$`project_name`,
-        self$`unlimited_db_connections`
+	if(is.null(self$`has_content`)) 'NULL' else self$`has_content`,
+	if(is.null(self$`label`)) 'NULL' else self$`label`,
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`project_name`)) 'NULL' else self$`project_name`,
+	if(is.null(self$`unlimited_db_connections`)) 'NULL' else self$`unlimited_db_connections`
       )
     },
     fromJSONString = function(LookmlModelJson) {

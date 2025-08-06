@@ -73,9 +73,9 @@ WelcomeEmailTest <- R6::R6Class(
            "subject": %s,
            "header": %s
         }',
-        self$`content`,
-        self$`subject`,
-        self$`header`
+	if(is.null(self$`content`)) 'NULL' else self$`content`,
+	if(is.null(self$`subject`)) 'NULL' else self$`subject`,
+	if(is.null(self$`header`)) 'NULL' else self$`header`
       )
     },
     fromJSONString = function(WelcomeEmailTestJson) {

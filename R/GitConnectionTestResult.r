@@ -85,10 +85,10 @@ GitConnectionTestResult <- R6::R6Class(
            "message": %s,
            "status": %s
         }',
-        self$`can`,
-        self$`id`,
-        self$`message`,
-        self$`status`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`id`)) 'NULL' else self$`id`,
+	if(is.null(self$`message`)) 'NULL' else self$`message`,
+	if(is.null(self$`status`)) 'NULL' else self$`status`
       )
     },
     fromJSONString = function(GitConnectionTestResultJson) {

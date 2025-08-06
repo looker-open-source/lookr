@@ -105,19 +105,19 @@ Command <- R6::R6Class(
     toJSONString = function() {
        sprintf(
         '{
-           "id": %d,
-           "author_id": %d,
+           "id": %s,
+           "author_id": %s,
            "name": %s,
            "description": %s,
            "linked_content_id": %s,
            "linked_content_type": %s
         }',
-        self$`id`,
-        self$`author_id`,
-        self$`name`,
-        self$`description`,
-        self$`linked_content_id`,
-        self$`linked_content_type`
+	if(is.null(self$`id`)) 'NULL' else as.character(self$`id`),
+	if(is.null(self$`author_id`)) 'NULL' else as.character(self$`author_id`),
+	if(is.null(self$`name`)) 'NULL' else self$`name`,
+	if(is.null(self$`description`)) 'NULL' else self$`description`,
+	if(is.null(self$`linked_content_id`)) 'NULL' else self$`linked_content_id`,
+	if(is.null(self$`linked_content_type`)) 'NULL' else self$`linked_content_type`
       )
     },
     fromJSONString = function(CommandJson) {

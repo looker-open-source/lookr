@@ -108,15 +108,15 @@ ContentMetaGroupUser <- R6::R6Class(
            "id": %s,
            "content_metadata_id": %s,
            "permission_type": %s,
-           "group_id": %d,
-           "user_id": %d
+           "group_id": %s,
+           "user_id": %s
         }',
-        self$`can`,
-        self$`id`,
-        self$`content_metadata_id`,
-        self$`permission_type`,
-        self$`group_id`,
-        self$`user_id`
+	if(is.null(self$`can`)) 'NULL' else self$`can`,
+	if(is.null(self$`id`)) 'NULL' else self$`id`,
+	if(is.null(self$`content_metadata_id`)) 'NULL' else self$`content_metadata_id`,
+	if(is.null(self$`permission_type`)) 'NULL' else self$`permission_type`,
+	if(is.null(self$`group_id`)) 'NULL' else as.character(self$`group_id`),
+	if(is.null(self$`user_id`)) 'NULL' else as.character(self$`user_id`)
       )
     },
     fromJSONString = function(ContentMetaGroupUserJson) {

@@ -98,11 +98,11 @@ ContentValidationError <- R6::R6Class(
            "explore_name": %s,
            "removable": %s
         }',
-        self$`message`,
-        self$`field_name`,
-        self$`model_name`,
-        self$`explore_name`,
-        self$`removable`
+	if(is.null(self$`message`)) 'NULL' else self$`message`,
+	if(is.null(self$`field_name`)) 'NULL' else self$`field_name`,
+	if(is.null(self$`model_name`)) 'NULL' else self$`model_name`,
+	if(is.null(self$`explore_name`)) 'NULL' else self$`explore_name`,
+	if(is.null(self$`removable`)) 'NULL' else self$`removable`
       )
     },
     fromJSONString = function(ContentValidationErrorJson) {

@@ -102,20 +102,25 @@
        sprintf(
         '{
            {{#vars}}
-           "{{baseName}}": {{#isListContainer}}[{{/isListContainer}}{{#isPrimitiveType}}{{#isNumeric}}%d{{/isNumeric}}{{^isNumeric}}%s{{/isNumeric}}{{/isPrimitiveType}}{{^isPrimitiveType}}%s{{/isPrimitiveType}}{{#isListContainer}}]{{/isListContainer}}{{#hasMore}},{{/hasMore}}
+           "{{baseName}}": {{#isListContainer}}[{{/isListContainer}}%s{{#isListContainer}}]{{/isListContainer}}{{#hasMore}},{{/hasMore}}
            {{/vars}}
         }',
         {{#vars}}
         {{#isListContainer}}
         {{#isPrimitiveType}}
-        lapply(self$`{{baseName}}`, function(x) paste(paste0('"', x, '"'), sep=",")){{#hasMore}},{{/hasMore}}
+	paste(sapply(self$`{{baseName}}`, function(x) paste0('"', x, '"')), collapse = ', '){{#hasMore}},{{/hasMore}}
         {{/isPrimitiveType}}
         {{^isPrimitiveType}}
         lapply(self$`{{baseName}}`, function(x) paste(x$toJSON(), sep=",")){{#hasMore}},{{/hasMore}}
         {{/isPrimitiveType}}
         {{/isListContainer}}
         {{^isListContainer}}
-        self$`{{baseName}}`{{^isPrimitiveType}}$toJSON(){{/isPrimitiveType}}{{#hasMore}},{{/hasMore}}
+        {{#isPrimitiveType}}
+	if(is.null(self$`{{baseName}}`)) 'NULL' else {{#isNumeric}}as.character({{/isNumeric}}self$`{{baseName}}`{{#isNumeric}}){{/isNumeric}}{{#hasMore}},{{/hasMore}}
+        {{/isPrimitiveType}}
+        {{^isPrimitiveType}}
+        self$`{{baseName}}`$toJSON(){{#hasMore}},{{/hasMore}}
+        {{/isPrimitiveType}}
         {{/isListContainer}}
         {{/vars}}
       )

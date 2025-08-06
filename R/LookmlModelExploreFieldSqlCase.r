@@ -60,8 +60,8 @@ LookmlModelExploreFieldSqlCase <- R6::R6Class(
            "value": %s,
            "condition": %s
         }',
-        self$`value`,
-        self$`condition`
+	if(is.null(self$`value`)) 'NULL' else self$`value`,
+	if(is.null(self$`condition`)) 'NULL' else self$`condition`
       )
     },
     fromJSONString = function(LookmlModelExploreFieldSqlCaseJson) {

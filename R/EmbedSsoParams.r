@@ -194,7 +194,7 @@ EmbedSsoParams <- R6::R6Class(
        sprintf(
         '{
            "target_url": %s,
-           "session_length": %d,
+           "session_length": %s,
            "force_logout_login": %s,
            "external_user_id": %s,
            "first_name": %s,
@@ -205,21 +205,21 @@ EmbedSsoParams <- R6::R6Class(
            "group_ids": [%s],
            "external_group_id": %s,
            "user_attributes": %s,
-           "secret_id": %d
+           "secret_id": %s
         }',
-        self$`target_url`,
-        self$`session_length`,
-        self$`force_logout_login`,
-        self$`external_user_id`,
-        self$`first_name`,
-        self$`last_name`,
-        self$`user_timezone`,
+	if(is.null(self$`target_url`)) 'NULL' else self$`target_url`,
+	if(is.null(self$`session_length`)) 'NULL' else as.character(self$`session_length`),
+	if(is.null(self$`force_logout_login`)) 'NULL' else self$`force_logout_login`,
+	if(is.null(self$`external_user_id`)) 'NULL' else self$`external_user_id`,
+	if(is.null(self$`first_name`)) 'NULL' else self$`first_name`,
+	if(is.null(self$`last_name`)) 'NULL' else self$`last_name`,
+	if(is.null(self$`user_timezone`)) 'NULL' else self$`user_timezone`,
         lapply(self$`permissions`, function(x) paste(paste0('"', x, '"'), sep=",")),
         lapply(self$`models`, function(x) paste(paste0('"', x, '"'), sep=",")),
         lapply(self$`group_ids`, function(x) paste(paste0('"', x, '"'), sep=",")),
-        self$`external_group_id`,
+	if(is.null(self$`external_group_id`)) 'NULL' else self$`external_group_id`,
         self$`user_attributes`$toJSON(),
-        self$`secret_id`
+	if(is.null(self$`secret_id`)) 'NULL' else as.character(self$`secret_id`)
       )
     },
     fromJSONString = function(EmbedSsoParamsJson) {
